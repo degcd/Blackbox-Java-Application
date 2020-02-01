@@ -3,9 +3,9 @@
 	<name>Blackbox</name>
 	<comment></comment>
 	<projects>
-		<project>UserManagementEJB</project>
-		<project>GameEJB</project>
 		<project>BlackboxWeb</project>
+		<project>GameEJB</project>
+		<project>UserManagementEJB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

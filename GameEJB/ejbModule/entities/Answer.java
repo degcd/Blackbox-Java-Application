@@ -29,4 +29,15 @@ public class Answer {
     public Node getAnswerNode(){
         return answerNode;
     }
+    /**
+     * gibt das Objekt als Json-Objekt-String aus
+     * 	{
+     * 		answerID,
+     * 		answerMessage
+     * 	}
+     */
+    @Override
+    public String toString() {
+    	return "{\"answerID\":\""+answerID+"\",\"answerMessage\":\""+answerMessage+"\"}";
+    }
 }

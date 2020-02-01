@@ -19,13 +19,19 @@ public class TestServlet extends HttpServlet {
 	
 	@EJB
 	TestBean bean;
-
+	
+	/**
+	 * 
+	 */
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-    	resp.setStatus(200);
-        resp.getWriter().println("AAAAAAAANNNTWOOOOORT");
-        bean.hello("Gisela");
+    	bean.hello("Gisela");
+    	String answer="hallo";
+    	res.setContentType("application/json");
+    	res.setHeader("Access-Control-Allow-Origin", "*");
+        res.getWriter().print( "{\"result\":\""+answer+"\"}" );
+        
     }
 
 }

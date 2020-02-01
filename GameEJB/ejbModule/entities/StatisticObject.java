@@ -2,7 +2,7 @@ package entities;
 
 public class StatisticObject {
 
-	private long userId;
+	private long userID;
 	private long playedTime;
 	private String timeUnit;
 	private int visitedNodes;
@@ -13,15 +13,15 @@ public class StatisticObject {
 	}
 	
 	/**
-	 * @param userId
+	 * @param userID
 	 * @param playedTime
 	 * @param timeUnit
 	 * @param visitedNodes
 	 * @param numberOfGames
 	 */
-	public StatisticObject(long userId, long playedTime, String timeUnit, int visitedNodes, int numberOfGames) {
+	public StatisticObject(long userID, long playedTime, String timeUnit, int visitedNodes, int numberOfGames) {
 		super();
-		this.userId = userId;
+		this.userID = userID;
 		this.playedTime = playedTime;
 		this.timeUnit = timeUnit;
 		this.visitedNodes = visitedNodes;
@@ -30,10 +30,10 @@ public class StatisticObject {
 	
 	
 	public long getUserId() {
-		return userId;
+		return userID;
 	}
 	public void setUserId(long userId) {
-		this.userId = userId;
+		this.userID = userId;
 	}
 	public long getPlayedTime() {
 		return playedTime;
@@ -59,7 +59,20 @@ public class StatisticObject {
 	public void setNumberOfGames(int numberOfGames) {
 		this.numberOfGames = numberOfGames;
 	}
-	
+	/**
+	 * gibt das Objekt als Json-Objekt aus:
+	 * {
+	 * 		userID,
+	 * 		played-time,
+	 * 		timeunit,
+	 * 		visited-nodes,
+	 * 		number-of-games
+	 * }
+	 */
+	  @Override
+	    public String toString() {
+	    	return "{\"userID\":\""+userID+"\",\"played-time\":\""+playedTime+"\",\"timeunit\":\""+timeUnit+"\",\"visited-nodes\":\""+visitedNodes+"\",\"number-of-games\":\""+numberOfGames+"\"}";
+	    }
 	
 	
 }

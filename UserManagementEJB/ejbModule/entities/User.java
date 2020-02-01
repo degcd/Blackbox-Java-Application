@@ -54,4 +54,9 @@ public class User {
     public void setOnline(boolean online) {
         this.online = online;
     }
+    
+    @Override
+    public String toString(){
+    	return "{\"userID\":\""+userID+"\",\"username\":\""+username+"\",\"email\":\""+email+"\",\"password\":\""+password+"\",\"online\":\""+online+"\"}"; 
+    }
 }

@@ -110,7 +110,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 				TimerConfig timerConfig = new TimerConfig();
 				timerConfig.setInfo(msg);
 				timerConfig.setPersistent(false);
-				timerService.createSingleActionTimer((long) msg.getTimeout(), timerConfig);
+				timerService.createSingleActionTimer((long)msg.getTimeout(), timerConfig);
 				// TODO: testen ob timer nacheinander oder gleichzeitig laufen
 			}
 			sendAnswersToClient(currentNode.getAnswerList());

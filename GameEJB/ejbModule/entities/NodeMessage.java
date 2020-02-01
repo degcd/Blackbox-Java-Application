@@ -46,14 +46,20 @@ public class NodeMessage implements Serializable {
         return message;
     }
 
-    public void startTimeout() {
-        Date endDate=new Date(new Date().getTime()+timeout);
-        while(new Date().before(endDate)){
-        }
-        return;
-    }
-
     public int getTimeout() {
         return getTimeout();
+    }
+    /**
+     * gibt das Objekt als Json-Objekt-String aus
+     * {
+     * 		nodeMessageID,
+     * 		messagetype,
+     * 		sender,
+     * 		message,
+     * }	
+     */
+    @Override
+    public String toString() {
+    	return "{\"nodeMessageID\":\""+nodeMessageID+"\",\"messagetype\":\""+type.name()+"\",\"sender\":\""+sender+"\",\"message\":\""+message+"\"}";
     }
 }
