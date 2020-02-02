@@ -1,5 +1,6 @@
 package beans;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -122,11 +123,11 @@ public class ScenarioCreator {
         answersForCurrentNode.add(answer2);
         message1 = new NodeMessage(Messagetype.Text, "Klar. Danke, dass du das übernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
         messageList.add(message1);
-        NodeMessage message2 = new NodeMessage(Messagetype.Image, "", 30, "Kommissar Thomas");
+        NodeMessage message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas");
         messageList.add(message2);
         NodeMessage message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau Müller angekommen.","Droide");
         messageList.add(message3);
-        NodeMessage messgae4 = new NodeMessage(Messagetype.Image, "", "Droide");
+        NodeMessage messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
         messageList.add(messgae4);
         kd42 = new Node(messageList, answersForCurrentNode);
         answersForCurrentNode.clear();
@@ -137,11 +138,11 @@ public class ScenarioCreator {
         answersForCurrentNode.add(answer1);
         message1 = new NodeMessage(Messagetype.Text, "Klar. Danke, dass du das übernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
         messageList.add(message1);
-        message2 = new NodeMessage(Messagetype.Image, "", 30, "Kommissar Thomas");
+        message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas");
         messageList.add(message2);
         message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau Müller angekommen.", "Droide");
         messageList.add(message3);
-        messgae4 = new NodeMessage(Messagetype.Image, "", "Droide");
+        messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
         messageList.add(messgae4);
         sd87 = new Node(messageList, answersForCurrentNode);
         answersForCurrentNode.clear();
@@ -156,11 +157,11 @@ public class ScenarioCreator {
         answersForCurrentNode.add(answer3);
         message1 = new NodeMessage(Messagetype.Text, "Klar. Danke, dass du das übernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
         messageList.add(message1);
-        message2 = new NodeMessage(Messagetype.Image, "", 30, "Kommissar Thomas");
+        message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas");
         messageList.add(message2);
         message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau Müller angekommen.", "Droide");
         messageList.add(message3);
-        messgae4 = new NodeMessage(Messagetype.Image, "", "Droide");
+        messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
         messageList.add(messgae4);
         skd56 = new Node(messageList, answersForCurrentNode);
         answersForCurrentNode.clear();
@@ -272,13 +273,13 @@ public class ScenarioCreator {
         answer3 = new Answer(" Schizophrenie-Tabletten", ending6);
         answersForCurrentNode.add(answer3);
         answer4 = new Answer("Magersucht-Tableetten", ending5);
-        message1 = new NodeMessage(Messagetype.Image, "", "Droide");
+        message1 = new NodeMessage(Messagetype.Image, "../ressources/pillenschrank.jpg", "Droide");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Das ist das einzige Auffällige, das ich gefunden habe. Kannst du herausfinden, was das für Tabletten sind", "Droide");
         messageList.add(message2);
         message3 = new NodeMessage(Messagetype.Text, "Kannst du mir noch eine Nahaufnahme schicken?", "Ich");
         messageList.add(message3);
-        messgae4 = new NodeMessage(Messagetype.Image, "","Droide");
+        messgae4 = new NodeMessage(Messagetype.Image, "../ressources/medikament.jpg","Droide");
         messageList.add(messgae4);
         NodeMessage message5 = new NodeMessage(Messagetype.Text, "Ok ich google jetzt", "Ich");
         d1 = new Node(messageList, answersForCurrentNode);
@@ -288,13 +289,13 @@ public class ScenarioCreator {
         //d2
         answer1 = new Answer("Schicke eine Drohne mit der möglichen Mordwaffe los und schau dich weiter um", g1);
         answersForCurrentNode.add(answer1);
-        message1 = new NodeMessage(Messagetype.Image, "", "Droide");
+        message1 = new NodeMessage(Messagetype.Image, "../ressources/kueche.jpg", "Droide");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Hier wurde gekocht, die Dunstabzugshaube läuft noch.",10, "Droide");
         messageList.add(message2);
         message3 = new NodeMessage(Messagetype.Text, "In der Spüle liegt ein Küchenmesser- möglicherweise die Mordwaffe.","Droide");
         messageList.add(message3);
-        messgae4 = new NodeMessage(Messagetype.Image, "", "Droide");
+        messgae4 = new NodeMessage(Messagetype.Image, "../ressources/messer.jpg", "Droide");
         messageList.add(messgae4);
         message5 = new NodeMessage(Messagetype.Text, "Sehr gut!", "Ich");
         d2 = new Node(messageList, answersForCurrentNode);
@@ -304,13 +305,11 @@ public class ScenarioCreator {
         //d3
         answer1 = new Answer("Das ist ja interessant.", ending7);
         answersForCurrentNode.add(answer1);
-        messgae4 = new NodeMessage(Messagetype.Text, "Ich habe Frau Müller ins Bad geschickt, um sich ein wenig frisch zu machen.", "Droide");
-        messageList.add(messgae4);
-        message1 = new NodeMessage(Messagetype.Image, "", 10, "Droide");
+        message1 = new NodeMessage(Messagetype.Text, "Ich habe Frau Müller ins Bad geschickt, um sich ein wenig frisch zu machen.", 10, "Droide");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Ich habe einen Laptop sichergestellt. Es befindet sich darauf ein Video. Anscheinend hat die Webcam den Mord aufgezeichnet.", "Droide");
         messageList.add(message2);
-        message3 = new NodeMessage(Messagetype.Video, "", 10, "Droide");
+        message3 = new NodeMessage(Messagetype.Video, "../ressources/mordvideo.mp4", 10, "Droide");
         d3 = new Node(messageList, answersForCurrentNode);
         answersForCurrentNode.clear();
         messageList.clear();
@@ -450,7 +449,7 @@ public class ScenarioCreator {
         LinkedList<NodeMessage> messageList = new LinkedList<NodeMessage>();
         NodeMessage message1 = new NodeMessage(Messagetype.Text, "Onkel Peter! Du kannst dir nicht vorstellen, was ich gerade gefunden habe! Vielleicht ist es auch nur Fake, aber hier: höre selbst!", "Ich");
         messageList.add(message1);
-        NodeMessage message2 = new NodeMessage(Messagetype.Voice, "", "Ich");
+        NodeMessage message2 = new NodeMessage(Messagetype.Voice, "../ressources/aufnahmeBlackbox.mp3", "Ich");
         messageList.add(message2);
         NodeMessage message3 = new NodeMessage(Messagetype.Text, "Kein Fake, ich kenne sie!", "Onkel");
         messageList.add(message3);
@@ -863,23 +862,22 @@ public class ScenarioCreator {
         answersForCurrentNode.clear();
         messageList.clear();
 
-        // TODO: 30.01.2020  Falle!!!
         //n2
-        answer1 = new Answer("", ending3_o1);
+        answer1 = new Answer("Ich kann nichts finden!", ending3_o1);
         answersForCurrentNode.add(answer1);
-        answer2 = new Answer("", ending4_o2);
+        answer2 = new Answer("1638", ending4_o2);
         answersForCurrentNode.add(answer2);
-        answer3 = new Answer("", o3);
+        answer3 = new Answer("1738", o3);
         answersForCurrentNode.add(answer3);
-        answer4 = new Answer("", ending4_o4);
+        answer4 = new Answer("1836", ending4_o4);
         answersForCurrentNode.add(answer4);
         message1 = new NodeMessage(Messagetype.Text, "Dann schau einfach, wie weit du kommst!", "Ich");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Na gut, ich kann ja dann immer noch umdrehen…", 10, "Onkel");
         messageList.add(message2);
-        message3 = new NodeMessage(Messagetype.Text, "Oh nein! Ich glaube, ich habe gerade eine Falle ausgelöst bzw. noch nicht ganz… Ich stecke mittendrin! Hier ist ein Bild! Kannst du mal GOOGLEN, wie man sie entschärfen kann? Du könntest nach XYZ suchen.", "Onkel");
+        message3 = new NodeMessage(Messagetype.Text, "Oh nein! Ich glaube, ich habe gerade eine Falle ausgelöst bzw. noch nicht ganz… Ich stecke mittendrin! Hier ist ein Bild! Kannst du mal GOOGLEN, wie man sie entschärfen kann? Sieht nach römischen Zahlen aus...", "Onkel");
         messageList.add(message3);
-        message4 = new NodeMessage(Messagetype.Image, "", "Onkel");
+        message4 = new NodeMessage(Messagetype.Image, "../ressources/falle.jpg", "Onkel");
         messageList.add(message4);
         n2 = new Node(messageList, answersForCurrentNode);
         answersForCurrentNode.clear();
@@ -896,9 +894,8 @@ public class ScenarioCreator {
         answersForCurrentNode.clear();
         messageList.clear();
 
-        // TODO: 30.01.2020
         //ending4_o2
-        message1 = new NodeMessage(Messagetype.Text, "", "Ich");
+        message1 = new NodeMessage(Messagetype.Text, "1638", "Ich");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
         messageList.add(message2);
@@ -911,7 +908,6 @@ public class ScenarioCreator {
         answersForCurrentNode.clear();
         messageList.clear();
 
-        // TODO: 30.01.2020
         //o3
         answer1 = new Answer("Ich kann nichts finden…", ending3_p1);
         answersForCurrentNode.add(answer1);
@@ -921,7 +917,7 @@ public class ScenarioCreator {
         answersForCurrentNode.add(answer3);
         answer4 = new Answer("LNU", ending6_p4);
         answersForCurrentNode.add(answer4);
-        message1 = new NodeMessage(Messagetype.Text, "", "Ich");
+        message1 = new NodeMessage(Messagetype.Text, "1738", "Ich");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", 10, "Onkel");
         messageList.add(message2);
@@ -931,7 +927,7 @@ public class ScenarioCreator {
         messageList.add(message4);
         message5 = new NodeMessage(Messagetype.Text, "Ah, hier an der Wand scheint ne Art geheime Botschaft zu sein… Vielleicht muss man es ja übersetzen? Findest du eventuell etwas bei GOOGLE?", "Onkel");
         messageList.add(message5);
-        NodeMessage message6 = new NodeMessage(Messagetype.Image, "", 5, "Onkel");
+        NodeMessage message6 = new NodeMessage(Messagetype.Image, "../ressources/raetsel.jpg", 5, "Onkel");
         messageList.add(message6);
         NodeMessage message7 = new NodeMessage(Messagetype.Text, "Sieht mir ganz nach Hieroglyphen aus...", "Onkel");
         messageList.add(message7);
@@ -939,9 +935,8 @@ public class ScenarioCreator {
         answersForCurrentNode.clear();
         messageList.clear();
         
-        // TODO: 30.01.2020
         //ending4_o4
-        message1 = new NodeMessage(Messagetype.Text, "", "Ich");
+        message1 = new NodeMessage(Messagetype.Text, "1836", "Ich");
         messageList.add(message1);
         message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
         messageList.add(message2);
@@ -1000,7 +995,7 @@ public class ScenarioCreator {
         messageList.add(message3);
         message4 = new NodeMessage(Messagetype.Text, "Wow!! Hier ist eine KOMPLETTE Stadt im Berg!! Danach haben meine Kollegen wohl gesucht… Schade, dass sie es nicht mit eigenen Augen sehen konnten… Das ist einfach unglaublich!!", "Onkel");
         messageList.add(message4);
-        message5 = new NodeMessage(Messagetype.Image, "", 5, "Onkel");
+        message5 = new NodeMessage(Messagetype.Image, "../ressources/verborgeneStadt.jpg", 5, "Onkel");
         messageList.add(message5);
         message6 = new NodeMessage(Messagetype.Text, "Ich denke, das ist der Höhepunkt meiner Karriere, wahrscheinlich sogar meines gesamten Lebens! Was hier wohl alles verborgen sein mag… Danke für deine Hilfe! Ohne dich hätte ich die Stadt bestimmt nicht gefunden, geschweige denn überlebt!", "Onkel");
         messageList.add(message6);
@@ -1021,7 +1016,6 @@ public class ScenarioCreator {
         else if(scenarioID==1){
             return scenarioTwo.get(0);
         }
-        //TODO exceptions
         return null;
     }
 }
