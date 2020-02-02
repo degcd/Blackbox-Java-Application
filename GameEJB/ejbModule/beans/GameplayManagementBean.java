@@ -10,9 +10,7 @@ import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
-import javax.inject.Inject;
-import javax.jms.JMSContext;
-import javax.jms.Queue;
+
 
 import entities.Answer;
 import entities.Messagetype;
