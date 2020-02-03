@@ -37,19 +37,22 @@ public class UserManagementBean implements IUserManagement {
 	 * 
 	 * @return userId
 	 */
-    public long register(String email, String password) {
+    public User register(String email, String password, String username) {
         if(email == null) {
             throw new IllegalArgumentException("Email cannot be null.");
         }
         if(password == null) {
             throw new IllegalArgumentException("Password cannot be null.");
         }
+        if(username == null) {
+            throw new IllegalArgumentException("Username cannot be null.");
+        }
         for (User user: allUsers.values()) { //check if email is already taken by another user
-            if (user.email().equals(email)) {
+            if (user.getEmail().equals(email)) {
                 throw new IllegalArgumentException("Email exists already.");
             }
         }
-        return createUser(email, password);
+        return createUser(email, password, username);
     }
 
 
@@ -65,8 +68,8 @@ public class UserManagementBean implements IUserManagement {
     public boolean changePassword(String email, String oldPW, String newPW) {
         User currentUser = getUserByName(email);
         assert currentUser != null;
-        long key = currentUser.userID();
-        if (checkCredentials(currentUser.email(), oldPW)){
+        long key = currentUser.getUserID();
+        if (checkCredentials(currentUser.getEmail(), oldPW)){
             currentUser.setPassword(newPW);
             update(key, currentUser);
             return true; //password-change success
@@ -83,14 +86,12 @@ public class UserManagementBean implements IUserManagement {
 	 * 
 	 * @return boolean
 	 */
-    public boolean logIn(String email, String password) {
+    public User logIn(String email, String password) {
         if(checkCredentials(email, password)) {
             User current = getUserByName(email);
-            assert current != null;
-            current.setOnline(true);
-            return true; //log-in success
+            return current; //log-in success
         }
-        return false; //log-in fail
+        return null; //log-in fail
     }
 
 
@@ -104,7 +105,6 @@ public class UserManagementBean implements IUserManagement {
     public boolean logOut(String email) {
         User current = getUserByName(email);
         if (current != null) {
-            current.setOnline(false);
             return true; //log-out success
         }
         return false; //log-out fail
@@ -133,11 +133,11 @@ public class UserManagementBean implements IUserManagement {
 	 * 
 	 * @return userId
 	 */
-    public Long createUser(String email, String password) {
-        User newOne = new User(email, password);
+    public User createUser(String email, String password, String username) {
+        User newOne = new User(email, password, username);
         allUsers.put(lastUserId, newOne);
         lastUserId++;
-        return newOne.userID();
+        return newOne;
     }
 
 
@@ -150,9 +150,8 @@ public class UserManagementBean implements IUserManagement {
     public void update(long key, User user) {
         User current = getUserById(key);
         assert current != null;
-        current.setEmail(user.email());
-        current.setPassword(user.password());
-        current.setOnline(user.online());
+        current.setEmail(user.getEmail());
+        current.setPassword(user.getPassword());
         allUsers.put(key, user);
     }
 
@@ -163,8 +162,8 @@ public class UserManagementBean implements IUserManagement {
 	 */
     public void deleteUser(String email) {
         for (User user: allUsers.values()) {
-            if (user.email().equals(email)) {
-                allUsers.remove(user.userID());
+            if (user.getEmail().equals(email)) {
+                allUsers.remove(user.getUserID());
             }
         }
     }
@@ -183,7 +182,7 @@ public class UserManagementBean implements IUserManagement {
 	 */
     private User getUserByName(String email) {
         for (User user: allUsers.values()) {
-            if (user.email().equals(email)) {
+            if (user.getEmail().equals(email)) {
                 return user;
             }
         }
@@ -199,7 +198,7 @@ public class UserManagementBean implements IUserManagement {
 	 */
     private User getUserById(long id) {
         for (User user: allUsers.values()) {
-            if (user.userID() == id) {
+            if (user.getUserID() == id) {
                 return user;
             }
         }
@@ -217,6 +216,6 @@ public class UserManagementBean implements IUserManagement {
     private boolean checkCredentials(String email, String password) {
         User user = getUserByName(email);
         assert user != null;
-        return user.password().equals(password);
+        return user.getPassword().equals(password);
     }
 }

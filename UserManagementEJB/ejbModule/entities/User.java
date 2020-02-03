@@ -20,43 +20,66 @@ public class User {
     private String email;
     @Column
     private String password;
-    @Column
-    private boolean online;
 
-    public User(String email, String password) {
+    public User(){}
+
+    public User(String email, String password, String username) {
         this.userID = userIdCounter++;
         this.email = email;
         this.password = password;
-        this.online = true;
+        this.username = username;
     }
 
-    public long userID() {
-        return userID;
-    }
 
-    public String email() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String password() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public long getUserID() {
+		return userID;
+	}
 
-    public boolean online() {
-        return online;
-    }
-    public void setOnline(boolean online) {
-        this.online = online;
-    }
-    
-    @Override
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	@Override
     public String toString(){
-    	return "{\"userID\":\""+userID+"\",\"username\":\""+username+"\",\"email\":\""+email+"\",\"password\":\""+password+"\",\"online\":\""+online+"\"}"; 
+    	return "{\"userID\":\""+userID+"\",\"username\":\""+username+"\",\"email\":\""+email+"\",\"password\":\""+password+"\"}"; 
     }
 }
