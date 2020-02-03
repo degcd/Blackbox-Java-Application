@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,6 +21,7 @@ import entities.StatisticScenarioPath;
 import exceptions.GameHasEndedException;
 import exceptions.NodeNotFoundException;
 import exceptions.StatisticNotSavedException;
+import interfaces.ICommunicationManagement;
 import interfaces.IGameplayManagement;
 import interfaces.IPathCalculator;
 import interfaces.IStatisticCalculator;
@@ -30,6 +32,9 @@ public class GameplayManagementBean implements IGameplayManagement {
 	private IPathCalculator pathCalculator;
 	@EJB
 	private IStatisticCalculator statisticCalculator;
+	@EJB
+	private ICommunicationManagement communicationManager;
+
 	StatisticScenarioPath currentPath;
 	long userID;
 
@@ -54,7 +59,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 	 *            ID des Nutzers
 	 */
 	@Override
-	public void startScenario(long scenarioID, long userID) {
+	public boolean startScenario(long scenarioID, long userID) {
 		currentPath = new StatisticScenarioPath(userID, scenarioID);
 		this.userID = userID;
 		try {
@@ -65,7 +70,9 @@ public class GameplayManagementBean implements IGameplayManagement {
 			e.printStackTrace();
 			sendMsgToClient(new NodeMessage(Messagetype.Servermessage,
 					"Scenario konnte nicht ausgewählt werden. Bitte kontaktiere Support.", 0, "Server"));
+			return false;
 		}
+		return true;
 
 	}
 
@@ -74,7 +81,7 @@ public class GameplayManagementBean implements IGameplayManagement {
      * @param answerID
      */
      @Override
-    public void receiveMsgFromClient(long answerID) {
+    public boolean receiveMsgFromClient(long answerID) {
         long lastNode=currentPath.getLastNodeID();
          try {
              Node currentNode = pathCalculator.getFollowingNode(lastNode,answerID);
@@ -83,7 +90,9 @@ public class GameplayManagementBean implements IGameplayManagement {
          } catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException e) {
              e.printStackTrace();
              sendMsgToClient(new NodeMessage(Messagetype.Servermessage,"Antwort konnte nicht verarbeitet werden. Bitte kontaktiere Support.",0,"Server"));
+             return false;
          }
+         return true;
     }
 
 	/**
@@ -120,16 +129,7 @@ public class GameplayManagementBean implements IGameplayManagement {
      * @param nodeMsg
      */
     private void sendMsgToClient(NodeMessage nodeMsg){
-//        try {
-//            Message message = jmsContext.createMessage();
-//            message.setIntProperty("OBSERVER_TYPE",
-//                    ObserverMessageType.NodeMessage);
-//            //TODO object senden
-//            jmsContext.createProducer().send(observerQueue, message);
-//        } catch (JMSException ex) {
-//            System.err.println("Error while notify observers via queue: " + ex.getMessage());
-//        }
-        //TODO
+    	communicationManager.addToQueue(userID,"{\"answertype\":\"NodeMessage\",\"msg\":"+nodeMsg.toString()+"}");
     }
 
 	/**
@@ -137,21 +137,45 @@ public class GameplayManagementBean implements IGameplayManagement {
      * @param answerList
      */
     private void sendAnswersToClient(List<Answer> answerList){
-//        try {
-//            Message message = jmsContext.createMessage();
-//            message.setIntProperty("OBSERVER_TYPE",
-//                    ObserverMessageType.NodeMessage.ordinal());
-//            jmsContext.createProducer().send(observerQueue, message);
-//        } catch (JMSException ex) {
-//            System.err.println("Error while notify observers via queue: " + ex.getMessage());
-//        }
-        //TODO
-    }
+    	String msg="[";
+    	for(Answer answer:answerList) {
+    		msg+=answer.toString()+",";
+    	}
+    		char[] chars=msg.toCharArray();
+    		chars[chars.length-1]=']';
+    		msg=new String(chars);
+    		communicationManager.addToQueue(userID,"{\"answertype\":\"AnswerList\",\"msg\":"+msg+"}");
+}
 
 	@Remove
 	private void endSession() {
 
 	}
+	public boolean restartCurrentGame(long userID) throws NodeNotFoundException {
+		if(currentPath!=null) {
+			List<Answer> currentAnswerList=new LinkedList<Answer>();
+			List<Long> pathList=currentPath.getPathList();
+			for(long nodeID:pathList) {
+				for(Answer answer:currentAnswerList) {
+					if(answer.getNodeID()==nodeID) {
+						List<Answer> answerlist=new LinkedList<Answer>();
+						sendAnswersToClient(answerlist);
+					}
+				}
+				Node node=pathCalculator.getNodeWithID(nodeID,currentPath.getScenarioID());
+				List<NodeMessage> msgList=node.getMessageToClientList();
+				for(NodeMessage msg:msgList) {
+					sendMsgToClient(msg);
+				}
+				currentAnswerList=node.getAnswerList();
+				
+			}
+			sendAnswersToClient(currentAnswerList);
+			return true;
+		}
+		return false;
+	}
+
 
 	/**
 	 * sendet nach einem timeout die NodeMsg an den Client
@@ -169,4 +193,5 @@ public class GameplayManagementBean implements IGameplayManagement {
 		}
 
 	}
+
 }

@@ -1,8 +1,10 @@
 package interfaces;
 
+import exceptions.NodeNotFoundException;
+
 public interface IGameplayManagement {
 
-    public void receiveMsgFromClient(long answerID);
-    public void startScenario(long scenarioID, long userID);
-    
+    public boolean receiveMsgFromClient(long answerID);
+    public boolean startScenario(long scenarioID, long userID);
+    public boolean restartCurrentGame(long userID)throws NodeNotFoundException;
 }

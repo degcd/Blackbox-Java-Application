@@ -1,10 +1,12 @@
 package beans;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.ejb.Stateless;
 
-import entities.StatisticObject;
+import entities.StatisticGameObject;
+import entities.StatisticUserObject;
 import entities.StatisticScenarioPath;
 import exceptions.StatisticNotSavedException;
 import interfaces.IStatisticCalculator;
@@ -39,12 +41,18 @@ LinkedList<StatisticScenarioPath> gamelist;
         if(!gamelist.contains(path))gamelist.add(path);
     }
 
-    public StatisticObject getStatistics(long userId) {
+    /**erstellt die Userstatistic über alle SPiele eins SPielers, nach Scenario Sortiert
+     * 
+     * @param userId
+     * @param scenarioID
+     * @return
+     */
+    private StatisticUserObject createUserStatistics(long userId, long scenarioID) {
         long playedTime=0; //in Sekunden
         int visitedNodes=0; //nur die maximale anzahl in einem Spiel
         int numberOfGames=0;
         for(StatisticScenarioPath gamePath:gamelist){
-            if(gamePath.getUserID()==userId){
+            if(gamePath.getUserID()==userId&& gamePath.getScenarioID()==scenarioID){
                 playedTime+=gamePath.getPlayedTime();
                 numberOfGames++;
                 if(visitedNodes<gamePath.getNumberOfVisitedNodes()){
@@ -52,12 +60,31 @@ LinkedList<StatisticScenarioPath> gamelist;
                 }
             }
         }
-        StatisticObject statistic = new StatisticObject(userId, playedTime, "s", visitedNodes, numberOfGames);
+        StatisticUserObject statistic = new StatisticUserObject(userId,scenarioID, playedTime, "s", visitedNodes, numberOfGames);
         return statistic;
     }
-    public void getStatistics() {
-
+    private	List<StatisticGameObject> createGamesStatistics(long userId, long scenarioId){
+    	LinkedList<StatisticGameObject> result=new LinkedList<StatisticGameObject>();
+    	for(StatisticScenarioPath gamePath: gamelist) {
+    		if(gamePath.getUserID()==userId&&gamePath.getScenarioID()==scenarioId) {
+    			result.add(new StatisticGameObject(userId,scenarioId,gamePath.getGameID(),gamePath.getPlayedTime(),"s",gamePath.getNumberOfVisitedNodes()));
+    		}
+    	}
+    	return result;
     }
+    
+    @Override
+	public String getStatistics(long userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getStatistics() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
 

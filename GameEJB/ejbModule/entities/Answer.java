@@ -3,7 +3,7 @@ package entities;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class Answer {
+public class Answer{
     private static long answerIdCounter = 0;
     @Id
     private long answerID;
@@ -40,4 +40,8 @@ public class Answer {
     public String toString() {
     	return "{\"answerID\":\""+answerID+"\",\"answerMessage\":\""+answerMessage+"\"}";
     }
+    public long getNodeID() {
+    	return answerNode.getID();
+    }
+
 }

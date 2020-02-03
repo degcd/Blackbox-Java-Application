@@ -2,6 +2,7 @@ package entities;
 
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -76,8 +77,15 @@ public class StatisticScenarioPath {
     public int getNumberOfVisitedNodes(){
         return path.size();
     }
+    public List<Long> getPathList(){
+    	return path;
+    }
     public long getGameID(){
         return this.gameID;
     }
+    public long getScenarioID() {
+		return this.scenarioID;
+	}
+
 }
 
