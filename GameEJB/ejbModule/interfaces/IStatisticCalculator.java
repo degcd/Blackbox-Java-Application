@@ -1,6 +1,5 @@
 package interfaces;
 
-import entities.StatisticUserObject;
 import entities.StatisticScenarioPath;
 import exceptions.StatisticNotSavedException;
 

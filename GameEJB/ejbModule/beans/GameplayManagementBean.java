@@ -81,7 +81,7 @@ public class GameplayManagementBean implements IGameplayManagement {
      * @param answerID
      */
      @Override
-    public boolean receiveMsgFromClient(long answerID) {
+    public boolean receiveMsgFromClient(long answerID, long userID) {
         long lastNode=currentPath.getLastNodeID();
          try {
              Node currentNode = pathCalculator.getFollowingNode(lastNode,answerID);
