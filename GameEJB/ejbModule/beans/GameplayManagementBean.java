@@ -82,6 +82,10 @@ public class GameplayManagementBean implements IGameplayManagement {
      */
      @Override
     public boolean receiveMsgFromClient(long answerID, long userID) {
+    	if(userID!=this.userID) {
+    		 System.out.println("Falsche Gameplaymanagementbean verwendent");
+    		 return false;
+    	}
         long lastNode=currentPath.getLastNodeID();
          try {
              Node currentNode = pathCalculator.getFollowingNode(lastNode,answerID);

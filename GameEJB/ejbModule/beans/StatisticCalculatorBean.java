@@ -63,28 +63,50 @@ LinkedList<StatisticScenarioPath> gamelist;
         StatisticUserObject statistic = new StatisticUserObject(userId,scenarioID, playedTime, "s", visitedNodes, numberOfGames);
         return statistic;
     }
-    private	List<StatisticGameObject> createGamesStatistics(long userId, long scenarioId){
+    
+    private	List<StatisticGameObject> createGamesStatistics(long userId){
     	LinkedList<StatisticGameObject> result=new LinkedList<StatisticGameObject>();
     	for(StatisticScenarioPath gamePath: gamelist) {
-    		if(gamePath.getUserID()==userId&&gamePath.getScenarioID()==scenarioId) {
-    			result.add(new StatisticGameObject(userId,scenarioId,gamePath.getGameID(),gamePath.getPlayedTime(),"s",gamePath.getNumberOfVisitedNodes()));
+    		if(gamePath.getUserID()==userId) {
+    			result.add(new StatisticGameObject(userId,gamePath.getScenarioID(),gamePath.getGameID(),gamePath.getPlayedTime(),"s",gamePath.getNumberOfVisitedNodes()));
     		}
     	}
     	return result;
     }
     
     @Override
-	public String getStatistics(long userId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+ 	public String getStatistics(long userId) {
+     	String result="[";
+     	for(StatisticGameObject obj:createGamesStatistics(userId)) {
+     		result+=obj.toString()+",";
+     	}
+     		char[] chars=result.toCharArray();
+     		chars[chars.length-1]=']';
+     		result=new String(chars);
+     		return result;
 
-	@Override
-	public String getStatistics() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
+ 	}
+ 	@Override
+ 	public String getStatistics() {
+ 		//Für jeden user und für jedes Scenario das StatisticUserObject in die liste packen
+ 		List<StatisticUserObject> list= new LinkedList<StatisticUserObject>();
+ 		List<Long> userIds=new LinkedList<Long>();
+ 		for(StatisticScenarioPath path:gamelist) {
+ 			if(!userIds.contains(path.getUserID())) {
+ 				userIds.add(path.getUserID());
+ 				list.add(createUserStatistics(path.getUserID(),0));
+ 				list.add(createUserStatistics(path.getUserID(),0));
+ 			}
+ 		}
+ 		//aus der liste einen String generieren
+ 		String result="[";
+     	for(StatisticUserObject obj:list) {
+     		result+=obj.toString()+",";
+     	}
+     		char[] chars=result.toCharArray();
+     		chars[chars.length-1]=']';
+     		result=new String(chars);
+     		return result;
+ 	}
 }
 
