@@ -46,7 +46,43 @@ public class NodeMessage implements Serializable {
         return message;
     }
 
-    public int getTimeout() {
+    public long getNodeMessageID() {
+		return nodeMessageID;
+	}
+
+	public void setNodeMessageID(long nodeMessageID) {
+		this.nodeMessageID = nodeMessageID;
+	}
+
+	public Messagetype getType() {
+		return type;
+	}
+
+	public void setType(Messagetype type) {
+		this.type = type;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getSender() {
+		return sender;
+	}
+
+	public void setSender(String sender) {
+		this.sender = sender;
+	}
+
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+
+	public int getTimeout() {
         return getTimeout();
     }
     /**

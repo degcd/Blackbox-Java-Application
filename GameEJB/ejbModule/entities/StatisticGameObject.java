@@ -56,6 +56,30 @@ public class StatisticGameObject {
 	public void setVisitedNodes(int visitedNodes) {
 		this.visitedNodes = visitedNodes;
 	}
+	public long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+	public long getScenarioID() {
+		return scenarioID;
+	}
+
+	public void setScenarioID(long scenarioID) {
+		this.scenarioID = scenarioID;
+	}
+
+	public long getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(long gameID) {
+		this.gameID = gameID;
+	}
+
 	/**
 	 * gibt das Objekt als Json-Objekt aus:
 	 * {

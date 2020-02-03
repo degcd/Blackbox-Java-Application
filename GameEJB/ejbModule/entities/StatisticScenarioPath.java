@@ -87,5 +87,49 @@ public class StatisticScenarioPath {
 		return this.scenarioID;
 	}
 
+	public LinkedList<Long> getPath() {
+		return path;
+	}
+
+	public void setPath(LinkedList<Long> path) {
+		this.path = path;
+	}
+
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	public void setBeginDate(Date beginDate) {
+		this.beginDate = beginDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public boolean isHasEnded() {
+		return hasEnded;
+	}
+
+	public void setHasEnded(boolean hasEnded) {
+		this.hasEnded = hasEnded;
+	}
+
+	public void setGameID(long gameID) {
+		this.gameID = gameID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+	public void setScenarioID(long scenarioID) {
+		this.scenarioID = scenarioID;
+	}
+
 }
 

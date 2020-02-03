@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Node<NodeMessage> {
+public class Node {
     private static long nodeIdCounter = 0;
     @Id
     private long nodeID;
@@ -20,8 +20,26 @@ public class Node<NodeMessage> {
     public Node(LinkedList<NodeMessage> message, LinkedList<Answer> possibleAnswers)
     {
         this.nodeID = nodeIdCounter++;
-        this.messageToClient = message;
-        this.possibleAnswers = possibleAnswers;
+        this.messageToClient = copyMessageList(message);
+        this.possibleAnswers = copyAnswerList(possibleAnswers);
+    }
+    
+    private LinkedList<NodeMessage> copyMessageList(LinkedList<NodeMessage> messages){
+    	LinkedList<NodeMessage> newList = new LinkedList<NodeMessage>();
+    	for(NodeMessage m : messages){
+    		NodeMessage nm = new NodeMessage(m.getMessgetype(), m.getMessageString(), m.getTimeout(), m.getSender());
+    		newList.add(nm);
+    	}
+    	return newList;
+    }
+    
+    private LinkedList<Answer> copyAnswerList(LinkedList<Answer> answers){
+    	LinkedList<Answer> newList = new LinkedList<Answer>();
+    	for(Answer a : answers){
+    		Answer answer = new Answer(a.getAnswerMessage(), a.getAnswerNode());
+    		newList.add(a);
+    	}
+    	return newList;
     }
 
     public Long getID() {
@@ -46,6 +64,32 @@ public class Node<NodeMessage> {
     public List<NodeMessage> getMessageToClientList() {
         return messageToClient;
     }
+
+	public long getNodeID() {
+		return nodeID;
+	}
+
+	public void setNodeID(long nodeID) {
+		this.nodeID = nodeID;
+	}
+
+	public LinkedList<NodeMessage> getMessageToClient() {
+		return messageToClient;
+	}
+
+	public void setMessageToClient(LinkedList<NodeMessage> messageToClient) {
+		this.messageToClient = messageToClient;
+	}
+
+	public LinkedList<Answer> getPossibleAnswers() {
+		return possibleAnswers;
+	}
+
+	public void setPossibleAnswers(LinkedList<Answer> possibleAnswers) {
+		this.possibleAnswers = possibleAnswers;
+	}
+    
+    
 
 }
 

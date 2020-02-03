@@ -43,5 +43,18 @@ public class Answer{
     public long getNodeID() {
     	return answerNode.getID();
     }
+	public String getAnswerMessage() {
+		return answerMessage;
+	}
+	public void setAnswerMessage(String answerMessage) {
+		this.answerMessage = answerMessage;
+	}
+	public void setAnswerID(long answerID) {
+		this.answerID = answerID;
+	}
+	public void setAnswerNode(Node answerNode) {
+		this.answerNode = answerNode;
+	}
+    
 
 }
