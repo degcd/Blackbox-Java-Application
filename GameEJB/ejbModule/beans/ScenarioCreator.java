@@ -402,84 +402,46 @@ public class ScenarioCreator {
 		List<Node> nodeList = new ArrayList<Node>();
 
 		// Declaring all Nodes
-		Node ausgangssituation = null;
-		nodeList.add(ausgangssituation);
+		Node ausgangssituation = null;		
 		Node ending1 = null;
-		nodeList.add(ending1);
 		Node b2 = null;
-		nodeList.add(b2);
 		Node b3 = null;
-		nodeList.add(b3);
 		Node c1 = null;
-		nodeList.add(c1);
 		Node c2 = null;
-		nodeList.add(c2);
 		Node d1 = null;
-		nodeList.add(d1);
 		Node d2 = null;
-		nodeList.add(d2);
 		Node d3 = null;
-		nodeList.add(d3);
 		Node e1 = null;
-		nodeList.add(e1);
 		Node e2 = null;
-		nodeList.add(e2);
 		Node f1 = null;
-		nodeList.add(f1);
 		Node f2 = null;
-		nodeList.add(f2);
 		Node f3 = null;
-		nodeList.add(f3);
 		Node g1 = null;
-		nodeList.add(g1);
 		Node ending1_g2 = null;
-		nodeList.add(ending1_g2);
 		Node ending1_h1 = null;
-		nodeList.add(ending1_h1);
 		Node h2 = null;
-		nodeList.add(h2);
 		Node ending1_h3 = null;
-		nodeList.add(ending1_h3);
 		Node j1 = null;
-		nodeList.add(j1);
 		Node j2 = null;
-		nodeList.add(j2);
 		Node k1 = null;
-		nodeList.add(k1);
 		Node k2 = null;
-		nodeList.add(k2);
 		Node k3 = null;
-		nodeList.add(k3);
 		Node ending2_k4 = null;
-		nodeList.add(ending2_k4);
 		Node l1 = null;
-		nodeList.add(l1);
 		Node ending2_l2 = null;
-		nodeList.add(ending2_l2);
 		Node m1 = null;
-		nodeList.add(m1);
 		Node ending2_m2 = null;
-		nodeList.add(ending2_m2);
 		Node ending3_n1 = null;
-		nodeList.add(ending3_n1);
 		Node n2 = null;
-		nodeList.add(n2);
 		Node ending3_o1 = null;
-		nodeList.add(ending3_o1);
 		Node ending4_o2 = null;
-		nodeList.add(ending4_o2);
 		Node o3 = null;
-		nodeList.add(o3);
 		Node ending4_o4 = null;
-		nodeList.add(ending4_o4);
 		Node ending3_p1 = null;
-		nodeList.add(ending3_p1);
 		Node ending5_p2 = null;
-		nodeList.add(ending5_p2);
 		Node ending5_p3 = null;
-		nodeList.add(ending5_p3);
 		Node ending6_p4 = null;
-		nodeList.add(ending6_p4);
+		
 
 		// Filling Nodes with values
 		// Ausgangssituation
@@ -511,6 +473,7 @@ public class ScenarioCreator {
 				"Erzähler");
 		messageList.add(message1);
 		ending1 = new Node(messageList, answersForCurrentNode);
+		answersForCurrentNode.clear();
 		messageList.clear();
 
 		// b2
@@ -1174,10 +1137,50 @@ public class ScenarioCreator {
 				"Was geschah: Diese News gingen durch die Medien! Dein Onkel wurde berühmt und ausgezeichnet. Im Nachhinein konnte auch die Absturzursache festgestellt werden:"
 						+ "ein magnetisches Feld hatte die Systeme lahmgelegt. ",
 				"Erzähler");
+		messageList.add(message7);
 		ending6_p4 = new Node(messageList, answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
+		nodeList.add(ausgangssituation);
+		nodeList.add(ending1);
+		nodeList.add(b2);
+		nodeList.add(b3);
+		nodeList.add(c1);
+		nodeList.add(c2);
+		nodeList.add(d1);
+		nodeList.add(d2);
+		nodeList.add(d3);
+		nodeList.add(e1);
+		nodeList.add(e2);
+		nodeList.add(f1);
+		nodeList.add(f2);
+		nodeList.add(f3);
+		nodeList.add(g1);
+		nodeList.add(ending1_g2);
+		nodeList.add(ending1_h1);
+		nodeList.add(h2);
+		nodeList.add(ending1_h3);
+		nodeList.add(j1);
+		nodeList.add(j2);
+		nodeList.add(k1);
+		nodeList.add(k2);
+		nodeList.add(k3);
+		nodeList.add(ending2_k4);
+		nodeList.add(l1);
+		nodeList.add(ending2_l2);
+		nodeList.add(m1);
+		nodeList.add(ending2_m2);
+		nodeList.add(ending3_n1);
+		nodeList.add(n2);
+		nodeList.add(ending3_o1);
+		nodeList.add(ending4_o2);
+		nodeList.add(o3);
+		nodeList.add(ending4_o4);
+		nodeList.add(ending3_p1);
+		nodeList.add(ending5_p2);
+		nodeList.add(ending5_p3);
+		nodeList.add(ending6_p4);		
 		return nodeList;
 	}
 

@@ -34,18 +34,9 @@ public class SetSelectedStoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//ANALYSE REQUEST
-		String jsonString = req.getQueryString();
-
-		// convert queryString to JsonObject
-		byte[] decodedBytes = Base64.getDecoder().decode(jsonString);
-		jsonString = new String(decodedBytes);// String in Json Format
-		JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
-		JsonObject jsonObject = jsonReader.readObject();
-		jsonReader.close();
-
-		//use json object to execute logic
+		
 		try{
-			boolean result = bean.startScenario(jsonObject.getInt("scenarioID"), jsonObject.getInt("userID"));
+			boolean result = bean.startScenario(Long.parseLong(req.getParameter("answerID")),Long.parseLong(req.getParameter("userID")));
 			resp.getWriter().print(result);//return value
 		}catch(Exception e){
 			e.printStackTrace();

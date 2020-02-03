@@ -38,23 +38,13 @@ public class GetUserStatisticsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		//ANALYSE REQUEST
-		String jsonString = req.getQueryString();
-
-		// convert queryString to JsonObject
-		byte[] decodedBytes = Base64.getDecoder().decode(jsonString);
-		jsonString = new String(decodedBytes);// String in Json Format
-		JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
-		JsonObject jsonObject = jsonReader.readObject();
-		jsonReader.close();
-
-		//use json object to execute logic
 		try{
-			String result = bean.getStatistics(jsonObject.getInt("userID"));
+			String result = bean.getStatistics(Long.parseLong(req.getParameter("userID")));
 			resp.getWriter().print(result);//return value
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("WARNING : Wrong Object Attributes!! or Error in bean-method");
-			resp.getWriter().print(parserBean.getJsonStringArrayFromList(new ArrayList<Object>()));//TODO leere Liste?!
+			resp.getWriter().print(parserBean.getJsonStringArrayFromList(new ArrayList<Object>()));
 		}
 		
 		//RESPOND
