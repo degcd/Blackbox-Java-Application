@@ -455,7 +455,6 @@ public class ScenarioCreator {
 						"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
 						"Onkel"));
 		
-		//TODO
 		// k2
 		Node k2= new Node();
 		k2.addAnswer(new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1));
@@ -757,7 +756,6 @@ public class ScenarioCreator {
 		nodeList.add(ending5_p2);
 		nodeList.add(ending5_p3);
 		nodeList.add(ending6_p4);	
-		//TODO answerlist
 		
 		answerList.addAll(ausgangssituation.getAnswerList());
 		answerList.addAll(b2.getAnswerList());
