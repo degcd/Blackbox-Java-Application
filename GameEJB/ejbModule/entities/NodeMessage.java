@@ -83,7 +83,7 @@ public class NodeMessage implements Serializable {
 	}
 
 	public int getTimeout() {
-        return getTimeout();
+        return timeout;
     }
     /**
      * gibt das Objekt als Json-Objekt-String aus

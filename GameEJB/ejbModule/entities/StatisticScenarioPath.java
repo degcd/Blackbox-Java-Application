@@ -34,6 +34,8 @@ public class StatisticScenarioPath {
         this.beginDate=new Date();
         this.scenarioID=scenarioID;
         this.hasEnded=false;
+        path=new LinkedList<Long>();
+
     }
 
     public void add(Node currentNode) throws GameHasEndedException {

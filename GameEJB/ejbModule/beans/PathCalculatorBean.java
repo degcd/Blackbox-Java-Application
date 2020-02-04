@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Singleton;
@@ -12,13 +13,22 @@ import interfaces.IPathCalculator;
 @Singleton
 public class PathCalculatorBean implements IPathCalculator {
     ScenarioCreator scenarioCreator;
-    Node firstNodes[];
+    List<Node> firstNodes;
 
     public PathCalculatorBean(){
+    	try {
+    	System.out.println("Start des PathCalculatorbean construkors");
         scenarioCreator=new ScenarioCreator();
-        firstNodes[0]=scenarioCreator.getFirstNode(0);
-        firstNodes[1]= scenarioCreator.getFirstNode(1);
+        firstNodes=new ArrayList<Node>();
+        firstNodes.add(scenarioCreator.getFirstNode(0));
+        firstNodes.add(scenarioCreator.getFirstNode(1));
+        System.out.println("PathCalculator BEan construkor");
+    	}catch(Exception e) {
+    		System.out.println("Fehler in PathCalculator Construktor");
+    		e.printStackTrace();
+    	}
     }
+
 /*
    @PostConstruct
    private void init(){
@@ -39,13 +49,13 @@ public class PathCalculatorBean implements IPathCalculator {
 
     @Override
     public Node getNodeWithID(long searchNodeID) throws NodeNotFoundException {
-        Node searchScenario0=searchChilrden(firstNodes[0], searchNodeID);
+        Node searchScenario0=searchChilrden(firstNodes.get(0), searchNodeID);
         if(searchScenario0!=null) return searchScenario0;
-        return searchChilrden(firstNodes[1],searchNodeID);
+        return searchChilrden(firstNodes.get(1),searchNodeID);
 
     }
     public Node getNodeWithID(long searchNodeID,long scenarioID) throws NodeNotFoundException {
-        return searchChilrden(firstNodes[(int) scenarioID],searchNodeID);
+        return searchChilrden(firstNodes.get((int) scenarioID),searchNodeID);
     }
     private Node searchChilrden(Node parentNode, long searchNodeID)  throws NodeNotFoundException{
         List<Answer> answers=parentNode.getAnswerList();
@@ -63,8 +73,15 @@ public class PathCalculatorBean implements IPathCalculator {
 
     @Override
     public Node getStartNodeOfScenario(long scenarioID) throws NodeNotFoundException{
-        scenarioCreator=new ScenarioCreator();
-        return scenarioCreator.getFirstNode(scenarioID);
+    	System.out.println("PathCalculator getStartNode of Scenario: "+scenarioID); 
+    	if(firstNodes.size()>scenarioID) {
+    		if(firstNodes.get((int) scenarioID)==null) {
+    			throw new NodeNotFoundException("Erstes Node ist nicht verfügbar.");
+    		}
+    		return firstNodes.get((int) scenarioID);
+    	}
+        	throw new NodeNotFoundException("ScenarioID "+scenarioID+" ist nicht verfügbar.");
     }
+
 }
 

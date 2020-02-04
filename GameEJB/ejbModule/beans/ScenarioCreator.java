@@ -9,6 +9,7 @@ import entities.Answer;
 import entities.Messagetype;
 import entities.Node;
 import entities.NodeMessage;
+import exceptions.NodeNotFoundException;
 
 public class ScenarioCreator {
 
@@ -16,6 +17,8 @@ public class ScenarioCreator {
 	private static List<Node> scenarioTwo = null;
 
 	public ScenarioCreator() {
+		scenarioOne=new LinkedList();
+		scenarioTwo=new LinkedList();
 		scenarioOne = createScenarioOne();
 		scenarioTwo = createScenarioTwo();
 	}
@@ -1184,12 +1187,23 @@ public class ScenarioCreator {
 		return nodeList;
 	}
 
-	public Node getFirstNode(long scenarioID) {
+	public Node getFirstNode(long scenarioID) throws NodeNotFoundException {
 		if (scenarioID == 0) {
-			return scenarioOne.get(0);
+			if(scenarioOne.size()>0) {
+				return scenarioOne.get(0);
+			}
+			else {
+				throw new NodeNotFoundException("Erstes Node ist in ScenarioCreator fÃ¼r Scenario 0 nicht verfÃ¼gbar.");
+			}
 		} else if (scenarioID == 1) {
-			return scenarioTwo.get(0);
+			if(scenarioOne.size()>0) {
+				return scenarioOne.get(1);
+			}
+			else {
+				throw new NodeNotFoundException("Erstes Node ist in ScenarioCreator fÃ¼r Scenario 1 nicht verfÃ¼gbar.");
+			}
 		}
-		return null;
+		throw new NodeNotFoundException("Scenario "+scenarioID+" ist nicht verfÃ¼gbar");
 	}
+
 }

@@ -18,7 +18,7 @@ public class CommunicationManagementBean implements  ICommunicationManagement {
 	Map <Long,LinkedList<String>> usermessages;
 	LinkedList<String> topicMessages;
 	
-	public void CommuncationManagementBean() {
+	public CommunicationManagementBean() {
 		usermessages=(Map<Long, LinkedList<String>>) Collections.synchronizedMap(new HashMap<Long,LinkedList<String>>());
 	}
 	@SuppressWarnings("unchecked")

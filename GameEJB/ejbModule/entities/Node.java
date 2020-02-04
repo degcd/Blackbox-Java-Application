@@ -88,6 +88,12 @@ public class Node {
 	public void setPossibleAnswers(LinkedList<Answer> possibleAnswers) {
 		this.possibleAnswers = possibleAnswers;
 	}
+	@Override
+    public String toString() {
+		return "{\"nodeID\":\""+nodeID+"\",\"anzahl der Messages\":\""+this.messageToClient.size()+"\",\"Anzahl der Antworten\":\""+this.possibleAnswers.size()+"\"}";
+	    
+    }
+
     
     
 

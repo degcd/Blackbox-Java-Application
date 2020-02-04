@@ -60,11 +60,13 @@ public class GameplayManagementBean implements IGameplayManagement {
 	 */
 	@Override
 	public boolean startScenario(long scenarioID, long userID) {
+		System.out.println("Scenario startet mit scenario: "+scenarioID+" und user: "+userID);
 		currentPath = new StatisticScenarioPath(userID, scenarioID);
 		this.userID = userID;
 		try {
 			Node currentNode = pathCalculator.getStartNodeOfScenario(scenarioID);
 			currentPath.add(currentNode);
+			System.out.println(currentNode.toString());
 			analyseNode(currentNode);
 		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException e) {
 			e.printStackTrace();
@@ -118,10 +120,13 @@ public class GameplayManagementBean implements IGameplayManagement {
 			}
 			List<NodeMessage> messageList = currentNode.getMessageToClientList();
 			for (NodeMessage msg : messageList) {
+				sendMsgToClient(msg);
+				/*
 				TimerConfig timerConfig = new TimerConfig();
 				timerConfig.setInfo(msg);
 				timerConfig.setPersistent(false);
 				timerService.createSingleActionTimer((long)msg.getTimeout(), timerConfig);
+				*/
 				// TODO: testen ob timer nacheinander oder gleichzeitig laufen
 			}
 			sendAnswersToClient(currentNode.getAnswerList());
@@ -146,8 +151,15 @@ public class GameplayManagementBean implements IGameplayManagement {
     		msg+=answer.toString()+",";
     	}
     		char[] chars=msg.toCharArray();
-    		chars[chars.length-1]=']';
-    		msg=new String(chars);
+    		if(chars[chars.length-1]==',') {
+    			chars[chars.length-1]=']';
+    			msg=new String(chars);
+    		}
+    		else
+    		{
+    			msg=new String(chars);
+    			msg+="]";
+    		}
     		communicationManager.addToQueue(userID,"{\"answertype\":\"AnswerList\",\"msg\":"+msg+"}");
 }
 

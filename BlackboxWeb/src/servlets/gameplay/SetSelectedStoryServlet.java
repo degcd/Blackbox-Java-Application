@@ -36,7 +36,7 @@ public class SetSelectedStoryServlet extends HttpServlet {
 		//ANALYSE REQUEST
 		
 		try{
-			boolean result = bean.startScenario(Long.parseLong(req.getParameter("answerID")),Long.parseLong(req.getParameter("userID")));
+			boolean result = bean.startScenario(Long.parseLong(req.getParameter("scenarioID")),Long.parseLong(req.getParameter("userID")));
 			resp.getWriter().print(result);//return value
 		}catch(Exception e){
 			e.printStackTrace();
