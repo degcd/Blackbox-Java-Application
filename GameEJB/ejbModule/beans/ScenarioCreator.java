@@ -27,8 +27,6 @@ public class ScenarioCreator {
 		
 	}
 
-
-
 	
 	public Node createScenarioOne(){
 		// ending7

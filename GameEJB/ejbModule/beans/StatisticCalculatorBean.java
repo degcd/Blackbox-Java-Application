@@ -94,12 +94,7 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			ssps.addAll(completedGames);
 			saver.SaveStatisticPath(ssps, desktopPath);
 		}
-		/*
-		 * for (StatisticScenarioPath savedPath : gamelist) { if
-		 * (savedPath.getGameID() == path.getGameID()) {
-		 * gamelist.remove(savedPath); gamelist.add(path); } } if
-		 * (!gamelist.contains(path)) gamelist.add(path);
-		 */
+
 	}
 
 	/**

@@ -38,12 +38,7 @@ public class PathCalculatorBean implements IPathCalculator {
     	}
     }
 
-/*
-   @PostConstruct
-   private void init(){
 
-   }
-*/
     @Override
     public Node getFollowingNode(long answerID) throws NodeNotFoundException {
     	for(Answer answer:answerList) {
@@ -79,15 +74,7 @@ public class PathCalculatorBean implements IPathCalculator {
         	throw new NodeNotFoundException("ScenarioID "+scenarioID+" ist nicht verfügbar.");
     }
     
-   /* private void generateListsFromNode(Node node) {
-    	System.out.println(node);
-    	if(node==null)return;
-    	nodeList.add(node);
-    	for(Answer answer:node.getAnswerList()) {
-    		this.answerList.add(answer);
-    		this.generateListsFromNode(answer.getAnswerNode());
-    	}
-    }*/
+
 
 }
 

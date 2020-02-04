@@ -8,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
+import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 
 import entities.Answer;
@@ -24,7 +25,6 @@ import interfaces.ICommunicationManagement;
 import interfaces.IGameplayManagement;
 import interfaces.IPathCalculator;
 import interfaces.IStatisticCalculator;
-import persistency.StatisticSaver;
 
 @Stateless
 public class GameplayManagementBean implements IGameplayManagement {
@@ -35,22 +35,15 @@ public class GameplayManagementBean implements IGameplayManagement {
 	@EJB
 	private ICommunicationManagement communicationManager;
 
-
-    
-    
 	long userID;
 
 	public GameplayManagementBean() {
 
 	}
 
-//	@Inject
-//	private JMSContext jmsContext;
-//	@Resource(lookup = "java:global/jms/ObserverTopic")
-//	private Queue observerQueue;
-	
 	@Resource
 	private TimerService timerService;
+
 	/**
 	 * startet das übergebene Szenario, und führt
 	 * 
@@ -61,7 +54,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 	 */
 	@Override
 	public boolean startScenario(long scenarioID, long userID) {
-		System.out.println("Scenario startet mit scenario: "+scenarioID+" und user: "+userID);
+		System.out.println("Scenario startet mit scenario: " + scenarioID + " und user: " + userID);
 		StatisticScenarioPath currentPath = new StatisticScenarioPath(userID, scenarioID);
 		this.userID = userID;
 		try {
@@ -69,8 +62,9 @@ public class GameplayManagementBean implements IGameplayManagement {
 			currentPath.add(currentNode);
 			statisticCalculator.createNewGamePath(currentPath);
 			System.out.println(currentNode.toString());
-			analyseNode(currentNode,currentPath);
-		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException | GameAlreadyExistsException | GameDoesNotExistException e) {
+			analyseNode(currentNode, currentPath);
+		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException | GameAlreadyExistsException
+				| GameDoesNotExistException e) {
 			e.printStackTrace();
 			sendMsgToClient(new NodeMessage(Messagetype.Servermessage,
 					"Scenario konnte nicht ausgewählt werden. Bitte kontaktiere Support.", 0, "Server"));
@@ -81,35 +75,39 @@ public class GameplayManagementBean implements IGameplayManagement {
 	}
 
 	/**
-     * Ermittelt anhand der übergebenen Antwort den nachfolgenden Pfad
-     * @param answerID
-     */
-     @Override
-    public boolean receiveMsgFromClient(long answerID, long userID) {
-    	 try {
-    	 StatisticScenarioPath currentPath=statisticCalculator.getCurrentGame(userID);
-    	 long lastNode=currentPath.getLastNodeID();
-             Node currentNode = pathCalculator.getFollowingNode(answerID);
-             System.out.println(currentNode);
-             currentPath.add(currentNode);
-             analyseNode(currentNode, currentPath);
-         } catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException | GameDoesNotExistException e) {
-             //e.printStackTrace();
-             sendMsgToClient(new NodeMessage(Messagetype.Servermessage,"Antwort konnte nicht verarbeitet werden. Bitte kontaktiere Support.",0,"Server"));
-             return false;
-         }
-         return true;
-    }
+	 * Ermittelt anhand der übergebenen Antwort den nachfolgenden Pfad
+	 * 
+	 * @param answerID
+	 */
+	@Override
+	public boolean receiveMsgFromClient(long answerID, long userID) {
+		try {
+			StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
+			long lastNode = currentPath.getLastNodeID();
+			Node currentNode = pathCalculator.getFollowingNode(answerID);
+			System.out.println(currentNode);
+			currentPath.add(currentNode);
+			analyseNode(currentNode, currentPath);
+		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException
+				| GameDoesNotExistException e) {
+			// e.printStackTrace();
+			sendMsgToClient(new NodeMessage(Messagetype.Servermessage,
+					"Antwort konnte nicht verarbeitet werden. Bitte kontaktiere Support.", 0, "Server"));
+			return false;
+		}
+		return true;
+	}
 
 	/**
 	 * Überpüft den Knoten auf Endknoten, speichert den aktuellen Gamepath in
 	 * der Statistik, und leitet die Nachrichten und Antworten weiter
 	 * 
 	 * @param currentNode
-	 * @throws GameDoesNotExistException 
-	 * @throws GameAlreadyExistsException 
+	 * @throws GameDoesNotExistException
+	 * @throws GameAlreadyExistsException
 	 */
-	private void analyseNode(Node currentNode,StatisticScenarioPath currentPath) throws StatisticNotSavedException, GameDoesNotExistException {
+	private void analyseNode(Node currentNode, StatisticScenarioPath currentPath)
+			throws StatisticNotSavedException, GameDoesNotExistException {
 		if (currentNode.isEnd()) {
 			statisticCalculator.completeCurrentGamePath(currentPath);
 			sendMsgToClient(new NodeMessage(Messagetype.Servermessage, "Ende erreicht", 0, "Server"));
@@ -122,81 +120,77 @@ public class GameplayManagementBean implements IGameplayManagement {
 			}
 			List<NodeMessage> messageList = currentNode.getMessageToClientList();
 			for (NodeMessage msg : messageList) {
-				sendMsgToClient(msg);
-				/*
 				TimerConfig timerConfig = new TimerConfig();
 				timerConfig.setInfo(msg);
 				timerConfig.setPersistent(false);
-				timerService.createSingleActionTimer((long)msg.getTimeout(), timerConfig);
-				*/
-				// TODO: testen ob timer nacheinander oder gleichzeitig laufen
+				timerService.createSingleActionTimer((long) msg.getTimeout(), timerConfig);
 			}
 			sendAnswersToClient(currentNode.getAnswerList());
 		}
 	}
 
 	/**
-     * Sendet eine NodeMsg an den Client
-     * @param nodeMsg
-     */
-    private void sendMsgToClient(NodeMessage nodeMsg){
-    	communicationManager.addToQueue(userID,"{\"answertype\":\"NodeMessage\",\"msg\":"+nodeMsg.toString()+"}");
-    }
+	 * Sendet eine NodeMsg an den Client
+	 * 
+	 * @param nodeMsg
+	 */
+	private void sendMsgToClient(NodeMessage nodeMsg) {
+		communicationManager.addToQueue(userID, "{\"answertype\":\"NodeMessage\",\"msg\":" + nodeMsg.toString() + "}");
+	}
 
 	/**
-     * Sendet die Antwortliste zur Auswahl an den Client
-     * @param answerList
-     */
-    private void sendAnswersToClient(List<Answer> answerList){
-    	String msg="[";
-    	for(Answer answer:answerList) {
-    		msg+=answer.toString()+",";
-    	}
-    		char[] chars=msg.toCharArray();
-    		if(chars[chars.length-1]==',') {
-    			chars[chars.length-1]=']';
-    			msg=new String(chars);
-    		}
-    		else
-    		{
-    			msg=new String(chars);
-    			msg+="]";
-    		}
-    		communicationManager.addToQueue(userID,"{\"answertype\":\"AnswerList\",\"msg\":"+msg+"}");
-}
+	 * Sendet die Antwortliste zur Auswahl an den Client
+	 * 
+	 * @param answerList
+	 */
+	private void sendAnswersToClient(List<Answer> answerList) {
+		String msg = "[";
+		for (Answer answer : answerList) {
+			msg += answer.toString() + ",";
+		}
+		char[] chars = msg.toCharArray();
+		if (chars[chars.length - 1] == ',') {
+			chars[chars.length - 1] = ']';
+			msg = new String(chars);
+		} else {
+			msg = new String(chars);
+			msg += "]";
+		}
+		communicationManager.addToQueue(userID, "{\"answertype\":\"AnswerList\",\"msg\":" + msg + "}");
+	}
+
 	public boolean restartCurrentGame(long userID) throws NodeNotFoundException {
-		if(!statisticCalculator.hasCurrentGame(userID)) {
+		if (!statisticCalculator.hasCurrentGame(userID)) {
 			return false;
 		}
-			try {
-				StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
-			
-			List<Answer> currentAnswerList=new LinkedList<Answer>();
-			List<Long> pathList=currentPath.getPathList();
-			for(long nodeID:pathList) {
-				for(Answer answer:currentAnswerList) {
-					if(answer.getNodeID()==nodeID) {
-						List<Answer> answerlist=new LinkedList<Answer>();
+		try {
+			StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
+
+			List<Answer> currentAnswerList = new LinkedList<Answer>();
+			List<Long> pathList = currentPath.getPathList();
+			for (long nodeID : pathList) {
+				for (Answer answer : currentAnswerList) {
+					if (answer.getNodeID() == nodeID) {
+						List<Answer> answerlist = new LinkedList<Answer>();
 						sendAnswersToClient(answerlist);
 					}
 				}
-				Node node=pathCalculator.getNodeWithID(nodeID);
-				List<NodeMessage> msgList=node.getMessageToClientList();
-				for(NodeMessage msg:msgList) {
+				Node node = pathCalculator.getNodeWithID(nodeID);
+				List<NodeMessage> msgList = node.getMessageToClientList();
+				for (NodeMessage msg : msgList) {
 					sendMsgToClient(msg);
 				}
-				currentAnswerList=node.getAnswerList();
-				
+				currentAnswerList = node.getAnswerList();
+
 			}
 			sendAnswersToClient(currentAnswerList);
 			return true;
-			} catch (GameDoesNotExistException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
+		} catch (GameDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	}
-
 
 	/**
 	 * sendet nach einem timeout die NodeMsg an den Client

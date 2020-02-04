@@ -8,6 +8,5 @@ public interface ICommunicationManagement {
 	
 	void addToQueue(long userID, String msg);
 
-	void addToTopic(final String msg);
 	String getJsonStringArrayFromList(List<Object> list);
 }
