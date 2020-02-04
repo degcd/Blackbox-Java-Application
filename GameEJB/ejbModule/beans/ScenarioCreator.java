@@ -13,418 +13,225 @@ import exceptions.NodeNotFoundException;
 
 public class ScenarioCreator {
 
-	private static List<Node> scenarioOne = null;
+	private static Node scenarioOne;
 	private static List<Node> scenarioTwo = null;
 
 
 	public ScenarioCreator() {
-		scenarioOne=new LinkedList();
 		scenarioTwo=new LinkedList();
 		
 		scenarioOne = createScenarioOne();
 		scenarioTwo = createScenarioTwo();
 	}
 
-	public List<Node> createScenarioOne() {
-		List<Node> nodeList = new ArrayList<Node>();
 
-		// Declaring all Nodes
-		Node ausgangssituation = null;
 
-		Node a2 = new Node();
-		Node kd42 = new Node();
-		Node sd87 = new Node();
-		Node skd56 = new Node();
-		Node ending1 = new Node();
-		Node c1 = new Node();
-		Node c2 = new Node();
-		Node c3 = new Node();
-		Node c3Alternativ = new Node();
-		Node f1 = new Node();
-		Node f2 =new Node();
-		Node f3 = new Node();
-		Node ending2 = new Node();
-		Node d = new Node();
-		Node d1 = new Node();
-		Node d2 = new Node();
-		Node d3 = new Node();
-		Node g1 = new Node();
-		Node ending4 = new Node();
-		Node e1 = new Node();
-		Node e2 = new Node();
-		Node e3 = new Node();
-		Node e4 = new Node();
-		Node ending5 = new Node();
-		Node ending6 =new Node();
+	
+	public Node createScenarioOne(){
+		// ending7
 		Node ending7 = new Node();
-
-		// Filling Nodes with values
-		// Ausgangssituation
-		LinkedList<Answer> answersForCurrentNode = new LinkedList<Answer>();
-		Answer answer1 = new Answer(
-				"Kann das nicht jemand anderes �bernehmen? Ich stecke immer noch in den Ermittlungen bez�glich der Wasserleiche vom Fr�hlinger See fest.",
-				ending1);
-		answersForCurrentNode.add(answer1);
-		Answer answer2 = new Answer("Super, worum geht's?", a2);
-		answersForCurrentNode.add(answer2);
-		LinkedList<NodeMessage> messageList = new LinkedList<NodeMessage>();
-		NodeMessage message1 = new NodeMessage(Messagetype.Text, "Hey Joe, ich hab da einen neuen Fall f�r dich.",
-				"Kommissar Thomas");
-		messageList.add(message1);
-		ausgangssituation = new Node(messageList, answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// a2
-		answer1 = new Answer(
-				"H�rt sich spannend an. Leider hab ich gerade keinen Droiden frei, der diese Aufgaben �bernehmen kann.",
-				ending1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Okay ich schicke schonmal einen Kontaktdroiden los. Leitest du mir die Akte weiter?",
-				kd42);
-		answersForCurrentNode.add(answer2);
-		Answer answer3 = new Answer(
-				"Okay ich schicke schonmal einen Spurendroiden los. Leitest du mir die Akte weiter?", sd87);
-		answersForCurrentNode.add(answer3);
-		Answer answer4 = new Answer(
-				"Okay ich schicke schonmal einen Spuren- und Kontaktdroiden los. Leitest du mir die Akte weiter?",
-				skd56);
-		answersForCurrentNode.add(answer4);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Eine junge Frau hat soeben einen toten Mann in ihrer Wohnung gefunden. Sie steht jetzt unter Schock. Jemand muss zu ihr, sie befragen und die Spuren m�ssen dort gesichert werden.",
-				"Kommissar Thomas");
-		messageList.add(message1);
-		a2.setMessageToClient(messageList);
-		a2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// Ending1
-		message1 = new NodeMessage(Messagetype.Text,
-				"Es wurde zu sp�t gehandelt: Circa 30 Minuten nach dem ANruf bei der Polizei hat sich Frau M�ller erinnert, was passiert ist. Sie geriet in Panik und setzte die Wohnung in Flammen. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
-				"Erz�hler");
-		messageList.add(message1);
-		ending1.setMessageToClient(messageList);
-		ending1.setPossibleAnswers(answersForCurrentNode);
-		messageList.clear();
-
-		// KD42
-		answer1 = new Answer("Droide beruhige die Frau", c1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
-		messageList.add(message1);
-		NodeMessage message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30,
-				"Kommissar Thomas");
-		messageList.add(message2);
-		NodeMessage message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide");
-		messageList.add(message3);
-		NodeMessage messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
-		messageList.add(messgae4);
-		kd42.setPossibleAnswers(answersForCurrentNode);
-		kd42.setMessageToClient(messageList);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// SD87
-		answer1 = new Answer("Schaue dir den Tartort genauer an und entnehme Proben f�r das Labor", c3);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide");
-		messageList.add(message3);
-		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
-		messageList.add(messgae4);
-		sd87.setMessageToClient(messageList);
-		sd87.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// SKD56
-		answer1 = new Answer("Droide beruhige die Frau", c1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Schaue dir den Tartort genauer an und entnehme Proben f�r das Labor", c3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide");
-		messageList.add(message3);
-		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
-		messageList.add(messgae4);
-		skd56.setMessageToClient(messageList);
-		skd56.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// Ending2
-		message1 = new NodeMessage(Messagetype.Text,
-				"Beim Versuch die Frau zu beruhigen wurde Frau M�ller hysterisch und schlug den Druiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau alle Beweise beseitigt und einen Brand gelegt. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
-				"Erz�hler");
-		messageList.add(message1);
-		ending2.setMessageToClient(messageList);
-		ending2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// C2
-		answer1 = new Answer("Wei� sie, warum ihr Vater un der Wohnung ist?", f1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Hatte jemand einen Grund ihn umzubringen?", f2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Hatte Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Beim Opfer handelt es sich um den Vater der Frau. Wir befinden uns in der Wohnung der Frau. Sie hat ihren Vater erstochen aufgefunden als sie vom Einkaufen zur�ckkam.",
-				"Droide");
-		messageList.add(message1);
-		c2.setMessageToClient(messageList);
-		c2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// C3
-		answer1 = new Answer("Schaue dich weiter um und halte Ausschau nach der Mordwaffe", d);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Ich habe Blutproben und Fingerabdr�cke sichergestellt. Eine Drohne ist jetzt auf dem Weg ins Labor. Es sieht nach einer t�dlichen Stichverletzung aus. Es befindet sich keine Mordwaffe am  unmittelbaren Tatort",
-				"Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
-				"Droide");
-		messageList.add(message2);
-		c3.setMessageToClient(messageList);
-		c3.setPossibleAnswers(answersForCurrentNode);
-		
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// C3Alternativ
-		answer1 = new Answer("Schaue dich weiter um und halte Ausschau nach der Mordwaffe", d);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Droide beruhige die Frau", c1);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Ich habe Blutproben und Fingerabdr�cke sichergestellt. Eine Drohne ist jetzt auf dem Weg ins Labor. Es sieht nach einer t�dlichen Stichverletzung aus. Es befindet sich keine Mordwaffe am  unmittelbaren Tatort",
-				"Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
-				"Droide");
-		messageList.add(message2);
-		c3Alternativ.setMessageToClient(messageList);
-		c3Alternativ.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f1
-		answer1 = new Answer("Hatte jemand einen Grund ihn umzubringen?", f2);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Hat Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Sie sagt, sie ist als Bloggerin viel unterwegs, deshalb hat er einen Schl�ssel, um ihre Katze zu versorgen",
-				"Droide");
-		messageList.add(message1);
-		f1.setMessageToClient(messageList);
-		f1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f2
-		answer1 = new Answer("Hat Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Wei� sie, warum ihr Vater un der Wohnung ist?", f1);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Sie wei� nichts von m�glichen Feinden", "Droide");
-		messageList.add(message1);
-		f2.setMessageToClient(messageList);
-		f2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f3
-		answer1 = new Answer("Sehr gut, lass dir die Email zeigen und leite sie an mich weite.", ending4);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Text,
-				"�Guter Ansatzpunkt. Vielleicht hatte es der M�rder eigentlich auf sie abgesehen und ihr Vater war zur falschen Zeit am falschen Ort�",
-				30, "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ja, sie hat letztens eine Droh-Email erhalten", "Droide");
-		c3.setMessageToClient(messageList);
-		c3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+		ending7.addMessage(new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide"));
+		ending7.addMessage(new NodeMessage(Messagetype.Text,
+						"Als Frau M�ller ins Bad ging, konnte sie sich wieder erinnern, was passiert ist. Sie wurde hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. Gl�cklicherweise hatte der Droide schon kurz vorher das Video weitergeleitet, sodass der Mord aufgekl�rt werden konnte. Das Motiv bleibt jedoch unklar aufgrund mangelnder Beweise",
+						"Erz�hler"));
+		// ending6
+		Node ending6 = new Node();
+		ending6.addMessage(new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide"));
+		ending6.addMessage(new NodeMessage(Messagetype.Text,
+						"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Die Tabletten haben die Schizophrenie der Frau aufgedeckt. So konnte sowohl der Mord, als auch das Motiv der Frau aufgekl�rt werden.",
+						"Erz�hler"));
+		// ending5
+		Node ending5=new Node();
+		ending5.addMessage(new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide"));
+		ending5.addMessage(new NodeMessage(Messagetype.Text,
+						"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Der Mord konnte somit aufgekl�rt werden. Jedoch wurden die Tabletten falsch identifiziert, sodass das Motiv der Frau unklar bleibt",
+						"Erz�hler"));
 
 		// ending4
-		message1 = new NodeMessage(Messagetype.Text,
+		Node ending4= new Node();
+		ending4.addMessage(new NodeMessage(Messagetype.Text,
 				"Als die Frau den Laptop entsperrte, um dem Droiden die omin�se Droh-Email zu zeigen, war direkt ein Video zu sehen. Die Webkam hatte den Mord aufgezeichnet�!! Frau M�ller hat ihren Vater mit einem K�chenmesser erstochen. Als sie dies auf dem Bildschirm sah, wurde sie hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. So konnte ihr Motiv nicht aufgkl�rt werden",
-				"Erz�hler");
-		messageList.add(message1);
-		ending4.setMessageToClient(messageList);
-		ending4.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+				"Erz�hler"));
 
-		// d
-		answer1 = new Answer("Geh ins Badezimmer.", d1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Starte in der K�che.", d2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Fang im Wohnzimmer an", d3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text, "Wo soll ich anfangen?", "Droide");
-		messageList.add(message1);
-		d.setMessageToClient(messageList);
-		d.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
+		// Ending2
+		Node ending2= new Node();
+		ending2.addMessage(new NodeMessage(Messagetype.Text,
+						"Beim Versuch die Frau zu beruhigen wurde Frau M�ller hysterisch und schlug den Druiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau alle Beweise beseitigt und einen Brand gelegt. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
+						"Erz�hler"));
+		// Ending1
+		Node ending1=new Node();
+		ending1.addMessage(new NodeMessage(Messagetype.Text,
+						"Es wurde zu sp�t gehandelt: Circa 30 Minuten nach dem ANruf bei der Polizei hat sich Frau M�ller erinnert, was passiert ist. Sie geriet in Panik und setzte die Wohnung in Flammen. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
+						"Erz�hler"));
 		// d1
-		answer1 = new Answer(" Epilepsie-Tabletten ", ending5);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Schlaftabletten", ending5);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer(" Schizophrenie-Tabletten", ending6);
-		answersForCurrentNode.add(answer3);
-		answer4 = new Answer("Magersucht-Tableetten", ending5);
-		message1 = new NodeMessage(Messagetype.Image, "../ressources/pillenschrank.jpg", "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Das ist das einzige Auff�llige, das ich gefunden habe. Kannst du herausfinden, was das f�r Tabletten sind",
-				"Droide");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Kannst du mir noch eine Nahaufnahme schicken?", "Ich");
-		messageList.add(message3);
-		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/medikament.jpg", "Droide");
-		messageList.add(messgae4);
-		NodeMessage message5 = new NodeMessage(Messagetype.Text, "Ok ich google jetzt", "Ich");
-		d1.setMessageToClient(messageList);
-		d1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// d2
-		answer1 = new Answer("Schicke eine Drohne mit der m�glichen Mordwaffe los und schau dich weiter um", g1);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Image, "../ressources/kueche.jpg", "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Hier wurde gekocht, die Dunstabzugshaube l�uft noch.", 10,
-				"Droide");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"In der Sp�le liegt ein K�chenmesser- m�glicherweise die Mordwaffe.", "Droide");
-		messageList.add(message3);
-		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/messer.jpg", "Droide");
-		messageList.add(messgae4);
-		message5 = new NodeMessage(Messagetype.Text, "Sehr gut!", "Ich");
-		d2.setMessageToClient(messageList);
-		d2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
+		Node d1=new Node();
+		d1.addAnswer(new Answer(" Epilepsie-Tabletten ", ending5));
+		d1.addAnswer(new Answer("Schlaftabletten", ending5));
+		d1.addAnswer(new Answer(" Schizophrenie-Tabletten", ending6));
+		d1.addAnswer(new Answer("Magersucht-Tableetten", ending5));
+		d1.addMessage(new NodeMessage(Messagetype.Image, "../ressources/pillenschrank.jpg", "Droide"));
+		d1.addMessage(new NodeMessage(Messagetype.Text,
+						"Das ist das einzige Auff�llige, das ich gefunden habe. Kannst du herausfinden, was das f�r Tabletten sind",
+						"Droide"));
+		d1.addMessage(new NodeMessage(Messagetype.Text, "Kannst du mir noch eine Nahaufnahme schicken?", "Ich"));
+		d1.addMessage(new NodeMessage(Messagetype.Image, "../ressources/medikament.jpg", "Droide"));
+		d1.addMessage(new NodeMessage(Messagetype.Text, "Ok ich google jetzt", "Ich"));
 		// d3
-		answer1 = new Answer("Das ist ja interessant.", ending7);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Ich habe Frau M�ller ins Bad geschickt, um sich ein wenig frisch zu machen.", 10, "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich habe einen Laptop sichergestellt. Es befindet sich darauf ein Video. Anscheinend hat die Webcam den Mord aufgezeichnet.",
-				"Droide");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Video, "../ressources/mordvideo.mp4", 10, "Droide");
-		d3.setMessageToClient(messageList);
-		d3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
+		Node d3= new Node();
+		d3.addAnswer(new Answer("Das ist ja interessant.", ending7));
+		d3.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe Frau M�ller ins Bad geschickt, um sich ein wenig frisch zu machen.", 10, "Droide"));
+		d3.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe einen Laptop sichergestellt. Es befindet sich darauf ein Video. Anscheinend hat die Webcam den Mord aufgezeichnet.",
+						"Droide"));
+		d3.addMessage(new NodeMessage(Messagetype.Video, "../ressources/mordvideo.mp4", 10, "Droide"));
+		
+		
 		// g1
-		answer1 = new Answer("Geh ins Bad", d1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Geh ins Wohnzimmer", d3);
-		answersForCurrentNode.add(answer2);
-		g1.setMessageToClient(messageList);
-		g1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+		Node g1= new Node();
+		g1.addAnswer(new Answer("Geh ins Bad", d1));
+		g1.addAnswer(new Answer("Geh ins Wohnzimmer", d3));
+		
+		// d2
+		Node d2= new Node();
+		d2.addAnswer(new Answer("Schicke eine Drohne mit der m�glichen Mordwaffe los und schau dich weiter um", g1));
+		d2.addMessage(new NodeMessage(Messagetype.Image, "../ressources/kueche.jpg", "Droide"));
+		d2.addMessage(new NodeMessage(Messagetype.Text, "Hier wurde gekocht, die Dunstabzugshaube l�uft noch.", 10,
+						"Droide"));
+		d2.addMessage(new NodeMessage(Messagetype.Text,
+						"In der Sp�le liegt ein K�chenmesser- m�glicherweise die Mordwaffe.", "Droide"));
+		d2.addMessage(new NodeMessage(Messagetype.Image, "../ressources/messer.jpg", "Droide"));
+		d2.addMessage(new NodeMessage(Messagetype.Text, "Sehr gut!", "Ich"));
+		
+		// d
+		Node d= new Node();
+		d.addAnswer(new Answer("Geh ins Badezimmer.", d1));
+		d.addAnswer(new Answer("Starte in der K�che.", d2));
+		d.addAnswer(new Answer("Fang im Wohnzimmer an", d3));
+		d.addMessage(new NodeMessage(Messagetype.Text, "Wo soll ich anfangen?", "Droide"));
+		
+		// f3
+		Node f3= new Node();
+		f3.addAnswer(new Answer("Sehr gut, lass dir die Email zeigen und leite sie an mich weite.", ending4));
+		f3.addMessage(new NodeMessage(Messagetype.Text,
+								"�Guter Ansatzpunkt. Vielleicht hatte es der M�rder eigentlich auf sie abgesehen und ihr Vater war zur falschen Zeit am falschen Ort�",
+								30, "Droide"));
+		f3.addMessage(new NodeMessage(Messagetype.Text, "Ja, sie hat letztens eine Droh-Email erhalten", "Droide"));
+		
+		
+		// f2
+		Node f2=new Node();
+		f2.addAnswer(new Answer("Wei� sie, warum ihr Vater un der Wohnung ist?", new Node()));
+		f2.addAnswer(new Answer("Hat Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3));
+		f2.addMessage((new NodeMessage(Messagetype.Text, "Sie wei� nichts von m�glichen Feinden", "Droide")));
+	
+		//TODO überprüfen ob Scenario 0- f1 Nachfolgeknoten hat
+		
+		// f1
+		Node f1=f2.getAnswerList().get(0).getAnswerNode();
+		f1.addAnswer(new Answer("Hatte jemand einen Grund ihn umzubringen?", f2));
+		f1.addAnswer(new Answer("Hat Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3));
+		f1.addMessage(new NodeMessage(Messagetype.Text,
+						"Sie sagt, sie ist als Bloggerin viel unterwegs, deshalb hat er einen Schl�ssel, um ihre Katze zu versorgen",
+						"Droide"));
+		// C3
+		Node c3=new Node();
+		c3.addAnswer(new Answer("Schaue dich weiter um und halte Ausschau nach der Mordwaffe", d));
+		c3.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe Blutproben und Fingerabdr�cke sichergestellt. Eine Drohne ist jetzt auf dem Weg ins Labor. Es sieht nach einer t�dlichen Stichverletzung aus. Es befindet sich keine Mordwaffe am  unmittelbaren Tatort",
+						"Droide"));
+		c3.addMessage(new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
+						"Droide"));
+		
+		// C2
+		Node c2=new Node();
+		c2.addAnswer(new Answer("Wei� sie, warum ihr Vater un der Wohnung ist?", f1));
+		c2.addAnswer(new Answer("Hatte jemand einen Grund ihn umzubringen?", f2));
+		c2.addAnswer(new Answer("Hatte Frau M�ller irgendwelche Feinde oder m�glicherweise berufsbedingt Neider?", f3));
+		c2.addMessage(new NodeMessage(Messagetype.Text,
+				"Beim Opfer handelt es sich um den Vater der Frau. Wir befinden uns in der Wohnung der Frau. Sie hat ihren Vater erstochen aufgefunden als sie vom Einkaufen zur�ckkam.",
+				"Droide"));
+		
+		
+		// C3Alternativ
+		Node c3A= new Node();
+		c3A.addAnswer(new Answer("Schaue dich weiter um und halte Ausschau nach der Mordwaffe", d));
+		c3A.addAnswer(new Answer("Droide beruhige die Frau", ending2));
+		c3A.addAnswer(new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2));
+		c3A.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe Blutproben und Fingerabdr�cke sichergestellt. Eine Drohne ist jetzt auf dem Weg ins Labor. Es sieht nach einer t�dlichen Stichverletzung aus. Es befindet sich keine Mordwaffe am  unmittelbaren Tatort",
+						"Droide"));
+		c3A.addMessage(new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
+						"Droide"));
 
-		// ending5
-		message1 = new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Der Mord konnte somit aufgekl�rt werden. Jedoch wurden die Tabletten falsch identifiziert, sodass das Motiv der Frau unklar bleibt",
-				"Erz�hler");
-		messageList.add(message2);
-		ending5.setMessageToClient(messageList);
-		ending5.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending6
-		message1 = new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Die Tabletten haben die Schizophrenie der Frau aufgedeckt. So konnte sowohl der Mord, als auch das Motiv der Frau aufgekl�rt werden.",
-				"Erz�hler");
-		messageList.add(message2);
-		ending6.setMessageToClient(messageList);
-		ending6.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending7
-		message1 = new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Als Frau M�ller ins Bad ging, konnte sie sich wieder erinnern, was passiert ist. Sie wurde hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. Gl�cklicherweise hatte der Droide schon kurz vorher das Video weitergeleitet, sodass der Mord aufgekl�rt werden konnte. Das Motiv bleibt jedoch unklar aufgrund mangelnder Beweise",
-				"Erz�hler");
-		messageList.add(message2);
-		ending7.setMessageToClient(messageList);
-		ending7.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		nodeList.add(ausgangssituation);
-		nodeList.add(a2);
-		nodeList.add(kd42);
-		nodeList.add(sd87);
-		nodeList.add(skd56);
-		nodeList.add(ending1);
-		nodeList.add(c1);
-		nodeList.add(c2);
-		nodeList.add(c3);
-		nodeList.add(c3Alternativ);
-		nodeList.add(f1);
-		nodeList.add(f2);
-		nodeList.add(f3);
-		nodeList.add(ending2);
-		nodeList.add(d);
-		nodeList.add(d1);
-		nodeList.add(d2);
-		nodeList.add(d3);
-		nodeList.add(g1);
-		nodeList.add(ending4);
-		nodeList.add(e1);
-		nodeList.add(e2);
-		nodeList.add(e3);
-		nodeList.add(e4);
-		nodeList.add(ending5);
-		nodeList.add(ending6);
-		nodeList.add(ending7);
-		return nodeList;
+		// SKD56
+		Node skd=new Node();
+		skd.addAnswer(new Answer("Droide beruhige die Frau", ending2));
+		skd.addAnswer(new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2));
+		skd.addAnswer(new Answer("Schaue dir den Tartort genauer an und entnehme Proben f�r das Labor", c3));
+		skd.addMessage(new NodeMessage(Messagetype.Text,
+						"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas"));
+		skd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas"));
+		skd.addMessage(new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide"));
+		skd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide"));
+		
+		// SD87
+		Node sd= new Node();
+		sd.addAnswer(new Answer("Schaue dir den Tartort genauer an und entnehme Proben f�r das Labor", c3));
+		sd.addMessage(new NodeMessage(Messagetype.Text,
+						"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas"));
+		sd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30, "Kommissar Thomas"));
+		sd.addMessage(new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide"));
+		sd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide"));
+		
+		// KD42
+		Node kd= new Node();
+		kd.addAnswer(new Answer("Droide beruhige die Frau", ending2));
+		kd.addAnswer(new Answer("Befrage sie und finde heraus, an was sie sich erinnert.", c2));
+		kd.addMessage(new NodeMessage(Messagetype.Text,
+						"Klar. Danke, dass du das �bernimmst! Halte mich auf dem Laufenden.", "Kommissar Thomas"));
+		kd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/kontaktdaten.jpg", 30,
+						"Kommissar Thomas"));
+		kd.addMessage(new NodeMessage(Messagetype.Text, "Ich bin bei Frau M�ller angekommen.", "Droide"));
+		kd.addMessage(new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide"));
+				
+		// a2
+		Node a2= new Node();
+		a2.addAnswer(new Answer(
+						"H�rt sich spannend an. Leider hab ich gerade keinen Droiden frei, der diese Aufgaben �bernehmen kann.",
+						ending1));
+		a2.addAnswer(new Answer("Okay ich schicke schonmal einen Kontaktdroiden los. Leitest du mir die Akte weiter?",
+						kd));
+		a2.addAnswer(new Answer(
+						"Okay ich schicke schonmal einen Spurendroiden los. Leitest du mir die Akte weiter?", sd));
+		a2.addAnswer(new Answer(
+						"Okay ich schicke schonmal einen Spuren- und Kontaktdroiden los. Leitest du mir die Akte weiter?",
+						skd));
+		a2.addMessage(new NodeMessage(Messagetype.Text,
+						"Eine junge Frau hat soeben einen toten Mann in ihrer Wohnung gefunden. Sie steht jetzt unter Schock. Jemand muss zu ihr, sie befragen und die Spuren m�ssen dort gesichert werden.",
+						"Kommissar Thomas"));
+		
+		// Ausgangssituation
+		Node ausgangssituation = new Node();
+				ausgangssituation.addAnswer(new Answer(
+						"Kann das nicht jemand anderes �bernehmen? Ich stecke immer noch in den Ermittlungen bez�glich der Wasserleiche vom Fr�hlinger See fest.",
+						ending1));
+				ausgangssituation.addAnswer(new Answer("Super, worum geht's?", a2));
+			ausgangssituation.addMessage(new NodeMessage(Messagetype.Text, "Hey Joe, ich hab da einen neuen Fall f�r dich.",
+						"Kommissar Thomas"));
+		return ausgangssituation;
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<Node> createScenarioTwo() {
 		List<Node> nodeList = new ArrayList<Node>();
 
@@ -1251,15 +1058,11 @@ public class ScenarioCreator {
 
 	public Node getFirstNode(long scenarioID) throws NodeNotFoundException {
 		if (scenarioID == 0) {
-			if(scenarioOne.size()>0) {
-				return scenarioOne.get(0);
-			}
-			else {
-				throw new NodeNotFoundException("Erstes Node ist in ScenarioCreator fÃ¼r Scenario 0 nicht verfÃ¼gbar.");
-			}
-		} else if (scenarioID == 1) {
-			if(scenarioOne.size()>0) {
-				return scenarioOne.get(1);
+				return scenarioOne;
+		}
+		if (scenarioID == 1) {
+			if(scenarioTwo.size()>0) {
+				return scenarioTwo.get(0);
 			}
 			else {
 				throw new NodeNotFoundException("Erstes Node ist in ScenarioCreator fÃ¼r Scenario 1 nicht verfÃ¼gbar.");

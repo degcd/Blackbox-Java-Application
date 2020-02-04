@@ -16,7 +16,11 @@ public class Node {
     private LinkedList<NodeMessage> messageToClient;
     @Column
     private LinkedList<Answer> possibleAnswers;
-
+    public Node() {
+    	this.nodeID = nodeIdCounter++;
+    	this.messageToClient=new LinkedList<NodeMessage>();
+    	this.possibleAnswers=new LinkedList<Answer>();
+    }
     public Node(LinkedList<NodeMessage> message, LinkedList<Answer> possibleAnswers)
     {
         this.nodeID = nodeIdCounter++;
@@ -93,7 +97,12 @@ public class Node {
 		return "{\"nodeID\":\""+nodeID+"\",\"anzahl der Messages\":\""+this.messageToClient.size()+"\",\"Anzahl der Antworten\":\""+this.possibleAnswers.size()+"\"}";
 	    
     }
-
+	public void addMessage(NodeMessage msg) {
+		this.messageToClient.add(msg);
+	}
+	public void addAnswer(Answer answer) {
+		this.possibleAnswers.add(answer);
+	}
     
     
 
