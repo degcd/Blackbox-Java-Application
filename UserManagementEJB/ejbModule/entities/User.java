@@ -10,7 +10,6 @@ import entityListeners.UserPersistencyLog;
 
 //@Entity
 //@EntityListeners(UserPersistencyLog.class)
-//@XmlRootElement(name="User")
 public class User {
 
     private static long userIdCounter = 0;
