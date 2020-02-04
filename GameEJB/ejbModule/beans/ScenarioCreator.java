@@ -14,13 +14,12 @@ import exceptions.NodeNotFoundException;
 public class ScenarioCreator {
 
 	private static Node scenarioOne;
-	private static List<Node> scenarioTwo = null;
+	private static Node scenarioTwo;
 	private static List<Node> nodeList;
 	private static List<Answer> answerList;
 
 
 	public ScenarioCreator() {
-		scenarioTwo=new LinkedList();
 		nodeList=new LinkedList();
 		answerList=new LinkedList();
 		scenarioOne = createScenarioOne();
@@ -271,796 +270,453 @@ public class ScenarioCreator {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public List<Node> createScenarioTwo() {
-		List<Node> nodeList = new ArrayList<Node>();
-
-		// Declaring all Nodes
-		Node ausgangssituation = null;		
-		Node ending1 = new Node();
-		Node b2 = new Node();
-		Node b3 = new Node();
-		Node c1 = new Node();
-		Node c2 = new Node();
-		Node d1 = new Node();
-		Node d2 = new Node();
-		Node d3 = new Node();
-		Node e1 = new Node();
-		Node e2 = new Node();
-		Node f1 = new Node();
-		Node f2 = new Node();
-		Node f3 = new Node();
-		Node g1 = new Node();
-		Node ending1_g2 = new Node();
-		Node ending1_h1 = new Node();
-		Node h2 = new Node();
-		Node ending1_h3 = new Node();
-		Node j1 = new Node();
-		Node j2 = new Node();
-		Node k1 = new Node();
-		Node k2 = new Node();
-		Node k3 = new Node();
-		Node ending2_k4 = new Node();
-		Node l1 = new Node();
-		Node ending2_l2 = new Node();
-		Node m1 = new Node();
-		Node ending2_m2 = new Node();
-		Node ending3_n1 =new Node();
-		Node n2 = new Node();
-		Node ending3_o1 = new Node();
-		Node ending4_o2 = new Node();
-		Node o3 = new Node();
-		Node ending4_o4 = new Node();
-		Node ending3_p1 = new Node();
-		Node ending5_p2 = new Node();
-		Node ending5_p3 = new Node();
-		Node ending6_p4 = new Node();
+	public Node createScenarioTwo() {
+		// ending6_p4
+		Node ending6_p4=new Node();
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Text, "LNU", "Ich"));
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", 10, "Onkel"));
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Text, "Es funktioniert! Das Tor öffnet sich!", 10, "Onkel"));
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Text,
+						"Wow!! Hier ist eine KOMPLETTE Stadt im Berg!! Danach haben meine Kollegen wohl gesucht… Schade, dass sie es nicht mit eigenen Augen sehen konnten… Das ist einfach unglaublich!!",
+						"Onkel"));
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Image, "../ressources/verborgeneStadt.jpg", 5, "Onkel"));
+		ending6_p4.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich denke, das ist der Höhepunkt meiner Karriere, wahrscheinlich sogar meines gesamten Lebens! Was hier wohl alles verborgen sein mag… Danke für deine Hilfe! Ohne dich hätte ich die Stadt bestimmt nicht gefunden, geschweige denn überlebt!",
+						"Onkel"));
+		ending6_p4.addMessage( new NodeMessage(Messagetype.Text,
+						"Was geschah: Diese News gingen durch die Medien! Dein Onkel wurde berühmt und ausgezeichnet. Im Nachhinein konnte auch die Absturzursache festgestellt werden:"
+								+ "ein magnetisches Feld hatte die Systeme lahmgelegt. ",
+						"Erzähler"));
 		
-
-		// Filling Nodes with values
-		// Ausgangssituation
-		LinkedList<Answer> answersForCurrentNode = new LinkedList<Answer>();
-		Answer answer1 = new Answer(
-				"Okay, dann überlasse ich es ab jetzt dir… falls du einen Schatz findest, sag mal Bescheid.", ending1);
-		answersForCurrentNode.add(answer1);
-		Answer answer2 = new Answer("Was?? Das kann doch kein Zufall sein!", b2);
-		answersForCurrentNode.add(answer2);
-		Answer answer3 = new Answer("Wie meinst du das? Woher kennst du die Personen auf dem Band?", b3);
-		answersForCurrentNode.add(answer3);
-		LinkedList<NodeMessage> messageList = new LinkedList<NodeMessage>();
-		NodeMessage message1 = new NodeMessage(Messagetype.Text,
-				"Onkel Peter! Du kannst dir nicht vorstellen, was ich gerade gefunden habe! Vielleicht ist es auch nur Fake, aber hier: höre selbst!",
-				"Ich");
-		messageList.add(message1);
-		NodeMessage message2 = new NodeMessage(Messagetype.Voice, "../ressources/aufnahmeBlackbox.mp3", "Ich");
-		messageList.add(message2);
-		NodeMessage message3 = new NodeMessage(Messagetype.Text, "Kein Fake, ich kenne sie!", "Onkel");
-		messageList.add(message3);
-		ausgangssituation = new Node(messageList, answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending1
-		message1 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
-						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
-				"Erzähler");
-		messageList.add(message1);
-		ending1.setMessageToClient(messageList);
-		ending1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// b2
-		answer1 = new Answer("Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", c1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", c2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Was?? Das kann doch kein Zufall sein!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich kann es auch noch nicht fassen. Ich hoffe es geht ihnen gut… Aber sag mal, wo hast du die Aufnahme überhaupt gefunden?",
-				"Onkel");
-		messageList.add(message2);
-		b2.setMessageToClient(messageList);
-		b2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// b3
-		answer1 = new Answer("Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", c1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", c2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Wie meinst du das? Woher kennst du die Personen auf dem Band?",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Dazu kommen wir gleich. Sag mir erstmal, wo du die Aufnahme gefunden hast?!", "Onkel");
-		messageList.add(message2);
-		b3.setMessageToClient(messageList);
-		b3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// c1
-		answer1 = new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Was genau waren das für Treffen?", e2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Hm okay, sehr interessant.?", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??", "Ich");
-		messageList.add(message3);
-		c1.setMessageToClient(messageList);
-		c1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// c2
-		answer1 = new Answer(
-				"War ja mal wieder klar, so kennt man dich… Ich kann mal schauen, was sich da so machen lässt.", d1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer(
-				"Ne sorry, ich besorge mir, wenn nur Stoff für mich alleine. Ich bin ja kein Dealer oder so…", d2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Hättest du mal früher was gesagt, ich habe gerade schon bestellt!", d3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Was? Das kann doch nicht dein Ernst sein!! Ich glaube das einfach nicht… Für mich bist du immer noch der zehnjährige kleine Junge, der sich ein Loch in den Bauch lacht, weil ich mich auf ein Furzkissen gesetzt habe...das du mir natürlich vorher untergeschoben hast! "
-						+ "Naja… Wenn du schon mal dabei bist… kannst du mir ja evtl demnächst mal ein bisschen was mitbestellen?",
-				"Onkel");
-		messageList.add(message2);
-		c2.setMessageToClient(messageList);
-		c2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// d1
-		answer1 = new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Was genau waren das für Treffen?", e2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"War ja mal wieder klar, so kennt man dich… Ich kann mal schauen, was sich da so machen lässt. Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
-				"Onkel");
-		messageList.add(message2);
-		d1.setMessageToClient(messageList);
-		d1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// d2
-		answer1 = new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Was genau waren das für Treffen?", e2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Ne sorry, ich besorge mir, wenn nur Stoff für mich alleine. Ich bin ja kein Dealer oder so… Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
-				"Onkel");
-		messageList.add(message2);
-		d2.setMessageToClient(messageList);
-		d2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// d3
-		answer1 = new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Was genau waren das für Treffen?", e2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Hättest du mal früher was gesagt, ich habe gerade schon bestellt! Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
-				"Onkel");
-		messageList.add(message2);
-		d3.setMessageToClient(messageList);
-		d3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// e1
-		answer1 = new Answer("Warte auf mich, ich möchte auch mitkommen!", f1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Das ist doch viel zu gefährlich alleine!", f2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Sei vorsichtig!", f3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text, "Hast du eine Vermutung, wonach deine Kollegen gesucht haben?",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Nein, leider nicht, aber ihre Spur schien immer heißer zu werden… Sie wurden mit jedem Mal unruhiger. Ich vermute, es muss ziemlich bedeutungsvoll gewesen sein.",
-				10, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Weißt du was? Desto mehr ich darüber nachdenke, desto nervöser werde ich! Laut den Koordinaten aus der Tonaufnahme, befinde ich mich ganz in der Nähe! Ich werde ganz einfach meine Taschen packen und schauen, was mit meinen Kameraden passiert ist und ob es ihnen gut geht!",
-				"Onkel");
-		messageList.add(message3);
-		e1.setMessageToClient(messageList);
-		e1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// e2
-		answer1 = new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1);
-		answersForCurrentNode.add(answer1);
-		message1 = new NodeMessage(Messagetype.Text, "Was genau waren das für Treffen?", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Diese Treffen finden alle paar Monate statt. Dort tragen alle aus unserem Gebiet, d.h. jegliche Forscher, ihre Erkenntnisse usw. der letzten Monate vor, z.B. was sie ausgegraben haben.",
-				"Onkel");
-		messageList.add(message2);
-		e2.setMessageToClient(messageList);
-		e2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f1
-		answer1 = new Answer("Klar helfe ich dir!", g1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
-				ending1_g2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Warte auf mich, ich möchte auch mitkommen!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Nein, das ist zu gefährlich… Außerdem dauert es viel zu lange, bis du hier bist. Aber du könntest mir bestimmt trotzdem irgendwie von zu Hause aus helfen, was hältst du davon?",
-				"Onkel");
-		messageList.add(message2);
-		f1.setMessageToClient(messageList);
-		f1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f2
-		answer1 = new Answer("Klar helfe ich dir!", g1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
-				ending1_g2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Das ist doch viel zu gefährlich alleine!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ach Quatsch, ich bin das gewohnt… Außerdem habe ich ja dich! Könnte sein, dass ich während meines Ausflugs deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
-				"Onkel");
-		messageList.add(message2);
-		f2.setMessageToClient(messageList);
-		f2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// f3
-		answer1 = new Answer("Klar helfe ich dir!", g1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
-				ending1_g2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Sei vorsichtig!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Das bin ich doch immer, sonst wäre ich schon längst tot. Möglicherweise könnte es sein, dass ich während meines Ausfluges deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
-				"Onkel");
-		messageList.add(message2);
-		f3.setMessageToClient(messageList);
-		f3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// g1
-		answer1 = new Answer("Mit dem Auto.", ending1_h1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Mit einem Boot.", h2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Mit einem Flugzeug.", ending1_h3);
-		answersForCurrentNode.add(answer3);
-		message1 = new NodeMessage(Messagetype.Text, "Klar helfe ich dir!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Perfekt! Du kannst mich auch schon direkt beraten… Wie komme ich am besten zu den Koordinaten?",
-				"Onkel");
-		messageList.add(message2);
-		g1.setMessageToClient(messageList);
-		g1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending1_g2
-		message1 = new NodeMessage(Messagetype.Text,
-				"Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Na gut, ich schaffe das auch alleine. Ich fliege jetzt mal zu den Koordinaten, ich habe mir ein Segelflugzeug gemietet. Ich halte dich auf dem Laufenden.",
-				"Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
-						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
-				"Erzähler");
-		messageList.add(message3);
-		ending1_g2.setMessageToClient(messageList);
-		ending1_g2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending1_h1
-		message1 = new NodeMessage(Messagetype.Text, "Mit dem Auto.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ähm, ich denke nicht, dass du eine so gute Hilfe bist. Ich nehme lieber das Flugzeug.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
-						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
-				"Erzähler");
-		messageList.add(message3);
-		ending1_h1.setMessageToClient(messageList);
-		ending1_h1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// h2
-		answer1 = new Answer("Siehst du das Flugzeug?", j1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Was siehst du?", j2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Mit einem Boot.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Gut, ich mache mich auf den Weg. Ich melde mich, wenn ich auf der Insel angekommen bin.", 50, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Ich bin jetzt auf der Insel angekommen!", "Onkel");
-		messageList.add(message3);
-		h2.setMessageToClient(messageList);
-		h2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending1_h3
-		message1 = new NodeMessage(Messagetype.Text, "Mit einem Flugzeug.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Gut, ich mache mich auf den Weg. Ich melde mich, wenn ich auf der Insel angekommen bin.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
-						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
-				"Erzähler");
-		messageList.add(message3);
-		ending1_h3.setMessageToClient(messageList);
-		ending1_h3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// j1
-		answer1 = new Answer("Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", k1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Kannst du erkennen, ob einer deiner Kollegen überlebt hat?", k2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Erkennst du, was die Ursache für den Absturz war?", k3);
-		answersForCurrentNode.add(answer3);
-		Answer answer4 = new Answer("Dann ruf lieber die Polizei!", ending2_k4);
-		answersForCurrentNode.add(answer4);
-		message1 = new NodeMessage(Messagetype.Text, "Siehst du das Flugzeug?", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich sehe nichts außer Sandstrand und einen Wald aus Palmen. Ich denke, Ich gehe mal tiefer in den Palmenwald, ich melde mich gleich wieder.",
-				20, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
-				"Onkel");
-		messageList.add(message3);
-		j1.setMessageToClient(messageList);
-		j1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// j2
-		answer1 = new Answer("Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", k1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Kannst du erkennen, ob einer deiner Kollegen überlebt hat?", k2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("Erkennst du, was die Ursache für den Absturz war?", k3);
-		answersForCurrentNode.add(answer3);
-		answer4 = new Answer("Dann ruf lieber die Polizei!", ending2_k4);
-		answersForCurrentNode.add(answer4);
-		message1 = new NodeMessage(Messagetype.Text, "Was siehst du?", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Ich sehe nichts außer Sandstrand und einen Wald aus Palmen. Ich denke, Ich gehe mal tiefer in den Palmenwald, ich melde mich gleich wieder.",
-				20, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
-				"Onkel");
-		messageList.add(message3);
-		j2.setMessageToClient(messageList);
-		j2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// k1
-		answer1 = new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Dann ruf lieber die Polizei!", ending2_l2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Nein. Ich sehe nur ganz viele einzelne Flugzeugteile…", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
-				"Ich");
-		messageList.add(message3);
-		NodeMessage message4 = new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.",
-				10, "Onkel");
-		messageList.add(message4);
-		NodeMessage message5 = new NodeMessage(Messagetype.Text,
-				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
-				"Onkel");
-		messageList.add(message5);
-		k1.setMessageToClient(messageList);
-		k1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// k2
-		answer1 = new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Dann ruf lieber die Polizei!", ending2_l2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.", 10,
-				"Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
-				"Onkel");
-		messageList.add(message3);
-		k2.setMessageToClient(messageList);
-		k2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// k3
-		answer1 = new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Dann ruf lieber die Polizei!", ending2_l2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Erkennst du, was die Ursache für den Absturz war?", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Nein, keine Chance. Ich denke, das kann nur ein Profi.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
-				"Ich");
-		messageList.add(message3);
-		message4 = new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.", 10,
-				"Onkel");
-		messageList.add(message4);
-		message5 = new NodeMessage(Messagetype.Text,
-				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
-				"Onkel");
-		messageList.add(message5);
-		k3.setMessageToClient(messageList);
-		k3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending2_k4
-		message1 = new NodeMessage(Messagetype.Text, "Dann ruf lieber die Polizei!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Du hast Recht, bis gleich!", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
-				"Erzähler");
-		messageList.add(message3);
-		ending2_k4.setMessageToClient(messageList);
-		ending2_k4.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// l1
-		answer1 = new Answer(
-				"Das ist aber komisch, dass es zieht… Normalerweise sollte im Berg doch kein Platz für Luft sein oder?",
-				m1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer(
-				"Also an deiner Stelle würde ich jetzt, so schnell es geht, aus dem Flugzeug verschwinden und die Polizei anrufen, bevor alles zusammenbricht.",
-				ending2_m2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text, "Trau dich! Vielleicht lebt ja noch einer!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Okay, ich gehe rein…", 5, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Hier ist alles voller Blut, sowas habe ich noch nie gesehen! Niemand atmet mehr… Wahrscheinlich sind sie direkt kurz nach dem Absturz gestorben… Was für eine Schande…",
-				5, "Onkel");
-		messageList.add(message3);
-		message4 = new NodeMessage(Messagetype.Text,
-				"Ich habe irgendwie das Gefühl, dass es hier zieht… Ich glaube das kommt vorne vom Cockpit. Sieht ziemlich einsturzgefährdet aus. Es steckt halb im Berg.",
-				"Onkel");
-		messageList.add(message4);
-		l1.setMessageToClient(messageList);
-		l1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending2_l2
-		message1 = new NodeMessage(Messagetype.Text, "Dann ruf lieber die Polizei!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Du hast Recht, bis gleich!", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
-				"Erzähler");
-		messageList.add(message3);
-		ending2_l2.setMessageToClient(messageList);
-		ending2_l2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// m1
-		answer1 = new Answer("Dann lass das mal lieber.", ending3_n1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("Dann schau einfach, wie weit du kommst!", n2);
-		answersForCurrentNode.add(answer2);
-		message1 = new NodeMessage(Messagetype.Text,
-				"Das ist aber komisch, dass es zieht… Normalerweise sollte im Berg doch kein Platz für Luft sein oder?",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Normalerweise nicht… Jetzt hat mich mein Forscherherz gepackt! Ich schaue mal vorsichtig nach, ob ich die Ursache sehen kann.",
-				10, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Tatsächlich! Hier ist eine Art unterirdische Höhle! Irgendwie wirkt es wie eine Art gewollter Eingang zu etwas… Eigentlich würde ich gerne nachschauen, wohin der Gang führt, aber ich habe keine Ausrüstung dabei.",
-				"Onkel");
-		messageList.add(message3);
-		m1.setMessageToClient(messageList);
-		m1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending2_m2
-		message1 = new NodeMessage(Messagetype.Text,
-				"Also an deiner Stelle würde ich jetzt, so schnell es geht, aus dem Flugzeug verschwinden und die Polizei anrufen, bevor alles zusammenbricht.",
-				"Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Du hast Recht, ich verschwinde hier.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
-				"Erzähler");
-		messageList.add(message3);
-		ending2_m2.setMessageToClient(messageList);
-		ending2_m2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending3_n1
-		message1 = new NodeMessage(Messagetype.Text, "Dann lass das mal lieber.", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Okay, dann werde ich jetzt die Polizei rufen.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Nachdem dein Onkel die Polizei gerufen hat, entdeckte diese in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
-						+ "Zudem fand die Polizei heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
-						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
-				"Erzähler");
-		messageList.add(message3);
-		ending3_n1.setMessageToClient(messageList);
-		ending3_n1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// n2
-		answer1 = new Answer("Ich kann nichts finden!", ending3_o1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("1638", ending4_o2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("1738", o3);
-		answersForCurrentNode.add(answer3);
-		answer4 = new Answer("1836", ending4_o4);
-		answersForCurrentNode.add(answer4);
-		message1 = new NodeMessage(Messagetype.Text, "Dann schau einfach, wie weit du kommst!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Na gut, ich kann ja dann immer noch umdrehen…", 10, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Oh nein! Ich glaube, ich habe gerade eine Falle ausgelöst bzw. noch nicht ganz… Ich stecke mittendrin! Hier ist ein Bild! Kannst du mal GOOGLEN, wie man sie entschärfen kann? Sieht nach römischen Zahlen aus...",
-				"Onkel");
-		messageList.add(message3);
-		message4 = new NodeMessage(Messagetype.Image, "../ressources/falle.jpg", "Onkel");
-		messageList.add(message4);
-		n2.setMessageToClient(messageList);
-		n2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending3_o1
-		message1 = new NodeMessage(Messagetype.Text, "Ich kann nichts finden!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Okay, dann werde ich jetzt die Polizei rufen. Ich hoffe, sie können mir helfen.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
-				"Erzähler");
-		messageList.add(message3);
-		ending3_o1.setMessageToClient(messageList);
-		ending3_o1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending4_o2
-		message1 = new NodeMessage(Messagetype.Text, "1638", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
+		// ending5_p3
+		Node ending5_p3= new Node();
+		ending5_p3.addMessage( new NodeMessage(Messagetype.Text, "HZK", "Ich"));
+		ending5_p3.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel"));
+		ending5_p3.addMessage(new NodeMessage(Messagetype.Text,
 				"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
-						+ "Es stellte sich heraus, dass die Falle falsch entschärft wurde und dein Onkel dabei ums Leben kam. Jedoch entdeckte die Polizei in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
-						+ "Zudem fand sie heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
-						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
-				"Erzähler");
-		messageList.add(message3);
-		ending4_o2.setMessageToClient(messageList);
-		ending4_o2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// o3
-		answer1 = new Answer("Ich kann nichts finden…", ending3_p1);
-		answersForCurrentNode.add(answer1);
-		answer2 = new Answer("PAT", ending5_p2);
-		answersForCurrentNode.add(answer2);
-		answer3 = new Answer("HZK", ending5_p3);
-		answersForCurrentNode.add(answer3);
-		answer4 = new Answer("LNU", ending6_p4);
-		answersForCurrentNode.add(answer4);
-		message1 = new NodeMessage(Messagetype.Text, "1738", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", 10, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Jawoll, es hat geklappt! Ich lebe! Weiter geht’s!", 10, "Onkel");
-		messageList.add(message3);
-		message4 = new NodeMessage(Messagetype.Text,
-				"Da ist ein Tor! Ganz schön groß… und vor allem verschlossen. Ich glaube, man muss hier ne Art Buchstabencode eingeben…",
-				"Onkel");
-		messageList.add(message4);
-		message5 = new NodeMessage(Messagetype.Text,
-				"Ah, hier an der Wand scheint ne Art geheime Botschaft zu sein… Vielleicht muss man es ja übersetzen? Findest du eventuell etwas bei GOOGLE?",
-				"Onkel");
-		messageList.add(message5);
-		NodeMessage message6 = new NodeMessage(Messagetype.Image, "../ressources/raetsel.jpg", 5, "Onkel");
-		messageList.add(message6);
-		NodeMessage message7 = new NodeMessage(Messagetype.Text, "Sieht mir ganz nach Hieroglyphen aus...", "Onkel");
-		messageList.add(message7);
-		o3.setMessageToClient(messageList);
-		o3.setPossibleAnswers(answersForCurrentNode); 
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending4_o4
-		message1 = new NodeMessage(Messagetype.Text, "1836", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
-						+ "Es stellte sich heraus, dass die Falle falsch entschärft wurde und dein Onkel dabei ums Leben kam. Jedoch entdeckte die Polizei in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
-						+ "Zudem fand sie heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
-						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
-				"Erzähler");
-		messageList.add(message3);
-		ending4_o4.setMessageToClient(messageList);
-		ending4_o4.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
-
-		// ending3_p1
-		message1 = new NodeMessage(Messagetype.Text, "Ich kann nichts finden!", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text,
-				"Hm… Ich möchte auch nichts Falsches eingeben… Dann sollte ich jetzt lieber die Polizei rufen…“",
-				"Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
-				"Erzähler");
-		messageList.add(message3);
-		ending3_p1.setMessageToClient(messageList);
-		ending3_p1.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+						+ "Es stellte sich heraus, dass der Code wohl falsch eingegeben wurde, die Höhle daraufhin einstürzte und dein Onkel dabei verschüttet wurde. Es dauerte 2 Jahre, bis das Chaos beseitigt werden konnte. "
+						+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
+				"Erzähler"));
 
 		// ending5_p2
-		message1 = new NodeMessage(Messagetype.Text, "PAT", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
+		Node ending5_p2= new Node();
+		ending5_p2.addMessage(new NodeMessage(Messagetype.Text, "PAT", "Ich"));
+		ending5_p2.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel"));
+		ending5_p2.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
+								+ "Es stellte sich heraus, dass der Code wohl falsch eingegeben wurde, die Höhle daraufhin einstürzte und dein Onkel dabei verschüttet wurde. Es dauerte 2 Jahre, bis das Chaos beseitigt werden konnte. "
+								+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
+						"Erzähler"));
+		// ending3_p1
+		Node ending3_p1= new Node();
+		ending3_p1.addMessage(new NodeMessage(Messagetype.Text, "Ich kann nichts finden!", "Ich"));
+		ending3_p1.addMessage( new NodeMessage(Messagetype.Text,
+						"Hm… Ich möchte auch nichts Falsches eingeben… Dann sollte ich jetzt lieber die Polizei rufen…“",
+						"Onkel"));
+		ending3_p1.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
+						"Erzähler"));
+		// ending4_o4
+		Node ending4_o4= new Node();
+		ending4_o4.addMessage(new NodeMessage(Messagetype.Text, "1836", "Ich"));
+		ending4_o4.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel"));
+		ending4_o4.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
+								+ "Es stellte sich heraus, dass die Falle falsch entschärft wurde und dein Onkel dabei ums Leben kam. Jedoch entdeckte die Polizei in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
+								+ "Zudem fand sie heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
+								+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
+						"Erzähler"));
+		
+		// ending4_o2
+		Node ending4_o2= new Node();
+		ending4_o2.addMessage(new NodeMessage(Messagetype.Text, "1638", "Ich"));
+		ending4_o2.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel"));
+		ending4_o2.addMessage(new NodeMessage(Messagetype.Text,
 				"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
-						+ "Es stellte sich heraus, dass der Code wohl falsch eingegeben wurde, die Höhle daraufhin einstürzte und dein Onkel dabei verschüttet wurde. Es dauerte 2 Jahre, bis das Chaos beseitigt werden konnte. "
-						+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
-				"Erzähler");
-		messageList.add(message3);
-		ending5_p2.setMessageToClient(messageList);
-		ending5_p2.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+						+ "Es stellte sich heraus, dass die Falle falsch entschärft wurde und dein Onkel dabei ums Leben kam. Jedoch entdeckte die Polizei in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
+						+ "Zudem fand sie heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
+						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
+				"Erzähler"));
+		
+		// ending3_o1
+		Node ending3_o1=new Node();
+		ending3_o1.addMessage(new NodeMessage(Messagetype.Text, "Ich kann nichts finden!", "Ich"));
+		ending3_o1.addMessage(new NodeMessage(Messagetype.Text,
+						"Okay, dann werde ich jetzt die Polizei rufen. Ich hoffe, sie können mir helfen.", "Onkel"));
+		ending3_o1.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
+						"Erzähler"));
+				
+		// o3
+		Node o3= new Node();
+		o3.addAnswer(new Answer("Ich kann nichts finden…", ending3_p1));
+		o3.addAnswer(new Answer("PAT", ending5_p2));
+		o3.addAnswer(new Answer("HZK", ending5_p3));
+		o3.addAnswer(new Answer("LNU", ending6_p4));
+		o3.addMessage(new NodeMessage(Messagetype.Text, "1738", "Ich"));
+		o3.addMessage(new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", 10, "Onkel"));
+		o3.addMessage(new NodeMessage(Messagetype.Text, "Jawoll, es hat geklappt! Ich lebe! Weiter geht’s!", 10, "Onkel"));
+		o3.addMessage(new NodeMessage(Messagetype.Text,
+						"Da ist ein Tor! Ganz schön groß… und vor allem verschlossen. Ich glaube, man muss hier ne Art Buchstabencode eingeben…",
+						"Onkel"));
+		o3.addMessage(new NodeMessage(Messagetype.Text,
+						"Ah, hier an der Wand scheint ne Art geheime Botschaft zu sein… Vielleicht muss man es ja übersetzen? Findest du eventuell etwas bei GOOGLE?",
+						"Onkel"));
+		o3.addMessage(new NodeMessage(Messagetype.Image, "../ressources/raetsel.jpg", 5, "Onkel"));
+		o3.addMessage(new NodeMessage(Messagetype.Text, "Sieht mir ganz nach Hieroglyphen aus...", "Onkel"));
+		
+		// n2
+		Node n2= new Node();
+		n2.addAnswer(new Answer("Ich kann nichts finden!", ending3_o1));
+		n2.addAnswer(new Answer("1638", ending4_o2));
+		n2.addAnswer(new Answer("1738", o3));
+		n2.addAnswer(new Answer("1836", ending4_o4));
+		n2.addMessage(new NodeMessage(Messagetype.Text, "Dann schau einfach, wie weit du kommst!", "Ich"));
+		n2.addMessage(new NodeMessage(Messagetype.Text, "Na gut, ich kann ja dann immer noch umdrehen…", 10, "Onkel"));
+		n2.addMessage(new NodeMessage(Messagetype.Text,
+						"Oh nein! Ich glaube, ich habe gerade eine Falle ausgelöst bzw. noch nicht ganz… Ich stecke mittendrin! Hier ist ein Bild! Kannst du mal GOOGLEN, wie man sie entschärfen kann? Sieht nach römischen Zahlen aus...",
+						"Onkel"));
+		n2.addMessage(new NodeMessage(Messagetype.Image, "../ressources/falle.jpg", "Onkel"));
+	
+		// ending3_n1
+		Node ending3_n1= new Node();
+		ending3_n1.addMessage(new NodeMessage(Messagetype.Text, "Dann lass das mal lieber.", "Ich"));
+		ending3_n1.addMessage(new NodeMessage(Messagetype.Text, "Okay, dann werde ich jetzt die Polizei rufen.", "Onkel"));
+		ending3_n1.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Nachdem dein Onkel die Polizei gerufen hat, entdeckte diese in der Höhle eine unterirdische Stadt mit antiken Schätzen. "
+								+ "Zudem fand die Polizei heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist. "
+								+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
+						"Erzähler"));
+				
+		// ending2_m2
+		Node ending2_m2= new Node();
+		ending2_m2.addMessage(new NodeMessage(Messagetype.Text,
+						"Also an deiner Stelle würde ich jetzt, so schnell es geht, aus dem Flugzeug verschwinden und die Polizei anrufen, bevor alles zusammenbricht.",
+						"Ich"));
+		ending2_m2.addMessage(new NodeMessage(Messagetype.Text, "Du hast Recht, ich verschwinde hier.", "Onkel"));
+		ending2_m2.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
+						"Erzähler"));
+		// m1
+		Node m1= new Node();
+		m1.addAnswer(new Answer("Dann lass das mal lieber.", ending3_n1));
+		m1.addAnswer(new Answer("Dann schau einfach, wie weit du kommst!", n2));
+		m1.addMessage(new NodeMessage(Messagetype.Text,
+						"Das ist aber komisch, dass es zieht… Normalerweise sollte im Berg doch kein Platz für Luft sein oder?",
+						"Ich"));
+		m1.addMessage(new NodeMessage(Messagetype.Text,
+						"Normalerweise nicht… Jetzt hat mich mein Forscherherz gepackt! Ich schaue mal vorsichtig nach, ob ich die Ursache sehen kann.",
+						10, "Onkel"));
+		m1.addMessage(new NodeMessage(Messagetype.Text,
+						"Tatsächlich! Hier ist eine Art unterirdische Höhle! Irgendwie wirkt es wie eine Art gewollter Eingang zu etwas… Eigentlich würde ich gerne nachschauen, wohin der Gang führt, aber ich habe keine Ausrüstung dabei.",
+						"Onkel"));
+		
+		// ending2_l2
+		Node ending2_l2= new Node();
+		ending2_l2.addMessage(new NodeMessage(Messagetype.Text, "Dann ruf lieber die Polizei!", "Ich"));
+		ending2_l2.addMessage(new NodeMessage(Messagetype.Text, "Du hast Recht, bis gleich!", "Onkel"));
+		ending2_l2.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
+						"Erzähler"));
+		// l1
+		Node l1= new Node();
+		l1.addAnswer(new Answer(
+						"Das ist aber komisch, dass es zieht… Normalerweise sollte im Berg doch kein Platz für Luft sein oder?",
+						m1));
+		l1.addAnswer(new Answer(
+						"Also an deiner Stelle würde ich jetzt, so schnell es geht, aus dem Flugzeug verschwinden und die Polizei anrufen, bevor alles zusammenbricht.",
+						ending2_m2));
+		l1.addMessage(new NodeMessage(Messagetype.Text, "Trau dich! Vielleicht lebt ja noch einer!", "Ich"));
+		l1.addMessage(new NodeMessage(Messagetype.Text, "Okay, ich gehe rein…", 5, "Onkel"));
+		l1.addMessage(new NodeMessage(Messagetype.Text,
+						"Hier ist alles voller Blut, sowas habe ich noch nie gesehen! Niemand atmet mehr… Wahrscheinlich sind sie direkt kurz nach dem Absturz gestorben… Was für eine Schande…",
+						5, "Onkel"));
+		l1.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe irgendwie das Gefühl, dass es hier zieht… Ich glaube das kommt vorne vom Cockpit. Sieht ziemlich einsturzgefährdet aus. Es steckt halb im Berg.",
+						"Onkel"));
+		// ending2_k4
+		Node ending2_k4= new Node();
+		ending2_k4.addMessage(new NodeMessage(Messagetype.Text, "Dann ruf lieber die Polizei!", "Ich"));
+		ending2_k4.addMessage(new NodeMessage(Messagetype.Text, "Du hast Recht, bis gleich!", "Onkel"));
+		ending2_k4.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
+						"Erzähler"));
+		// k3
+		Node k3 = new Node();
+		k3.addAnswer( new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1));
+		k3.addAnswer(new Answer("Dann ruf lieber die Polizei!", ending2_l2));
+		k3.addMessage(new NodeMessage(Messagetype.Text, "Erkennst du, was die Ursache für den Absturz war?", "Ich"));
+		k3.addMessage(new NodeMessage(Messagetype.Text, "Nein, keine Chance. Ich denke, das kann nur ein Profi.", "Onkel"));
+		k3.addMessage(new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
+						"Ich"));
+		k3.addMessage(new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.", 10,
+						"Onkel"));
+		k3.addMessage(new NodeMessage(Messagetype.Text,
+						"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
+						"Onkel"));
+		
+		//TODO
+		// k2
+		Node k2= new Node();
+		k2.addAnswer(new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1));
+		k2.addAnswer(new Answer("Dann ruf lieber die Polizei!", ending2_l2));
+		k2.addMessage(new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
+				"Ich"));
+		k2.addMessage(new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.", 10,
+				"Onkel"));
+		k2.addMessage(new NodeMessage(Messagetype.Text,
+				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
+				"Onkel"));
+		
+		Node k1= new Node();
+		k1.addAnswer(new Answer("Trau dich! Vielleicht lebt ja noch einer!", l1));
+		k1.addAnswer( new Answer("Dann ruf lieber die Polizei!", ending2_l2));
+		k1.addMessage(new NodeMessage(Messagetype.Text,
+						"Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", "Ich"));
+		k1.addMessage(new NodeMessage(Messagetype.Text, "Nein. Ich sehe nur ganz viele einzelne Flugzeugteile…", "Onkel"));
+		k1.addMessage(new NodeMessage(Messagetype.Text, "Kannst du erkennen, ob einer deiner Kollegen überlebt hat?",
+						"Ich"));
+		k1.addMessage(new NodeMessage(Messagetype.Text, "Nicht wirklich. Ich gehe mal näher ran, warte kurz.",
+						10, "Onkel"));
+		k1.addMessage(new NodeMessage(Messagetype.Text,
+						"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
+						"Onkel"));		
+				
+		// j2
+		Node j2= new Node();
+		j2.addAnswer(new Answer("Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", k1));
+		j2.addAnswer(new Answer("Kannst du erkennen, ob einer deiner Kollegen überlebt hat?", k2));
+		j2.addAnswer(new Answer("Erkennst du, was die Ursache für den Absturz war?", k3));
+		j2.addAnswer(new Answer("Dann ruf lieber die Polizei!", ending2_k4));
+		j2.addMessage(new NodeMessage(Messagetype.Text, "Was siehst du?", "Ich"));
+		j2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich sehe nichts außer Sandstrand und einen Wald aus Palmen. Ich denke, Ich gehe mal tiefer in den Palmenwald, ich melde mich gleich wieder.",
+						20, "Onkel"));
+		j2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
+						"Onkel"));
+					
+		// j1
+		Node j1 = new Node();
+		j1.addAnswer(new Answer("Siehst du etwas, was deine Kollegen gesucht haben könnten, eine Art Schatz?", k1));
+		j1.addAnswer(new Answer("Kannst du erkennen, ob einer deiner Kollegen überlebt hat?", k2));
+		j1.addAnswer(new Answer("Erkennst du, was die Ursache für den Absturz war?", k3));
+		j1.addAnswer(new Answer("Dann ruf lieber die Polizei!", ending2_k4));
+		j1.addMessage(new NodeMessage(Messagetype.Text, "Siehst du das Flugzeug?", "Ich"));
+		j1.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich sehe nichts außer Sandstrand und einen Wald aus Palmen. Ich denke, Ich gehe mal tiefer in den Palmenwald, ich melde mich gleich wieder.",
+						20, "Onkel"));
+		j1.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
+						"Onkel"));
+				
+				// ending1_h3
+		Node ending1_h3= new Node();
+		ending1_h3.addMessage(new NodeMessage(Messagetype.Text, "Mit einem Flugzeug.", "Ich"));
+		ending1_h3.addMessage(new NodeMessage(Messagetype.Text,
+						"Gut, ich mache mich auf den Weg. Ich melde mich, wenn ich auf der Insel angekommen bin.", "Onkel"));
+		ending1_h3.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
+								+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
+						"Erzähler"));
+				
+				// h2
+		Node h2= new Node();
+		h2.addAnswer(new Answer("Siehst du das Flugzeug?", j1));
+		h2.addAnswer(new Answer("Was siehst du?", j2));
+		h2.addMessage(new NodeMessage(Messagetype.Text, "Mit einem Boot.", "Ich"));
+		h2.addMessage(new NodeMessage(Messagetype.Text,
+						"Gut, ich mache mich auf den Weg. Ich melde mich, wenn ich auf der Insel angekommen bin.", 50, "Onkel"));
+		h2.addMessage(new NodeMessage(Messagetype.Text, "Ich bin jetzt auf der Insel angekommen!", "Onkel"));
+				
+				
+				// ending1_h1
+		Node ending1_h1= new Node();
+		ending1_h1.addMessage(new NodeMessage(Messagetype.Text, "Mit dem Auto.", "Ich"));
+		ending1_h1.addMessage(new NodeMessage(Messagetype.Text,
+						"Ähm, ich denke nicht, dass du eine so gute Hilfe bist. Ich nehme lieber das Flugzeug.", "Onkel"));
+		ending1_h1.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
+								+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
+						"Erzähler"));
+			
 
-		// ending5_p3
-		message1 = new NodeMessage(Messagetype.Text, "HZK", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Nach einiger Zeit hast du die Polizei informiert, da du nichts mehr von deinem Onkel gehört hast."
-						+ "Es stellte sich heraus, dass der Code wohl falsch eingegeben wurde, die Höhle daraufhin einstürzte und dein Onkel dabei verschüttet wurde. Es dauerte 2 Jahre, bis das Chaos beseitigt werden konnte. "
-						+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
-				"Erzähler");
-		messageList.add(message3);
-		ending5_p3.setMessageToClient(messageList);
-		ending5_p3.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+				// ending1_g2
+		Node ending1_g2= new Node();
+		ending1_g2.addMessage(new NodeMessage(Messagetype.Text,
+						"Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.", "Ich"));
+		ending1_g2.addMessage(new NodeMessage(Messagetype.Text,
+						"Na gut, ich schaffe das auch alleine. Ich fliege jetzt mal zu den Koordinaten, ich habe mir ein Segelflugzeug gemietet. Ich halte dich auf dem Laufenden.",
+						"Onkel"));
+		ending1_g2.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
+								+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
+						"Erzähler"));
+			
+				
+				// g1
+		Node g1= new Node();
+		g1.addAnswer(new Answer("Mit dem Auto.", ending1_h1));
+		g1.addAnswer(new Answer("Mit einem Boot.", h2));
+		g1.addAnswer(new Answer("Mit einem Flugzeug.", ending1_h3));
+		g1.addMessage( new NodeMessage(Messagetype.Text, "Klar helfe ich dir!", "Ich"));
+		g1.addMessage(new NodeMessage(Messagetype.Text,
+						"Perfekt! Du kannst mich auch schon direkt beraten… Wie komme ich am besten zu den Koordinaten?",
+						"Onkel"));
+	
+				
+				// f3
+		Node f3= new Node();
+		f3.addAnswer(new Answer("Klar helfe ich dir!", g1));
+		f3.addAnswer(new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
+						ending1_g2));
+		f3.addMessage(new NodeMessage(Messagetype.Text, "Sei vorsichtig!", "Ich"));
+		f3.addMessage(new NodeMessage(Messagetype.Text,
+						"Das bin ich doch immer, sonst wäre ich schon längst tot. Möglicherweise könnte es sein, dass ich während meines Ausfluges deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
+						"Onkel"));
 
-		// ending6_p4
-		message1 = new NodeMessage(Messagetype.Text, "LNU", "Ich");
-		messageList.add(message1);
-		message2 = new NodeMessage(Messagetype.Text, "Ich probiere es mal aus.", 10, "Onkel");
-		messageList.add(message2);
-		message3 = new NodeMessage(Messagetype.Text, "Es funktioniert! Das Tor öffnet sich!", 10, "Onkel");
-		messageList.add(message3);
-		message4 = new NodeMessage(Messagetype.Text,
-				"Wow!! Hier ist eine KOMPLETTE Stadt im Berg!! Danach haben meine Kollegen wohl gesucht… Schade, dass sie es nicht mit eigenen Augen sehen konnten… Das ist einfach unglaublich!!",
-				"Onkel");
-		messageList.add(message4);
-		message5 = new NodeMessage(Messagetype.Image, "../ressources/verborgeneStadt.jpg", 5, "Onkel");
-		messageList.add(message5);
-		message6 = new NodeMessage(Messagetype.Text,
-				"Ich denke, das ist der Höhepunkt meiner Karriere, wahrscheinlich sogar meines gesamten Lebens! Was hier wohl alles verborgen sein mag… Danke für deine Hilfe! Ohne dich hätte ich die Stadt bestimmt nicht gefunden, geschweige denn überlebt!",
-				"Onkel");
-		messageList.add(message6);
-		message7 = new NodeMessage(Messagetype.Text,
-				"Was geschah: Diese News gingen durch die Medien! Dein Onkel wurde berühmt und ausgezeichnet. Im Nachhinein konnte auch die Absturzursache festgestellt werden:"
-						+ "ein magnetisches Feld hatte die Systeme lahmgelegt. ",
-				"Erzähler");
-		messageList.add(message7);
-		ending6_p4.setMessageToClient(messageList);
-		ending6_p4.setPossibleAnswers(answersForCurrentNode);
-		answersForCurrentNode.clear();
-		messageList.clear();
+				// f2
+		Node f2= new Node();
+		f2.addAnswer(new Answer("Klar helfe ich dir!", g1));
+		f2.addAnswer(new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
+						ending1_g2));
+		f2.addMessage(new NodeMessage(Messagetype.Text, "Das ist doch viel zu gefährlich alleine!", "Ich"));
+		f2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ach Quatsch, ich bin das gewohnt… Außerdem habe ich ja dich! Könnte sein, dass ich während meines Ausflugs deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
+						"Onkel"));
+
+
+				// f1
+		Node f1= new Node();
+		f1.addAnswer(new Answer("Klar helfe ich dir!", g1));
+		f1.addAnswer(new Answer("Hm, ich weiß nicht. Ich muss gleich los, ich habe dafür eigentlich keine Zeit.",
+						ending1_g2));
+		f1.addMessage(new NodeMessage(Messagetype.Text, "Warte auf mich, ich möchte auch mitkommen!", "Ich"));
+		f1.addMessage(new NodeMessage(Messagetype.Text,
+						"Nein, das ist zu gefährlich… Außerdem dauert es viel zu lange, bis du hier bist. Aber du könntest mir bestimmt trotzdem irgendwie von zu Hause aus helfen, was hältst du davon?",
+						"Onkel"));	
+		
+
+				// e1
+		Node e1= new Node();
+		e1.addAnswer(new Answer("Warte auf mich, ich möchte auch mitkommen!", f1));
+		e1.addAnswer(new Answer("Das ist doch viel zu gefährlich alleine!", f2));
+		e1.addAnswer( new Answer("Sei vorsichtig!", f3));
+		e1.addMessage(new NodeMessage(Messagetype.Text, "Hast du eine Vermutung, wonach deine Kollegen gesucht haben?",
+						"Ich"));
+		e1.addMessage(new NodeMessage(Messagetype.Text,
+						"Nein, leider nicht, aber ihre Spur schien immer heißer zu werden… Sie wurden mit jedem Mal unruhiger. Ich vermute, es muss ziemlich bedeutungsvoll gewesen sein.",
+						10, "Onkel"));
+		e1.addMessage(new NodeMessage(Messagetype.Text,
+						"Weißt du was? Desto mehr ich darüber nachdenke, desto nervöser werde ich! Laut den Koordinaten aus der Tonaufnahme, befinde ich mich ganz in der Nähe! Ich werde ganz einfach meine Taschen packen und schauen, was mit meinen Kameraden passiert ist und ob es ihnen gut geht!",
+						"Onkel"));
+
+
+				// e2
+		Node e2= new Node();
+		e2.addAnswer(new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1));
+		e2.addMessage(new NodeMessage(Messagetype.Text, "Was genau waren das für Treffen?", "Ich"));
+		e2.addMessage( new NodeMessage(Messagetype.Text,
+						"Diese Treffen finden alle paar Monate statt. Dort tragen alle aus unserem Gebiet, d.h. jegliche Forscher, ihre Erkenntnisse usw. der letzten Monate vor, z.B. was sie ausgegraben haben.",
+						"Onkel"));
+				
+				// d1
+		Node d1= new Node();
+		d1.addAnswer(new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1));
+		d1.addAnswer(new Answer("Was genau waren das für Treffen?", e2));
+		d1.addMessage(new NodeMessage(Messagetype.Text,
+						"War ja mal wieder klar, so kennt man dich… Ich kann mal schauen, was sich da so machen lässt. Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
+						"Ich"));
+		d1.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
+						"Onkel"));
+
+				// d2
+		Node d2= new Node();
+		d2.addAnswer(new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1));
+		d2.addAnswer(new Answer("Was genau waren das für Treffen?", e2));
+		d2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ne sorry, ich besorge mir, wenn nur Stoff für mich alleine. Ich bin ja kein Dealer oder so… Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
+						"Ich"));
+		d2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
+						"Onkel"));
+				
+
+				// d3
+		Node d3= new Node();
+		d3.addAnswer(new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1));
+		d3.addAnswer(new Answer("Was genau waren das für Treffen?", e2));
+		d3.addMessage(new NodeMessage(Messagetype.Text,
+						"Hättest du mal früher was gesagt, ich habe gerade schon bestellt! Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??",
+						"Ich"));
+		d3.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
+						"Onkel"));
+		
+	
+
+				// c1
+		Node c1= new Node();
+		c1.addAnswer(new Answer("Hast du eine Vermutung, wonach deine Kollegen gesucht haben?", e1));
+		c1.addAnswer(new Answer("Was genau waren das für Treffen?", e2));
+		c1.addMessage(new NodeMessage(Messagetype.Text, "Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", "Ich"));
+		c1.addMessage(new NodeMessage(Messagetype.Text, "Hm okay, sehr interessant.?", "Onkel"));
+		c1.addMessage(new NodeMessage(Messagetype.Text,
+						"Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??", "Ich"));
+				
+				// c2
+		Node c2= new Node();
+		c2.addAnswer(new Answer(
+						"War ja mal wieder klar, so kennt man dich… Ich kann mal schauen, was sich da so machen lässt.", d1));
+		c2.addAnswer(new Answer(
+						"Ne sorry, ich besorge mir, wenn nur Stoff für mich alleine. Ich bin ja kein Dealer oder so…", d2));
+		c2.addAnswer(new Answer("Hättest du mal früher was gesagt, ich habe gerade schon bestellt!", d3));
+		c2.addMessage(new NodeMessage(Messagetype.Text,
+						"Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", "Ich"));
+		c2.addMessage(new NodeMessage(Messagetype.Text,
+						"Was? Das kann doch nicht dein Ernst sein!! Ich glaube das einfach nicht… Für mich bist du immer noch der zehnjährige kleine Junge, der sich ein Loch in den Bauch lacht, weil ich mich auf ein Furzkissen gesetzt habe...das du mir natürlich vorher untergeschoben hast! "
+								+ "Naja… Wenn du schon mal dabei bist… kannst du mir ja evtl demnächst mal ein bisschen was mitbestellen?",
+						"Onkel"));
+				
+				// b2
+		Node b2= new Node();
+		b2.addAnswer(new Answer("Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", c1));
+		b2.addAnswer(new Answer("Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", c2));
+		b2.addMessage(new NodeMessage(Messagetype.Text, "Was?? Das kann doch kein Zufall sein!", "Ich"));
+		b2.addMessage(new NodeMessage(Messagetype.Text,
+						"Ich kann es auch noch nicht fassen. Ich hoffe es geht ihnen gut… Aber sag mal, wo hast du die Aufnahme überhaupt gefunden?",
+						"Onkel"));
+
+				// b3
+		Node b3= new Node();
+		b3.addAnswer(new Answer("Ähm… Ein Freund hat mich darauf aufmerksam gemacht.", c1));
+		b3.addAnswer(new Answer("Um ehrlich zu sein… Im Darknet… Ich hab nach dem neusten Shit an Drogen gesucht…", c2));
+		b3.addMessage(new NodeMessage(Messagetype.Text, "Wie meinst du das? Woher kennst du die Personen auf dem Band?",
+						"Ich"));
+		b3.addMessage(new NodeMessage(Messagetype.Text,
+						"Dazu kommen wir gleich. Sag mir erstmal, wo du die Aufnahme gefunden hast?!", "Onkel"));
+				
+				
+				
+				// ending1
+		Node ending1= new Node();
+		ending1.addMessage(new NodeMessage(Messagetype.Text,
+						"Was geschah: Der Onkel hat dir nicht mehr geantwortet. Es stellte sich heraus, dass er bei einem Flugzeugabsturz verstorben ist. "
+								+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
+						"Erzähler"));
+
+				// Ausgangssituation
+		Node ausgangssituation= new Node();
+		ausgangssituation.addAnswer(new Answer(
+						"Okay, dann überlasse ich es ab jetzt dir… falls du einen Schatz findest, sag mal Bescheid.", ending1));
+		ausgangssituation.addAnswer(new Answer("Was?? Das kann doch kein Zufall sein!", b2));
+		ausgangssituation.addAnswer(new Answer("Wie meinst du das? Woher kennst du die Personen auf dem Band?", b3));
+		ausgangssituation.addMessage(new NodeMessage(Messagetype.Text,
+						"Onkel Peter! Du kannst dir nicht vorstellen, was ich gerade gefunden habe! Vielleicht ist es auch nur Fake, aber hier: höre selbst!",
+						"Ich"));
+		ausgangssituation.addMessage(new NodeMessage(Messagetype.Voice, "../ressources/aufnahmeBlackbox.mp3", "Ich"));
+		ausgangssituation.addMessage(new NodeMessage(Messagetype.Text, "Kein Fake, ich kenne sie!", "Onkel"));
 
 		nodeList.add(ausgangssituation);
 		nodeList.add(ending1);
@@ -1100,21 +756,47 @@ public class ScenarioCreator {
 		nodeList.add(ending3_p1);
 		nodeList.add(ending5_p2);
 		nodeList.add(ending5_p3);
-		nodeList.add(ending6_p4);		
-		return nodeList;
+		nodeList.add(ending6_p4);	
+		//TODO answerlist
+		
+		answerList.addAll(ausgangssituation.getAnswerList());
+		answerList.addAll(b2.getAnswerList());
+		answerList.addAll(b3.getAnswerList());
+		answerList.addAll(c1.getAnswerList());
+		answerList.addAll(c2.getAnswerList());
+		answerList.addAll(d1.getAnswerList());
+		answerList.addAll(d2.getAnswerList());
+		answerList.addAll(d3.getAnswerList());
+		answerList.addAll(e1.getAnswerList());
+		answerList.addAll(e2.getAnswerList());
+		answerList.addAll(f1.getAnswerList());
+		answerList.addAll(f2.getAnswerList());
+		answerList.addAll(f3.getAnswerList());
+		answerList.addAll(g1.getAnswerList());
+		answerList.addAll(h2.getAnswerList());
+		answerList.addAll(j1.getAnswerList());
+		answerList.addAll(j2.getAnswerList());
+		answerList.addAll(k1.getAnswerList());
+		answerList.addAll(k2.getAnswerList());
+		answerList.addAll(k3.getAnswerList());
+		answerList.addAll(l1.getAnswerList());
+		answerList.addAll(m1.getAnswerList());
+		answerList.addAll(n2.getAnswerList());
+		answerList.addAll(o3.getAnswerList());
+		return ausgangssituation;
 	}
+	
+
 
 	public Node getFirstNode(long scenarioID) throws NodeNotFoundException {
 		if (scenarioID == 0) {
 				return scenarioOne;
 		}
 		if (scenarioID == 1) {
-			if(scenarioTwo.size()>0) {
-				return scenarioTwo.get(0);
-			}
-			else {
-				throw new NodeNotFoundException("Erstes Node ist in ScenarioCreator fÃ¼r Scenario 1 nicht verfÃ¼gbar.");
-			}
+			
+				return scenarioTwo;
+			
+			
 		}
 		throw new NodeNotFoundException("Scenario "+scenarioID+" ist nicht verfÃ¼gbar");
 	}
