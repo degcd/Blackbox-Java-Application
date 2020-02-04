@@ -58,7 +58,9 @@ public class GetNextMessageServlet extends HttpServlet {
     		result+=obj.toString()+",";
     	}
     		char[] chars=result.toCharArray();
-    		chars[chars.length-1]=']';
+    		if(chars[chars.length-1]==',') {
+    			chars[chars.length-1]=']';
+    		}
     		result=new String(chars);
     		return result;
 }
