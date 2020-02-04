@@ -29,6 +29,7 @@ public class RegisterServlet extends HttpServlet {
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * call register method on UserManagementBean
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -51,7 +52,6 @@ public class RegisterServlet extends HttpServlet {
 			resp.getWriter().print(result.toString());//return value User
 		}catch(Exception e){
 			e.printStackTrace();
-			System.out.println("WARNING : Wrong Object Attributes!! or Error in bean-method");
 			resp.getWriter().print(new User().toString());
 		}
 		

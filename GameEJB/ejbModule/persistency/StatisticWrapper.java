@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import entities.StatisticScenarioPath;
-
+/*
+ * Wrapperclass for serializing all StatisticScenarioPath objects
+ */
 @XmlRootElement(name = "Statisticlist")
 public class StatisticWrapper {
 

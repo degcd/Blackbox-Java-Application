@@ -7,7 +7,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import entities.User;
-
+/*
+ * Wrapper Class to serialize all user objects
+ */
 @XmlRootElement(name = "Userlist")
 public class UserWrapper {
 
