@@ -5,14 +5,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
-import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
-
 
 import entities.Answer;
 import entities.Messagetype;
@@ -28,6 +24,7 @@ import interfaces.ICommunicationManagement;
 import interfaces.IGameplayManagement;
 import interfaces.IPathCalculator;
 import interfaces.IStatisticCalculator;
+import persistency.StatisticSaver;
 
 @Stateless
 public class GameplayManagementBean implements IGameplayManagement {
@@ -38,7 +35,9 @@ public class GameplayManagementBean implements IGameplayManagement {
 	@EJB
 	private ICommunicationManagement communicationManager;
 
-	
+
+    
+    
 	long userID;
 
 	public GameplayManagementBean() {
@@ -52,7 +51,6 @@ public class GameplayManagementBean implements IGameplayManagement {
 	
 	@Resource
 	private TimerService timerService;
-
 	/**
 	 * startet das übergebene Szenario, und führt
 	 * 

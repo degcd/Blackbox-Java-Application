@@ -1,5 +1,6 @@
 package beans;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -7,71 +8,98 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 import entities.StatisticGameObject;
-import entities.StatisticUserObject;
 import entities.StatisticScenarioPath;
+import entities.StatisticUserObject;
 import exceptions.GameAlreadyExistsException;
 import exceptions.GameDoesNotExistException;
 import exceptions.StatisticNotSavedException;
 import interfaces.IStatisticCalculator;
+import persistency.StatisticSaver;
 
+@Startup
 @Singleton
 public class StatisticCalculatorBean implements IStatisticCalculator {
 
-	Map<Long,StatisticScenarioPath> gameMap;
-	LinkedList<StatisticScenarioPath> completedGames;	
+	Map<Long, StatisticScenarioPath> gameMap;
+	LinkedList<StatisticScenarioPath> completedGames;
+	private String desktopPath = System.getProperty("user.home") + "/Desktop/paths.xml";
 
 	public StatisticCalculatorBean() {
-		gameMap=Collections.synchronizedMap(new HashMap<Long,StatisticScenarioPath>());
+		gameMap = Collections.synchronizedMap(new HashMap<Long, StatisticScenarioPath>());
 		completedGames = new LinkedList<StatisticScenarioPath>();
+		StatisticSaver saver = new StatisticSaver();
+		List<StatisticScenarioPath> ssps = saver.loadScenarioPaths(desktopPath);
+		for (StatisticScenarioPath ssp : ssps) {
+			gameMap.put(ssp.getGameID(), ssp);
+		}
 	}
 
-	// TODO Datenbankanbindung
-	public void createNewGamePath(StatisticScenarioPath path) throws StatisticNotSavedException, GameAlreadyExistsException {
-		if(!gameMap.containsKey(path.getUserID())) {
+	public void createNewGamePath(StatisticScenarioPath path)
+			throws StatisticNotSavedException, GameAlreadyExistsException {
+		if (!gameMap.containsKey(path.getUserID())) {
 			gameMap.put(path.getUserID(), path);
-		}
-		else {
-			throw new GameAlreadyExistsException("Neues Spiel kann nicht erstellt werden. Das Alte muss zunächst beendet werden.");
+			StatisticSaver saver = new StatisticSaver();
+			List<StatisticScenarioPath> ssps = new ArrayList<>();
+			for (StatisticScenarioPath ssp : gameMap.values()) {
+				ssps.add(ssp);
+			}
+			ssps.addAll(completedGames);
+			saver.SaveStatisticPath(ssps, desktopPath);
+		} else {
+			throw new GameAlreadyExistsException(
+					"Neues Spiel kann nicht erstellt werden. Das Alte muss zunächst beendet werden.");
 		}
 	}
 
-	public void updateCurrentGamePath(StatisticScenarioPath path) throws StatisticNotSavedException, GameDoesNotExistException {
-		if(gameMap.containsKey(path.getUserID())) {
-			if(gameMap.get(path.getUserID()).getGameID()==path.getGameID()) {
+	public void updateCurrentGamePath(StatisticScenarioPath path)
+			throws StatisticNotSavedException, GameDoesNotExistException {
+		if (gameMap.containsKey(path.getUserID())) {
+			if (gameMap.get(path.getUserID()).getGameID() == path.getGameID()) {
 				System.out.println(path);
 				gameMap.put(path.getUserID(), path);
+				StatisticSaver saver = new StatisticSaver();
+				List<StatisticScenarioPath> ssps = new ArrayList<>();
+				for (StatisticScenarioPath ssp : gameMap.values()) {
+					ssps.add(ssp);
+				}
+				ssps.addAll(completedGames);
+				saver.SaveStatisticPath(ssps, desktopPath);
+			} else {
+				throw new GameDoesNotExistException(
+						"Es existiert bereit ein Spiel mit einer anderen ID, das nicht beendet wurde. Das Alte muss zunächst beendet werden.");
 			}
-			else {
-				throw new GameDoesNotExistException("Es existiert bereit ein Spiel mit einer anderen ID, das nicht beendet wurde. Das Alte muss zunächst beendet werden.");
-			}
+		} else {
+			throw new GameDoesNotExistException(
+					"Das spiel hat noch nicht angefangen und ist noch nicht erzeugt worden");
 		}
-		else {
-			throw new GameDoesNotExistException("Das spiel hat noch nicht angefangen und ist noch nicht erzeugt worden");
-		}
-		/*for (StatisticScenarioPath savedPath : gamelist) {
-			if (savedPath.getGameID() == path.getGameID()) {
-				gamelist.remove(savedPath);
-				gamelist.addFirst(path);
-			}
-		}*/
+		/*
+		 * for (StatisticScenarioPath savedPath : gamelist) { if
+		 * (savedPath.getGameID() == path.getGameID()) {
+		 * gamelist.remove(savedPath); gamelist.addFirst(path); } }
+		 */
 	}
 
 	public void completeCurrentGamePath(StatisticScenarioPath path) throws StatisticNotSavedException {
-		if(gameMap.containsKey(path.getUserID())) {
+		if (gameMap.containsKey(path.getUserID())) {
 			completedGames.add(path);
 			gameMap.remove(path.getUserID());
-		}
-		/*for (StatisticScenarioPath savedPath : gamelist) {
-			if (savedPath.getGameID() == path.getGameID()) {
-				gamelist.remove(savedPath);
-				gamelist.add(path);
+			StatisticSaver saver = new StatisticSaver();
+			List<StatisticScenarioPath> ssps = new ArrayList<>();
+			for (StatisticScenarioPath ssp : gameMap.values()) {
+				ssps.add(ssp);
 			}
+			ssps.addAll(completedGames);
+			saver.SaveStatisticPath(ssps, desktopPath);
 		}
-		if (!gamelist.contains(path))
-			gamelist.add(path);
-			*/
+		/*
+		 * for (StatisticScenarioPath savedPath : gamelist) { if
+		 * (savedPath.getGameID() == path.getGameID()) {
+		 * gamelist.remove(savedPath); gamelist.add(path); } } if
+		 * (!gamelist.contains(path)) gamelist.add(path);
+		 */
 	}
 
 	/**
@@ -118,14 +146,12 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			result += obj.toString() + ",";
 		}
 		char[] chars = result.toCharArray();
-		if(chars[chars.length-1]==',') {
-			chars[chars.length-1]=']';
-			result=new String(chars);
-		}
-		else
-		{
-			result=new String(chars);
-			result+="]";
+		if (chars[chars.length - 1] == ',') {
+			chars[chars.length - 1] = ']';
+			result = new String(chars);
+		} else {
+			result = new String(chars);
+			result += "]";
 		}
 		return result;
 
@@ -150,19 +176,18 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			result += obj.toString() + ",";
 		}
 		char[] chars = result.toCharArray();
-		if(chars[chars.length-1]==',') {
-			chars[chars.length-1]=']';
-			result=new String(chars);
-		}
-		else
-		{
-			result=new String(chars);
-			result+="]";
+		if (chars[chars.length - 1] == ',') {
+			chars[chars.length - 1] = ']';
+			result = new String(chars);
+		} else {
+			result = new String(chars);
+			result += "]";
 		}
 		return result;
 	}
+
 	public StatisticScenarioPath getCurrentGame(long userID) throws GameDoesNotExistException {
-		if(gameMap.containsKey(userID)) {
+		if (gameMap.containsKey(userID)) {
 			return gameMap.get(userID);
 		}
 		throw new GameDoesNotExistException("Für den Spieler existiert kein laufendes Spiel");

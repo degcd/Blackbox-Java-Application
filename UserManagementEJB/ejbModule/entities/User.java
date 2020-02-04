@@ -4,21 +4,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import entityListeners.UserPersistencyLog;
 
-@Entity
-@EntityListeners(UserPersistencyLog.class)
+//@Entity
+//@EntityListeners(UserPersistencyLog.class)
+//@XmlRootElement(name="User")
 public class User {
 
     private static long userIdCounter = 0;
-    @Id
+//    @Id
     private long userID;
-    @Column
     private String username;
-    @Column
     private String email;
-    @Column
     private String password;
 
     public User(){}
@@ -40,7 +39,10 @@ public class User {
 		this.userID = userID;
 	}
 
-
+	public void setIdCounter(int count)
+	{
+		userIdCounter = count;
+	}
 
 	public String getUsername() {
 		return username;

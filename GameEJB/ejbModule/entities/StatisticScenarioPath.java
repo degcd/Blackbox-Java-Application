@@ -7,27 +7,33 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import exceptions.GameHasEndedException;
 import exceptions.NodeNotFoundException;
 
-@Entity
+//@Entity
 public class StatisticScenarioPath {
     private static long gameIdCounter=0;
-    @Id
+//    @Id
     long gameID;
-    @Column
     LinkedList<Long> path;
-    @Column
+//    @Column
     long userID;
-    @Column
+//    @Column
     Date beginDate;
-    @Column
+//    @Column
     Date endDate;
-    @Column
+//    @Column
     long scenarioID;
-    @Column
+//    @Column
     boolean hasEnded;
+    
+    public StatisticScenarioPath()
+    {
+    	path = new LinkedList<>();
+    }
+    
 
     public StatisticScenarioPath(long userID,long scenarioID){
         this.userID=userID;

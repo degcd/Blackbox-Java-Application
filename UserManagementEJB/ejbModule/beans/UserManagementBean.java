@@ -10,12 +10,14 @@ import javax.ejb.Singleton;
 
 import entities.User;
 import interfaces.IUserManagement;
+import persistency.UserSaver;
 
 @Singleton
 public class UserManagementBean implements IUserManagement {
 
     private Map<Long, User> allUsers;
     private long lastUserId = 0;
+    private String desktopPath = System.getProperty("user.home") + "/Desktop/user.xml";
 
 	/**
 	 * Initialisierung der Bean
@@ -23,6 +25,14 @@ public class UserManagementBean implements IUserManagement {
     @PostConstruct
     private void init() {
         allUsers = new LinkedHashMap<Long, User>();
+        UserSaver us = new UserSaver();
+        List<User> ul = us.loadUser(desktopPath);
+        for(User u : ul)
+        {
+        	allUsers.put(u.getUserID(), u);
+        	u.setIdCounter(allUsers.size());
+        }
+        lastUserId = allUsers.size();
     }
 
 
@@ -137,6 +147,9 @@ public class UserManagementBean implements IUserManagement {
         User newOne = new User(email, password, username);
         allUsers.put(lastUserId, newOne);
         lastUserId++;
+        UserSaver us = new UserSaver();
+        
+        us.saveUser(newOne, desktopPath);
         return newOne;
     }
 
