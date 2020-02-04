@@ -16,9 +16,11 @@ public class ScenarioCreator {
 	private static List<Node> scenarioOne = null;
 	private static List<Node> scenarioTwo = null;
 
+
 	public ScenarioCreator() {
 		scenarioOne=new LinkedList();
 		scenarioTwo=new LinkedList();
+		
 		scenarioOne = createScenarioOne();
 		scenarioTwo = createScenarioTwo();
 	}
@@ -29,32 +31,32 @@ public class ScenarioCreator {
 		// Declaring all Nodes
 		Node ausgangssituation = null;
 
-		Node a2 = null;
-		Node kd42 = null;
-		Node sd87 = null;
-		Node skd56 = null;
-		Node ending1 = null;
-		Node c1 = null;
-		Node c2 = null;
-		Node c3 = null;
-		Node c3Alternativ = null;
-		Node f1 = null;
-		Node f2 = null;
-		Node f3 = null;
-		Node ending2 = null;
-		Node d = null;
-		Node d1 = null;
-		Node d2 = null;
-		Node d3 = null;
-		Node g1 = null;
-		Node ending4 = null;
-		Node e1 = null;
-		Node e2 = null;
-		Node e3 = null;
-		Node e4 = null;
-		Node ending5 = null;
-		Node ending6 = null;
-		Node ending7 = null;
+		Node a2 = new Node();
+		Node kd42 = new Node();
+		Node sd87 = new Node();
+		Node skd56 = new Node();
+		Node ending1 = new Node();
+		Node c1 = new Node();
+		Node c2 = new Node();
+		Node c3 = new Node();
+		Node c3Alternativ = new Node();
+		Node f1 = new Node();
+		Node f2 =new Node();
+		Node f3 = new Node();
+		Node ending2 = new Node();
+		Node d = new Node();
+		Node d1 = new Node();
+		Node d2 = new Node();
+		Node d3 = new Node();
+		Node g1 = new Node();
+		Node ending4 = new Node();
+		Node e1 = new Node();
+		Node e2 = new Node();
+		Node e3 = new Node();
+		Node e4 = new Node();
+		Node ending5 = new Node();
+		Node ending6 =new Node();
+		Node ending7 = new Node();
 
 		// Filling Nodes with values
 		// Ausgangssituation
@@ -92,7 +94,8 @@ public class ScenarioCreator {
 				"Eine junge Frau hat soeben einen toten Mann in ihrer Wohnung gefunden. Sie steht jetzt unter Schock. Jemand muss zu ihr, sie befragen und die Spuren m�ssen dort gesichert werden.",
 				"Kommissar Thomas");
 		messageList.add(message1);
-		a2 = new Node(messageList, answersForCurrentNode);
+		a2.setMessageToClient(messageList);
+		a2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -101,7 +104,8 @@ public class ScenarioCreator {
 				"Es wurde zu sp�t gehandelt: Circa 30 Minuten nach dem ANruf bei der Polizei hat sich Frau M�ller erinnert, was passiert ist. Sie geriet in Panik und setzte die Wohnung in Flammen. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
 				"Erz�hler");
 		messageList.add(message1);
-		ending1 = new Node(messageList, answersForCurrentNode);
+		ending1.setMessageToClient(messageList);
+		ending1.setPossibleAnswers(answersForCurrentNode);
 		messageList.clear();
 
 		// KD42
@@ -119,7 +123,8 @@ public class ScenarioCreator {
 		messageList.add(message3);
 		NodeMessage messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
 		messageList.add(messgae4);
-		kd42 = new Node(messageList, answersForCurrentNode);
+		kd42.setPossibleAnswers(answersForCurrentNode);
+		kd42.setMessageToClient(messageList);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -135,7 +140,8 @@ public class ScenarioCreator {
 		messageList.add(message3);
 		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
 		messageList.add(messgae4);
-		sd87 = new Node(messageList, answersForCurrentNode);
+		sd87.setMessageToClient(messageList);
+		sd87.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -155,7 +161,8 @@ public class ScenarioCreator {
 		messageList.add(message3);
 		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/tatort.jpg", "Droide");
 		messageList.add(messgae4);
-		skd56 = new Node(messageList, answersForCurrentNode);
+		skd56.setMessageToClient(messageList);
+		skd56.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -164,7 +171,8 @@ public class ScenarioCreator {
 				"Beim Versuch die Frau zu beruhigen wurde Frau M�ller hysterisch und schlug den Druiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau alle Beweise beseitigt und einen Brand gelegt. So konnte der Mord und das Motiv nicht aufgekl�rt werden.",
 				"Erz�hler");
 		messageList.add(message1);
-		ending2 = new Node(messageList, answersForCurrentNode);
+		ending2.setMessageToClient(messageList);
+		ending2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -179,7 +187,8 @@ public class ScenarioCreator {
 				"Beim Opfer handelt es sich um den Vater der Frau. Wir befinden uns in der Wohnung der Frau. Sie hat ihren Vater erstochen aufgefunden als sie vom Einkaufen zur�ckkam.",
 				"Droide");
 		messageList.add(message1);
-		c2 = new Node(messageList, answersForCurrentNode);
+		c2.setMessageToClient(messageList);
+		c2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -193,7 +202,9 @@ public class ScenarioCreator {
 		message2 = new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
 				"Droide");
 		messageList.add(message2);
-		c3 = new Node(messageList, answersForCurrentNode);
+		c3.setMessageToClient(messageList);
+		c3.setPossibleAnswers(answersForCurrentNode);
+		
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -211,7 +222,8 @@ public class ScenarioCreator {
 		message2 = new NodeMessage(Messagetype.Text, "Okay, ich schicke dir den Spu-Si-Trupp zur Unterst�tzung.",
 				"Droide");
 		messageList.add(message2);
-		c3Alternativ = new Node(messageList, answersForCurrentNode);
+		c3Alternativ.setMessageToClient(messageList);
+		c3Alternativ.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -224,7 +236,8 @@ public class ScenarioCreator {
 				"Sie sagt, sie ist als Bloggerin viel unterwegs, deshalb hat er einen Schl�ssel, um ihre Katze zu versorgen",
 				"Droide");
 		messageList.add(message1);
-		f1 = new Node(messageList, answersForCurrentNode);
+		f1.setMessageToClient(messageList);
+		f1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -235,7 +248,8 @@ public class ScenarioCreator {
 		answersForCurrentNode.add(answer2);
 		message1 = new NodeMessage(Messagetype.Text, "Sie wei� nichts von m�glichen Feinden", "Droide");
 		messageList.add(message1);
-		f2 = new Node(messageList, answersForCurrentNode);
+		f2.setMessageToClient(messageList);
+		f2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -247,7 +261,8 @@ public class ScenarioCreator {
 				30, "Droide");
 		messageList.add(message1);
 		message2 = new NodeMessage(Messagetype.Text, "Ja, sie hat letztens eine Droh-Email erhalten", "Droide");
-		c3 = new Node(messageList, answersForCurrentNode);
+		c3.setMessageToClient(messageList);
+		c3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -256,7 +271,8 @@ public class ScenarioCreator {
 				"Als die Frau den Laptop entsperrte, um dem Droiden die omin�se Droh-Email zu zeigen, war direkt ein Video zu sehen. Die Webkam hatte den Mord aufgezeichnet�!! Frau M�ller hat ihren Vater mit einem K�chenmesser erstochen. Als sie dies auf dem Bildschirm sah, wurde sie hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. So konnte ihr Motiv nicht aufgkl�rt werden",
 				"Erz�hler");
 		messageList.add(message1);
-		ending4 = new Node(messageList, answersForCurrentNode);
+		ending4.setMessageToClient(messageList);
+		ending4.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -269,7 +285,8 @@ public class ScenarioCreator {
 		answersForCurrentNode.add(answer3);
 		message1 = new NodeMessage(Messagetype.Text, "Wo soll ich anfangen?", "Droide");
 		messageList.add(message1);
-		d = new Node(messageList, answersForCurrentNode);
+		d.setMessageToClient(messageList);
+		d.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -292,7 +309,8 @@ public class ScenarioCreator {
 		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/medikament.jpg", "Droide");
 		messageList.add(messgae4);
 		NodeMessage message5 = new NodeMessage(Messagetype.Text, "Ok ich google jetzt", "Ich");
-		d1 = new Node(messageList, answersForCurrentNode);
+		d1.setMessageToClient(messageList);
+		d1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -310,7 +328,8 @@ public class ScenarioCreator {
 		messgae4 = new NodeMessage(Messagetype.Image, "../ressources/messer.jpg", "Droide");
 		messageList.add(messgae4);
 		message5 = new NodeMessage(Messagetype.Text, "Sehr gut!", "Ich");
-		d2 = new Node(messageList, answersForCurrentNode);
+		d2.setMessageToClient(messageList);
+		d2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -325,7 +344,8 @@ public class ScenarioCreator {
 				"Droide");
 		messageList.add(message2);
 		message3 = new NodeMessage(Messagetype.Video, "../ressources/mordvideo.mp4", 10, "Droide");
-		d3 = new Node(messageList, answersForCurrentNode);
+		d3.setMessageToClient(messageList);
+		d3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -334,7 +354,8 @@ public class ScenarioCreator {
 		answersForCurrentNode.add(answer1);
 		answer2 = new Answer("Geh ins Wohnzimmer", d3);
 		answersForCurrentNode.add(answer2);
-		g1 = new Node(messageList, answersForCurrentNode);
+		g1.setMessageToClient(messageList);
+		g1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -345,7 +366,8 @@ public class ScenarioCreator {
 				"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Der Mord konnte somit aufgekl�rt werden. Jedoch wurden die Tabletten falsch identifiziert, sodass das Motiv der Frau unklar bleibt",
 				"Erz�hler");
 		messageList.add(message2);
-		ending5 = new Node(messageList, answersForCurrentNode);
+		ending5.setMessageToClient(messageList);
+		ending5.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -356,7 +378,8 @@ public class ScenarioCreator {
 				"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Die Tabletten haben die Schizophrenie der Frau aufgedeckt. So konnte sowohl der Mord, als auch das Motiv der Frau aufgekl�rt werden.",
 				"Erz�hler");
 		messageList.add(message2);
-		ending6 = new Node(messageList, answersForCurrentNode);
+		ending6.setMessageToClient(messageList);
+		ending6.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -367,7 +390,8 @@ public class ScenarioCreator {
 				"Als Frau M�ller ins Bad ging, konnte sie sich wieder erinnern, was passiert ist. Sie wurde hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. Gl�cklicherweise hatte der Droide schon kurz vorher das Video weitergeleitet, sodass der Mord aufgekl�rt werden konnte. Das Motiv bleibt jedoch unklar aufgrund mangelnder Beweise",
 				"Erz�hler");
 		messageList.add(message2);
-		ending7 = new Node(messageList, answersForCurrentNode);
+		ending7.setMessageToClient(messageList);
+		ending7.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -406,44 +430,44 @@ public class ScenarioCreator {
 
 		// Declaring all Nodes
 		Node ausgangssituation = null;		
-		Node ending1 = null;
-		Node b2 = null;
-		Node b3 = null;
-		Node c1 = null;
-		Node c2 = null;
-		Node d1 = null;
-		Node d2 = null;
-		Node d3 = null;
-		Node e1 = null;
-		Node e2 = null;
-		Node f1 = null;
-		Node f2 = null;
-		Node f3 = null;
-		Node g1 = null;
-		Node ending1_g2 = null;
-		Node ending1_h1 = null;
-		Node h2 = null;
-		Node ending1_h3 = null;
-		Node j1 = null;
-		Node j2 = null;
-		Node k1 = null;
-		Node k2 = null;
-		Node k3 = null;
-		Node ending2_k4 = null;
-		Node l1 = null;
-		Node ending2_l2 = null;
-		Node m1 = null;
-		Node ending2_m2 = null;
-		Node ending3_n1 = null;
-		Node n2 = null;
-		Node ending3_o1 = null;
-		Node ending4_o2 = null;
-		Node o3 = null;
-		Node ending4_o4 = null;
-		Node ending3_p1 = null;
-		Node ending5_p2 = null;
-		Node ending5_p3 = null;
-		Node ending6_p4 = null;
+		Node ending1 = new Node();
+		Node b2 = new Node();
+		Node b3 = new Node();
+		Node c1 = new Node();
+		Node c2 = new Node();
+		Node d1 = new Node();
+		Node d2 = new Node();
+		Node d3 = new Node();
+		Node e1 = new Node();
+		Node e2 = new Node();
+		Node f1 = new Node();
+		Node f2 = new Node();
+		Node f3 = new Node();
+		Node g1 = new Node();
+		Node ending1_g2 = new Node();
+		Node ending1_h1 = new Node();
+		Node h2 = new Node();
+		Node ending1_h3 = new Node();
+		Node j1 = new Node();
+		Node j2 = new Node();
+		Node k1 = new Node();
+		Node k2 = new Node();
+		Node k3 = new Node();
+		Node ending2_k4 = new Node();
+		Node l1 = new Node();
+		Node ending2_l2 = new Node();
+		Node m1 = new Node();
+		Node ending2_m2 = new Node();
+		Node ending3_n1 =new Node();
+		Node n2 = new Node();
+		Node ending3_o1 = new Node();
+		Node ending4_o2 = new Node();
+		Node o3 = new Node();
+		Node ending4_o4 = new Node();
+		Node ending3_p1 = new Node();
+		Node ending5_p2 = new Node();
+		Node ending5_p3 = new Node();
+		Node ending6_p4 = new Node();
 		
 
 		// Filling Nodes with values
@@ -475,7 +499,8 @@ public class ScenarioCreator {
 						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
 				"Erzähler");
 		messageList.add(message1);
-		ending1 = new Node(messageList, answersForCurrentNode);
+		ending1.setMessageToClient(messageList);
+		ending1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -490,7 +515,8 @@ public class ScenarioCreator {
 				"Ich kann es auch noch nicht fassen. Ich hoffe es geht ihnen gut… Aber sag mal, wo hast du die Aufnahme überhaupt gefunden?",
 				"Onkel");
 		messageList.add(message2);
-		b2 = new Node(messageList, answersForCurrentNode);
+		b2.setMessageToClient(messageList);
+		b2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -505,7 +531,8 @@ public class ScenarioCreator {
 		message2 = new NodeMessage(Messagetype.Text,
 				"Dazu kommen wir gleich. Sag mir erstmal, wo du die Aufnahme gefunden hast?!", "Onkel");
 		messageList.add(message2);
-		b3 = new Node(messageList, answersForCurrentNode);
+		b3.setMessageToClient(messageList);
+		b3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -521,7 +548,8 @@ public class ScenarioCreator {
 		message3 = new NodeMessage(Messagetype.Text,
 				"Aber woher kennst du die Leute auf der Aufnahme denn jetzt eigentlich??", "Ich");
 		messageList.add(message3);
-		c1 = new Node(messageList, answersForCurrentNode);
+		c1.setMessageToClient(messageList);
+		c1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -542,7 +570,8 @@ public class ScenarioCreator {
 						+ "Naja… Wenn du schon mal dabei bist… kannst du mir ja evtl demnächst mal ein bisschen was mitbestellen?",
 				"Onkel");
 		messageList.add(message2);
-		c2 = new Node(messageList, answersForCurrentNode);
+		c2.setMessageToClient(messageList);
+		c2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -559,7 +588,8 @@ public class ScenarioCreator {
 				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
 				"Onkel");
 		messageList.add(message2);
-		d1 = new Node(messageList, answersForCurrentNode);
+		d1.setMessageToClient(messageList);
+		d1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -576,7 +606,8 @@ public class ScenarioCreator {
 				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
 				"Onkel");
 		messageList.add(message2);
-		d2 = new Node(messageList, answersForCurrentNode);
+		d2.setMessageToClient(messageList);
+		d2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -593,7 +624,8 @@ public class ScenarioCreator {
 				"Ich habe sie ein paar Mal auf unseren Kollegentreffen gesehen. Es schien so, als wären sie ganz nett, allerdings haben sie fast immer nur aufeinander gehockt und getuschelt. Es ging das Gerücht rum, sie würden irgendetwas Bestimmtes suchen.",
 				"Onkel");
 		messageList.add(message2);
-		d3 = new Node(messageList, answersForCurrentNode);
+		d3.setMessageToClient(messageList);
+		d3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -615,7 +647,8 @@ public class ScenarioCreator {
 				"Weißt du was? Desto mehr ich darüber nachdenke, desto nervöser werde ich! Laut den Koordinaten aus der Tonaufnahme, befinde ich mich ganz in der Nähe! Ich werde ganz einfach meine Taschen packen und schauen, was mit meinen Kameraden passiert ist und ob es ihnen gut geht!",
 				"Onkel");
 		messageList.add(message3);
-		e1 = new Node(messageList, answersForCurrentNode);
+		e1.setMessageToClient(messageList);
+		e1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -628,7 +661,8 @@ public class ScenarioCreator {
 				"Diese Treffen finden alle paar Monate statt. Dort tragen alle aus unserem Gebiet, d.h. jegliche Forscher, ihre Erkenntnisse usw. der letzten Monate vor, z.B. was sie ausgegraben haben.",
 				"Onkel");
 		messageList.add(message2);
-		e2 = new Node(messageList, answersForCurrentNode);
+		e2.setMessageToClient(messageList);
+		e2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -644,7 +678,8 @@ public class ScenarioCreator {
 				"Nein, das ist zu gefährlich… Außerdem dauert es viel zu lange, bis du hier bist. Aber du könntest mir bestimmt trotzdem irgendwie von zu Hause aus helfen, was hältst du davon?",
 				"Onkel");
 		messageList.add(message2);
-		f1 = new Node(messageList, answersForCurrentNode);
+		f1.setMessageToClient(messageList);
+		f1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -660,7 +695,8 @@ public class ScenarioCreator {
 				"Ach Quatsch, ich bin das gewohnt… Außerdem habe ich ja dich! Könnte sein, dass ich während meines Ausflugs deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
 				"Onkel");
 		messageList.add(message2);
-		f2 = new Node(messageList, answersForCurrentNode);
+		f2.setMessageToClient(messageList);
+		f2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -676,7 +712,8 @@ public class ScenarioCreator {
 				"Das bin ich doch immer, sonst wäre ich schon längst tot. Möglicherweise könnte es sein, dass ich während meines Ausfluges deine Unterstützung brauche. Hast du Lust, mir zu helfen?",
 				"Onkel");
 		messageList.add(message2);
-		f3 = new Node(messageList, answersForCurrentNode);
+		f3.setMessageToClient(messageList);
+		f3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -693,7 +730,8 @@ public class ScenarioCreator {
 				"Perfekt! Du kannst mich auch schon direkt beraten… Wie komme ich am besten zu den Koordinaten?",
 				"Onkel");
 		messageList.add(message2);
-		g1 = new Node(messageList, answersForCurrentNode);
+		g1.setMessageToClient(messageList);
+		g1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -710,7 +748,8 @@ public class ScenarioCreator {
 						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
 				"Erzähler");
 		messageList.add(message3);
-		ending1_g2 = new Node(messageList, answersForCurrentNode);
+		ending1_g2.setMessageToClient(messageList);
+		ending1_g2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -725,7 +764,8 @@ public class ScenarioCreator {
 						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
 				"Erzähler");
 		messageList.add(message3);
-		ending1_h1 = new Node(messageList, answersForCurrentNode);
+		ending1_h1.setMessageToClient(messageList);
+		ending1_h1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -741,7 +781,8 @@ public class ScenarioCreator {
 		messageList.add(message2);
 		message3 = new NodeMessage(Messagetype.Text, "Ich bin jetzt auf der Insel angekommen!", "Onkel");
 		messageList.add(message3);
-		h2 = new Node(messageList, answersForCurrentNode);
+		h2.setMessageToClient(messageList);
+		h2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -756,7 +797,8 @@ public class ScenarioCreator {
 						+ "Du, sein Neffe, hörst in den Nachrichten: Es wurde ein abgstürztes Flugzeug auf einer Insel gefunden, die Ursache ist unklar. Alle Insassen sind tot.",
 				"Erzähler");
 		messageList.add(message3);
-		ending1_h3 = new Node(messageList, answersForCurrentNode);
+		ending1_h3.setMessageToClient(messageList);
+		ending1_h3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -779,7 +821,8 @@ public class ScenarioCreator {
 				"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
 				"Onkel");
 		messageList.add(message3);
-		j1 = new Node(messageList, answersForCurrentNode);
+		j1.setMessageToClient(messageList);
+		j1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -802,7 +845,8 @@ public class ScenarioCreator {
 				"Ich habe das Flugzeug gefunden! Das sieht gar nicht gut aus… Das Flugzeug ist in den Fuß eines Berges geflogen und hat ein richtiges Loch reingeschlagen!",
 				"Onkel");
 		messageList.add(message3);
-		j2 = new Node(messageList, answersForCurrentNode);
+		j2.setMessageToClient(messageList);
+		j2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -826,7 +870,8 @@ public class ScenarioCreator {
 				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
 				"Onkel");
 		messageList.add(message5);
-		k1 = new Node(messageList, answersForCurrentNode);
+		k1.setMessageToClient(messageList);
+		k1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -845,7 +890,8 @@ public class ScenarioCreator {
 				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
 				"Onkel");
 		messageList.add(message3);
-		k2 = new Node(messageList, answersForCurrentNode);
+		k2.setMessageToClient(messageList);
+		k2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -868,7 +914,8 @@ public class ScenarioCreator {
 				"Oh Gott, das sieht übel aus. Keiner bewegt sich. Ich denke, keiner hat überlebt, aber ich traue mich nicht ins Flugzeug…",
 				"Onkel");
 		messageList.add(message5);
-		k3 = new Node(messageList, answersForCurrentNode);
+		k3.setMessageToClient(messageList);
+		k3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -881,7 +928,8 @@ public class ScenarioCreator {
 				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
 				"Erzähler");
 		messageList.add(message3);
-		ending2_k4 = new Node(messageList, answersForCurrentNode);
+		ending2_k4.setMessageToClient(messageList);
+		ending2_k4.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -906,7 +954,8 @@ public class ScenarioCreator {
 				"Ich habe irgendwie das Gefühl, dass es hier zieht… Ich glaube das kommt vorne vom Cockpit. Sieht ziemlich einsturzgefährdet aus. Es steckt halb im Berg.",
 				"Onkel");
 		messageList.add(message4);
-		l1 = new Node(messageList, answersForCurrentNode);
+		l1.setMessageToClient(messageList);
+		l1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -919,7 +968,8 @@ public class ScenarioCreator {
 				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
 				"Erzähler");
 		messageList.add(message3);
-		ending2_l2 = new Node(messageList, answersForCurrentNode);
+		ending2_l2.setMessageToClient(messageList);
+		ending2_l2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -940,7 +990,8 @@ public class ScenarioCreator {
 				"Tatsächlich! Hier ist eine Art unterirdische Höhle! Irgendwie wirkt es wie eine Art gewollter Eingang zu etwas… Eigentlich würde ich gerne nachschauen, wohin der Gang führt, aber ich habe keine Ausrüstung dabei.",
 				"Onkel");
 		messageList.add(message3);
-		m1 = new Node(messageList, answersForCurrentNode);
+		m1.setMessageToClient(messageList);
+		m1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -955,7 +1006,8 @@ public class ScenarioCreator {
 				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
 				"Erzähler");
 		messageList.add(message3);
-		ending2_m2 = new Node(messageList, answersForCurrentNode);
+		ending2_m2.setMessageToClient(messageList);
+		ending2_m2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -970,7 +1022,8 @@ public class ScenarioCreator {
 						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
 				"Erzähler");
 		messageList.add(message3);
-		ending3_n1 = new Node(messageList, answersForCurrentNode);
+		ending3_n1.setMessageToClient(messageList);
+		ending3_n1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -993,7 +1046,8 @@ public class ScenarioCreator {
 		messageList.add(message3);
 		message4 = new NodeMessage(Messagetype.Image, "../ressources/falle.jpg", "Onkel");
 		messageList.add(message4);
-		n2 = new Node(messageList, answersForCurrentNode);
+		n2.setMessageToClient(messageList);
+		n2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1007,7 +1061,8 @@ public class ScenarioCreator {
 				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
 				"Erzähler");
 		messageList.add(message3);
-		ending3_o1 = new Node(messageList, answersForCurrentNode);
+		ending3_o1.setMessageToClient(messageList);
+		ending3_o1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1023,7 +1078,8 @@ public class ScenarioCreator {
 						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
 				"Erzähler");
 		messageList.add(message3);
-		ending4_o2 = new Node(messageList, answersForCurrentNode);
+		ending4_o2.setMessageToClient(messageList);
+		ending4_o2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1054,7 +1110,8 @@ public class ScenarioCreator {
 		messageList.add(message6);
 		NodeMessage message7 = new NodeMessage(Messagetype.Text, "Sieht mir ganz nach Hieroglyphen aus...", "Onkel");
 		messageList.add(message7);
-		o3 = new Node(messageList, answersForCurrentNode);
+		o3.setMessageToClient(messageList);
+		o3.setPossibleAnswers(answersForCurrentNode); 
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1070,7 +1127,8 @@ public class ScenarioCreator {
 						+ "Diese News gingen durch die Medien, allerdings wurde der Held, nämlich dein Onkel, mit keinem Wort erwähnt...",
 				"Erzähler");
 		messageList.add(message3);
-		ending4_o4 = new Node(messageList, answersForCurrentNode);
+		ending4_o4.setMessageToClient(messageList);
+		ending4_o4.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1085,7 +1143,8 @@ public class ScenarioCreator {
 				"Was geschah: Der Onkel hat das Cockpit des Flugzeugs durchsucht, dort aber nichts gefunden. Die Absturzursache bleibt unklar...",
 				"Erzähler");
 		messageList.add(message3);
-		ending3_p1 = new Node(messageList, answersForCurrentNode);
+		ending3_p1.setMessageToClient(messageList);
+		ending3_p1.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1100,7 +1159,8 @@ public class ScenarioCreator {
 						+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
 				"Erzähler");
 		messageList.add(message3);
-		ending5_p2 = new Node(messageList, answersForCurrentNode);
+		ending5_p2.setMessageToClient(messageList);
+		ending5_p2.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1115,7 +1175,8 @@ public class ScenarioCreator {
 						+ "Es wurde in der Höhle eine unterirdische Stadt mit antiken Schätzen gefunden. Zudem fand man heraus, dass ein magnetisches Feld die Systeme des Flugzeuges lahmgelegt hat und es deshalb zum Absturz gekommen ist.",
 				"Erzähler");
 		messageList.add(message3);
-		ending5_p3 = new Node(messageList, answersForCurrentNode);
+		ending5_p3.setMessageToClient(messageList);
+		ending5_p3.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
@@ -1141,7 +1202,8 @@ public class ScenarioCreator {
 						+ "ein magnetisches Feld hatte die Systeme lahmgelegt. ",
 				"Erzähler");
 		messageList.add(message7);
-		ending6_p4 = new Node(messageList, answersForCurrentNode);
+		ending6_p4.setMessageToClient(messageList);
+		ending6_p4.setPossibleAnswers(answersForCurrentNode);
 		answersForCurrentNode.clear();
 		messageList.clear();
 
