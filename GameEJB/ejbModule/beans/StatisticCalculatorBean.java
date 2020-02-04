@@ -89,8 +89,15 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			result += obj.toString() + ",";
 		}
 		char[] chars = result.toCharArray();
-		chars[chars.length - 1] = ']';
-		result = new String(chars);
+		if(chars[chars.length-1]==',') {
+			chars[chars.length-1]=']';
+			result=new String(chars);
+		}
+		else
+		{
+			result=new String(chars);
+			result+="]";
+		}
 		return result;
 
 	}
@@ -114,8 +121,15 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			result += obj.toString() + ",";
 		}
 		char[] chars = result.toCharArray();
-		chars[chars.length - 1] = ']';
-		result = new String(chars);
+		if(chars[chars.length-1]==',') {
+			chars[chars.length-1]=']';
+			result=new String(chars);
+		}
+		else
+		{
+			result=new String(chars);
+			result+="]";
+		}
 		return result;
 	}
 }

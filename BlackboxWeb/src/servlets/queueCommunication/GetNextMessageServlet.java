@@ -55,14 +55,22 @@ public class GetNextMessageServlet extends HttpServlet {
 	}
 
 	public String getJsonStringArrayFromList(List<String> list) {
-		String result = "[";
-		for (String obj : list) {
-			result += obj.toString() + ",";
-		}
-		char[] chars = result.toCharArray();
-		chars[chars.length - 1] = ']';
-		result = new String(chars);
-		return result;
-	}
+
+    	String result="[";
+    	for(String obj:list) {
+    		result+=obj.toString()+",";
+    	}
+    		char[] chars=result.toCharArray();
+    		if(chars[chars.length-1]==',') {
+    			chars[chars.length-1]=']';
+    			result=new String(chars);
+    		}
+    		else
+    		{
+    			result=new String(chars);
+    			result+="]";
+    		}
+    		return result;
+}
 
 }
