@@ -91,6 +91,6 @@ public class StatisticUserObject {
 	 */
 	  @Override
 	    public String toString() {
-	    	return "{\"userID\":\""+userID+"\",\"scenarioID\":\""+scenarioID+"\",\"played-time\":\""+playedTime+"\",\"timeunit\":\""+timeUnit+"\",\"visited-nodes\":\""+visitedNodes+"\",\"number-of-games\":\""+numberOfGames+"\"}";
+	    	return "{\"userID\":"+userID+",\"scenarioID\":"+scenarioID+",\"played-time\":"+playedTime+",\"timeunit\":\""+timeUnit+"\",\"visited-nodes\":"+visitedNodes+",\"number-of-games\":"+numberOfGames+"}";
 	  }
 }

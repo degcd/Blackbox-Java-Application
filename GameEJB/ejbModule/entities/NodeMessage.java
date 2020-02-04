@@ -96,6 +96,6 @@ public class NodeMessage implements Serializable {
      */
     @Override
     public String toString() {
-    	return "{\"nodeMessageID\":\""+nodeMessageID+"\",\"messagetype\":\""+type.name()+"\",\"sender\":\""+sender+"\",\"message\":\""+message+"\"}";
+    	return "{\"nodeMessageID\":"+nodeMessageID+",\"messagetype\":\""+type.name()+"\",\"sender\":\""+sender+"\",\"message\":\""+message+"\"}";
     }
 }
