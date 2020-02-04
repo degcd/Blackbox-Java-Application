@@ -60,8 +60,13 @@ public class GetNextMessageServlet extends HttpServlet {
     		char[] chars=result.toCharArray();
     		if(chars[chars.length-1]==',') {
     			chars[chars.length-1]=']';
+    			result=new String(chars);
     		}
-    		result=new String(chars);
+    		else
+    		{
+    			result=new String(chars);
+    			result+="]";
+    		}
     		return result;
 }
 
