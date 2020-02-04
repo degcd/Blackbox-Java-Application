@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import exceptions.GameHasEndedException;
+import exceptions.NodeNotFoundException;
 
 @Entity
 public class StatisticScenarioPath {
@@ -38,9 +39,14 @@ public class StatisticScenarioPath {
 
     }
 
-    public void add(Node currentNode) throws GameHasEndedException {
+    public void add(Node currentNode) throws GameHasEndedException, NodeNotFoundException {
         if(!hasEnded){
+        	if(currentNode!=null) {
             path.add(currentNode.getID());
+        	}
+        	else {
+        		throw new NodeNotFoundException("es wurde null als Node übergeben");
+        	}
         }
         else{
             throw new GameHasEndedException("Node kann nicht hinzugefügt werden. Spiel wurde bereits um "+endDate.toString()+" beendet!");
@@ -132,6 +138,11 @@ public class StatisticScenarioPath {
 	public void setScenarioID(long scenarioID) {
 		this.scenarioID = scenarioID;
 	}
+	@Override
+	 public String toString() {
+		return "{\"gameID\":"+gameID+",\"userID\":"+userID+",\"Anzahl der Nodes\":"+path.size()+"}";
+	    
+    }
 
 }
 

@@ -38,7 +38,7 @@ public class Answer{
      */
     @Override
     public String toString() {
-    	return "{\"answerID\":"+answerID+",\"answerMessage\":\""+answerMessage+"\"}";
+    	return "{\"answerID\":"+answerID+",\"answerMessage\":\""+answerMessage+"\",\"node\":"+answerNode+"}";
     }
     public long getNodeID() {
     	return answerNode.getID();

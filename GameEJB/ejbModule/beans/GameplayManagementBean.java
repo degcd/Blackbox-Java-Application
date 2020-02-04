@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Remove;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
@@ -18,6 +19,8 @@ import entities.Messagetype;
 import entities.Node;
 import entities.NodeMessage;
 import entities.StatisticScenarioPath;
+import exceptions.GameAlreadyExistsException;
+import exceptions.GameDoesNotExistException;
 import exceptions.GameHasEndedException;
 import exceptions.NodeNotFoundException;
 import exceptions.StatisticNotSavedException;
@@ -26,7 +29,7 @@ import interfaces.IGameplayManagement;
 import interfaces.IPathCalculator;
 import interfaces.IStatisticCalculator;
 
-@Stateful
+@Stateless
 public class GameplayManagementBean implements IGameplayManagement {
 	@EJB
 	private IPathCalculator pathCalculator;
@@ -35,7 +38,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 	@EJB
 	private ICommunicationManagement communicationManager;
 
-	StatisticScenarioPath currentPath;
+	
 	long userID;
 
 	public GameplayManagementBean() {
@@ -61,14 +64,15 @@ public class GameplayManagementBean implements IGameplayManagement {
 	@Override
 	public boolean startScenario(long scenarioID, long userID) {
 		System.out.println("Scenario startet mit scenario: "+scenarioID+" und user: "+userID);
-		currentPath = new StatisticScenarioPath(userID, scenarioID);
+		StatisticScenarioPath currentPath = new StatisticScenarioPath(userID, scenarioID);
 		this.userID = userID;
 		try {
 			Node currentNode = pathCalculator.getStartNodeOfScenario(scenarioID);
 			currentPath.add(currentNode);
+			statisticCalculator.createNewGamePath(currentPath);
 			System.out.println(currentNode.toString());
-			analyseNode(currentNode);
-		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException e) {
+			analyseNode(currentNode,currentPath);
+		} catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException | GameAlreadyExistsException | GameDoesNotExistException e) {
 			e.printStackTrace();
 			sendMsgToClient(new NodeMessage(Messagetype.Servermessage,
 					"Scenario konnte nicht ausgewählt werden. Bitte kontaktiere Support.", 0, "Server"));
@@ -84,17 +88,15 @@ public class GameplayManagementBean implements IGameplayManagement {
      */
      @Override
     public boolean receiveMsgFromClient(long answerID, long userID) {
-    	if(userID!=this.userID) {
-    		 System.out.println("Falsche Gameplaymanagementbean verwendent");
-    		 return false;
-    	}
-        long lastNode=currentPath.getLastNodeID();
-         try {
-             Node currentNode = pathCalculator.getFollowingNode(lastNode,answerID);
+    	 try {
+    	 StatisticScenarioPath currentPath=statisticCalculator.getCurrentGame(userID);
+    	 long lastNode=currentPath.getLastNodeID();
+             Node currentNode = pathCalculator.getFollowingNode(answerID);
+             System.out.println(currentNode);
              currentPath.add(currentNode);
-             analyseNode(currentNode);
-         } catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException e) {
-             e.printStackTrace();
+             analyseNode(currentNode, currentPath);
+         } catch (NodeNotFoundException | GameHasEndedException | StatisticNotSavedException | GameDoesNotExistException e) {
+             //e.printStackTrace();
              sendMsgToClient(new NodeMessage(Messagetype.Servermessage,"Antwort konnte nicht verarbeitet werden. Bitte kontaktiere Support.",0,"Server"));
              return false;
          }
@@ -106,15 +108,17 @@ public class GameplayManagementBean implements IGameplayManagement {
 	 * der Statistik, und leitet die Nachrichten und Antworten weiter
 	 * 
 	 * @param currentNode
+	 * @throws GameDoesNotExistException 
+	 * @throws GameAlreadyExistsException 
 	 */
-	private void analyseNode(Node currentNode) throws StatisticNotSavedException {
+	private void analyseNode(Node currentNode,StatisticScenarioPath currentPath) throws StatisticNotSavedException, GameDoesNotExistException {
 		if (currentNode.isEnd()) {
 			statisticCalculator.completeCurrentGamePath(currentPath);
 			sendMsgToClient(new NodeMessage(Messagetype.Servermessage, "Ende erreicht", 0, "Server"));
 		} else {
 			// Fehler, der das Spiel nicht weiter beeinträchtigt
 			try {
-				statisticCalculator.completeCurrentGamePath(currentPath);
+				statisticCalculator.updateCurrentGamePath(currentPath);
 			} catch (StatisticNotSavedException e) {
 				System.out.println(e.getMessage());
 			}
@@ -162,13 +166,13 @@ public class GameplayManagementBean implements IGameplayManagement {
     		}
     		communicationManager.addToQueue(userID,"{\"answertype\":\"AnswerList\",\"msg\":"+msg+"}");
 }
-
-	@Remove
-	private void endSession() {
-
-	}
 	public boolean restartCurrentGame(long userID) throws NodeNotFoundException {
-		if(currentPath!=null) {
+		if(!statisticCalculator.hasCurrentGame(userID)) {
+			return false;
+		}
+			try {
+				StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
+			
 			List<Answer> currentAnswerList=new LinkedList<Answer>();
 			List<Long> pathList=currentPath.getPathList();
 			for(long nodeID:pathList) {
@@ -178,7 +182,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 						sendAnswersToClient(answerlist);
 					}
 				}
-				Node node=pathCalculator.getNodeWithID(nodeID,currentPath.getScenarioID());
+				Node node=pathCalculator.getNodeWithID(nodeID);
 				List<NodeMessage> msgList=node.getMessageToClientList();
 				for(NodeMessage msg:msgList) {
 					sendMsgToClient(msg);
@@ -188,8 +192,11 @@ public class GameplayManagementBean implements IGameplayManagement {
 			}
 			sendAnswersToClient(currentAnswerList);
 			return true;
-		}
-		return false;
+			} catch (GameDoesNotExistException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
 	}
 
 

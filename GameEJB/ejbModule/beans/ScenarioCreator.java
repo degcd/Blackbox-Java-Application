@@ -15,13 +15,17 @@ public class ScenarioCreator {
 
 	private static Node scenarioOne;
 	private static List<Node> scenarioTwo = null;
+	private static List<Node> nodeList;
+	private static List<Answer> answerList;
 
 
 	public ScenarioCreator() {
 		scenarioTwo=new LinkedList();
-		
+		nodeList=new LinkedList();
+		answerList=new LinkedList();
 		scenarioOne = createScenarioOne();
 		scenarioTwo = createScenarioTwo();
+		
 	}
 
 
@@ -34,12 +38,14 @@ public class ScenarioCreator {
 		ending7.addMessage(new NodeMessage(Messagetype.Text,
 						"Als Frau M�ller ins Bad ging, konnte sie sich wieder erinnern, was passiert ist. Sie wurde hysterisch und schlug den Droiden gegen die Wand, sodass er besch�digt wurde und die Verbindung abbrach. W�hrend ein Neustart versucht wurde, hat die Frau die restlichen Beweise beseitigt und einen Brand gelegt. Gl�cklicherweise hatte der Droide schon kurz vorher das Video weitergeleitet, sodass der Mord aufgekl�rt werden konnte. Das Motiv bleibt jedoch unklar aufgrund mangelnder Beweise",
 						"Erz�hler"));
+		
 		// ending6
 		Node ending6 = new Node();
 		ending6.addMessage(new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide"));
 		ending6.addMessage(new NodeMessage(Messagetype.Text,
 						"Frau M�ller ist zwar in der Zwischenzeit verschwunden, jedoch konnten die Mordwaffe, ein K�chenmesser, und ein Beweisvideo, das per Webcam eines Laptops im Wohnzimmer mitgeschnitten wurde, sichergestellt werden. Die Tabletten haben die Schizophrenie der Frau aufgedeckt. So konnte sowohl der Mord, als auch das Motiv der Frau aufgekl�rt werden.",
 						"Erz�hler"));
+		
 		// ending5
 		Node ending5=new Node();
 		ending5.addMessage(new NodeMessage(Messagetype.Text, "Die Frau ist verschwunden", "Droide"));
@@ -219,6 +225,48 @@ public class ScenarioCreator {
 				ausgangssituation.addAnswer(new Answer("Super, worum geht's?", a2));
 			ausgangssituation.addMessage(new NodeMessage(Messagetype.Text, "Hey Joe, ich hab da einen neuen Fall f�r dich.",
 						"Kommissar Thomas"));
+			
+			nodeList.add(ausgangssituation);
+			nodeList.add(a2);
+			nodeList.add(kd);
+			nodeList.add(sd);
+			nodeList.add(skd);
+			nodeList.add(ending1);
+			nodeList.add(c2);
+			nodeList.add(c3);
+			nodeList.add(c3A);
+			nodeList.add(f1);
+			nodeList.add(f2);
+			nodeList.add(f3);
+			nodeList.add(ending2);
+			nodeList.add(d);
+			nodeList.add(d1);
+			nodeList.add(d2);
+			nodeList.add(d3);
+			nodeList.add(g1);
+			nodeList.add(ending1);
+			nodeList.add(ending2);
+			nodeList.add(ending4);
+			nodeList.add(ending5);
+			nodeList.add(ending6);
+			nodeList.add(ending7);
+			answerList.addAll(ausgangssituation.getAnswerList());
+			answerList.addAll(a2.getAnswerList());
+			answerList.addAll(kd.getAnswerList());
+			answerList.addAll(sd.getAnswerList());
+			answerList.addAll(skd.getAnswerList());
+			answerList.addAll(c2.getAnswerList());
+			answerList.addAll(c3.getAnswerList());
+			answerList.addAll(c3A.getAnswerList());
+			answerList.addAll(f1.getAnswerList());
+			answerList.addAll(f2.getAnswerList());
+			answerList.addAll(f3.getAnswerList());
+			answerList.addAll(d.getAnswerList());
+			answerList.addAll(d1.getAnswerList());
+			answerList.addAll(d2.getAnswerList());
+			answerList.addAll(d3.getAnswerList());
+			answerList.addAll(g1.getAnswerList());
+
 		return ausgangssituation;
 	}
 	
@@ -1069,6 +1117,12 @@ public class ScenarioCreator {
 			}
 		}
 		throw new NodeNotFoundException("Scenario "+scenarioID+" ist nicht verfÃ¼gbar");
+	}
+	public List<Node> getNodeList(){
+		return nodeList;
+	}
+	public List<Answer> getAnswerList(){
+		return answerList;
 	}
 
 }

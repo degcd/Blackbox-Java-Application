@@ -1,19 +1,23 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.ejb.Singleton;
+import javax.ejb.Startup;
 
 import entities.Answer;
 import entities.Node;
 import exceptions.NodeNotFoundException;
 import interfaces.IPathCalculator;
-
+@Startup
 @Singleton
 public class PathCalculatorBean implements IPathCalculator {
     ScenarioCreator scenarioCreator;
     List<Node> firstNodes;
+    List<Node> nodeList;
+    List<Answer> answerList;
 
     public PathCalculatorBean(){
     	try {
@@ -22,6 +26,11 @@ public class PathCalculatorBean implements IPathCalculator {
         firstNodes=new ArrayList<Node>();
         firstNodes.add(scenarioCreator.getFirstNode(0));
         firstNodes.add(scenarioCreator.getFirstNode(1));
+        nodeList=scenarioCreator.getNodeList();
+        answerList=scenarioCreator.getAnswerList();
+        
+        
+        	//TODO Liste auch für das zweite SCenario erstellen
         System.out.println("PathCalculator BEan construkor");
     	}catch(Exception e) {
     		System.out.println("Fehler in PathCalculator Construktor");
@@ -36,40 +45,27 @@ public class PathCalculatorBean implements IPathCalculator {
    }
 */
     @Override
-    public Node getFollowingNode( long lastNodeID, long answerID) throws NodeNotFoundException {
-        Node lastNode=getNodeWithID(lastNodeID);
-        List<Answer> answers=lastNode.getAnswerList();
-        for(Answer i:answers){
-            if(i.getAnswerID() == answerID){
-                return i.getAnswerNode();
-            }
-        }
-        throw new NodeNotFoundException("Wrong ID in PathCalculatorBean.getFollowingNode(lastNodeID: "+lastNodeID+", answerID: "+answerID);
+    public Node getFollowingNode(long answerID) throws NodeNotFoundException {
+    	for(Answer answer:answerList) {
+    		System.out.println(answer);
+    		if(answer.getAnswerID()==answerID) {
+    			System.out.println("Node gefunden: "+answer.getAnswerNode());
+    			return answer.getAnswerNode();
+    		}
+    	}
+        throw new NodeNotFoundException("Wrong ID in PathCalculatorBean.getFollowingNode(answerID: "+answerID);
     }
 
     @Override
     public Node getNodeWithID(long searchNodeID) throws NodeNotFoundException {
-        Node searchScenario0=searchChilrden(firstNodes.get(0), searchNodeID);
-        if(searchScenario0!=null) return searchScenario0;
-        return searchChilrden(firstNodes.get(1),searchNodeID);
+    	for(Node node:nodeList) {
+    		if(node.getNodeID()==searchNodeID) {
+    			return node;
+    		}
+    	}
+    	throw new NodeNotFoundException("Wrong ID in PathCalculatorBean.getNodeWithID(nodeID: "+searchNodeID);
+    }
 
-    }
-    public Node getNodeWithID(long searchNodeID,long scenarioID) throws NodeNotFoundException {
-        return searchChilrden(firstNodes.get((int) scenarioID),searchNodeID);
-    }
-    private Node searchChilrden(Node parentNode, long searchNodeID)  throws NodeNotFoundException{
-        List<Answer> answers=parentNode.getAnswerList();
-        for (Answer i: answers) {
-            if(i.getAnswerNode().getID().equals(searchNodeID)) {
-                return i.getAnswerNode();
-            }
-            if(!i.getAnswerNode().isEnd()){
-                Node searchNode=searchChilrden(i.getAnswerNode(),searchNodeID);
-                if(searchNode!=null)return searchNode;
-            }
-        }
-        throw new NodeNotFoundException(searchNodeID+ "not in parentNode found");
-    }
 
     @Override
     public Node getStartNodeOfScenario(long scenarioID) throws NodeNotFoundException{
@@ -82,6 +78,16 @@ public class PathCalculatorBean implements IPathCalculator {
     	}
         	throw new NodeNotFoundException("ScenarioID "+scenarioID+" ist nicht verfügbar.");
     }
+    
+   /* private void generateListsFromNode(Node node) {
+    	System.out.println(node);
+    	if(node==null)return;
+    	nodeList.add(node);
+    	for(Answer answer:node.getAnswerList()) {
+    		this.answerList.add(answer);
+    		this.generateListsFromNode(answer.getAnswerNode());
+    	}
+    }*/
 
 }
 

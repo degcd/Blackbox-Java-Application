@@ -1,41 +1,69 @@
 package beans;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
-import javax.ejb.Stateless;
+import javax.ejb.Singleton;
 
 import entities.StatisticGameObject;
 import entities.StatisticUserObject;
 import entities.StatisticScenarioPath;
+import exceptions.GameAlreadyExistsException;
+import exceptions.GameDoesNotExistException;
 import exceptions.StatisticNotSavedException;
 import interfaces.IStatisticCalculator;
 
-@Stateless
+@Singleton
 public class StatisticCalculatorBean implements IStatisticCalculator {
 
-	LinkedList<StatisticScenarioPath> gamelist;
+	Map<Long,StatisticScenarioPath> gameMap;
+	LinkedList<StatisticScenarioPath> completedGames;	
 
 	public StatisticCalculatorBean() {
-		gamelist = new LinkedList<StatisticScenarioPath>();
+		gameMap=Collections.synchronizedMap(new HashMap<Long,StatisticScenarioPath>());
+		completedGames = new LinkedList<StatisticScenarioPath>();
 	}
 
 	// TODO Datenbankanbindung
-	public void createNewGamePath(StatisticScenarioPath path) throws StatisticNotSavedException {
-		gamelist.addFirst(path);
+	public void createNewGamePath(StatisticScenarioPath path) throws StatisticNotSavedException, GameAlreadyExistsException {
+		if(!gameMap.containsKey(path.getUserID())) {
+			gameMap.put(path.getUserID(), path);
+		}
+		else {
+			throw new GameAlreadyExistsException("Neues Spiel kann nicht erstellt werden. Das Alte muss zunächst beendet werden.");
+		}
 	}
 
-	public void updateCurrentGamePath(StatisticScenarioPath path) throws StatisticNotSavedException {
-		for (StatisticScenarioPath savedPath : gamelist) {
+	public void updateCurrentGamePath(StatisticScenarioPath path) throws StatisticNotSavedException, GameDoesNotExistException {
+		if(gameMap.containsKey(path.getUserID())) {
+			if(gameMap.get(path.getUserID()).getGameID()==path.getGameID()) {
+				System.out.println(path);
+				gameMap.put(path.getUserID(), path);
+			}
+			else {
+				throw new GameDoesNotExistException("Es existiert bereit ein Spiel mit einer anderen ID, das nicht beendet wurde. Das Alte muss zunächst beendet werden.");
+			}
+		}
+		else {
+			throw new GameDoesNotExistException("Das spiel hat noch nicht angefangen und ist noch nicht erzeugt worden");
+		}
+		/*for (StatisticScenarioPath savedPath : gamelist) {
 			if (savedPath.getGameID() == path.getGameID()) {
 				gamelist.remove(savedPath);
 				gamelist.addFirst(path);
 			}
-		}
+		}*/
 	}
 
 	public void completeCurrentGamePath(StatisticScenarioPath path) throws StatisticNotSavedException {
-		for (StatisticScenarioPath savedPath : gamelist) {
+		if(gameMap.containsKey(path.getUserID())) {
+			completedGames.add(path);
+			gameMap.remove(path.getUserID());
+		}
+		/*for (StatisticScenarioPath savedPath : gamelist) {
 			if (savedPath.getGameID() == path.getGameID()) {
 				gamelist.remove(savedPath);
 				gamelist.add(path);
@@ -43,6 +71,7 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 		}
 		if (!gamelist.contains(path))
 			gamelist.add(path);
+			*/
 	}
 
 	/**
@@ -57,7 +86,7 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 		long playedTime = 0; // in Sekunden
 		int visitedNodes = 0; // nur die maximale anzahl in einem Spiel
 		int numberOfGames = 0;
-		for (StatisticScenarioPath gamePath : gamelist) {
+		for (StatisticScenarioPath gamePath : completedGames) {
 			if (gamePath.getUserID() == userId && gamePath.getScenarioID() == scenarioID) {
 				playedTime += gamePath.getPlayedTime();
 				numberOfGames++;
@@ -73,7 +102,7 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 
 	private List<StatisticGameObject> createGamesStatistics(long userId) {
 		LinkedList<StatisticGameObject> result = new LinkedList<StatisticGameObject>();
-		for (StatisticScenarioPath gamePath : gamelist) {
+		for (StatisticScenarioPath gamePath : completedGames) {
 			if (gamePath.getUserID() == userId) {
 				result.add(new StatisticGameObject(userId, gamePath.getScenarioID(), gamePath.getGameID(),
 						gamePath.getPlayedTime(), "s", gamePath.getNumberOfVisitedNodes()));
@@ -108,7 +137,7 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 		// liste packen
 		List<StatisticUserObject> list = new LinkedList<StatisticUserObject>();
 		List<Long> userIds = new LinkedList<Long>();
-		for (StatisticScenarioPath path : gamelist) {
+		for (StatisticScenarioPath path : completedGames) {
 			if (!userIds.contains(path.getUserID())) {
 				userIds.add(path.getUserID());
 				list.add(createUserStatistics(path.getUserID(), 0));
@@ -131,5 +160,16 @@ public class StatisticCalculatorBean implements IStatisticCalculator {
 			result+="]";
 		}
 		return result;
+	}
+	public StatisticScenarioPath getCurrentGame(long userID) throws GameDoesNotExistException {
+		if(gameMap.containsKey(userID)) {
+			return gameMap.get(userID);
+		}
+		throw new GameDoesNotExistException("Für den Spieler existiert kein laufendes Spiel");
+	}
+
+	@Override
+	public boolean hasCurrentGame(long userID) {
+		return gameMap.containsKey(userID);
 	}
 }
