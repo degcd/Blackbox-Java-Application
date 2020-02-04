@@ -14,7 +14,6 @@ import interfaces.ICommunicationManagement;
 @Singleton
 public class CommunicationManagementBean implements ICommunicationManagement {
 
-	// TODO Write-Lock einrichten
 	Map<Long, LinkedList<String>> usermessages;
 	LinkedList<String> topicMessages;
 
