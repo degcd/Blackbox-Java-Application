@@ -32,7 +32,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// System.out.println("p" + req.getParameter("username"));
 
 		//ANALYSE REQUEST
 		String jsonString = req.getQueryString();
@@ -45,8 +44,10 @@ public class LoginServlet extends HttpServlet {
 		jsonReader.close();
 
 		try{
-			System.out.println(jsonObject.getString("email") + jsonObject.getString("password"));
 			User result = bean.logIn(jsonObject.getString("email"), jsonObject.getString("password"));
+			if(result == null){
+				result = new User();
+			}
 			resp.getWriter().print(result.toString());//return value
 		}catch(Exception e){
 			e.printStackTrace();

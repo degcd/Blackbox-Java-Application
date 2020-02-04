@@ -41,7 +41,7 @@ public class StatisticScenarioPath {
             path.add(currentNode.getID());
         }
         else{
-            throw new GameHasEndedException("Node kann nicht hinzugefügt werden. Spielt wurde bereits um "+endDate.toString()+" beendet!");
+            throw new GameHasEndedException("Node kann nicht hinzugefügt werden. Spiel wurde bereits um "+endDate.toString()+" beendet!");
         }
     }
 

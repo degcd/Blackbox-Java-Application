@@ -44,13 +44,15 @@ public class RegisterServlet extends HttpServlet {
 		jsonReader.close();
 
 		try{
-			System.out.println(jsonObject.getString("email") + jsonObject.getString("password"));
 			User result = bean.register(jsonObject.getString("email"), jsonObject.getString("password"), jsonObject.getString("username"));
-			resp.getWriter().print(result.toString());//return value
+			if(result == null){
+				result = new User();
+			}
+			resp.getWriter().print(result.toString());//return value User
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("WARNING : Wrong Object Attributes!! or Error in bean-method");
-			resp.getWriter().print(new User().toString());//TODO return null? wie Reaktion im Frontend?
+			resp.getWriter().print(new User().toString());
 		}
 		
 		//RESPOND

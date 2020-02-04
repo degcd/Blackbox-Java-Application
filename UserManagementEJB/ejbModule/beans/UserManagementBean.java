@@ -214,8 +214,11 @@ public class UserManagementBean implements IUserManagement {
 	 * @return boolean
 	 */
     private boolean checkCredentials(String email, String password) {
-        User user = getUserByName(email);
-        assert user != null;
-        return user.getPassword().equals(password);
+    	boolean result = false;
+    	User user = getUserByName(email);
+    	if(user != null){
+    		result = user.getPassword().equals(password);
+    	}
+        return result;
     }
 }
