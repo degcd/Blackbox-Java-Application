@@ -21,7 +21,7 @@ public class PathCalculatorBean implements IPathCalculator {
 
     public PathCalculatorBean(){
     	try {
-    	System.out.println("Start des PathCalculatorbean construkors");
+    	System.out.println("Start des PathCalculatorbean constructors");
         scenarioCreator=new ScenarioCreator();
         firstNodes=new ArrayList<Node>();
         firstNodes.add(scenarioCreator.getFirstNode(0));
@@ -30,10 +30,9 @@ public class PathCalculatorBean implements IPathCalculator {
         answerList=scenarioCreator.getAnswerList();
         
         
-        	//TODO Liste auch für das zweite SCenario erstellen
-        System.out.println("PathCalculator BEan construkor");
+        System.out.println("PathCalculator Bean constructor");
     	}catch(Exception e) {
-    		System.out.println("Fehler in PathCalculator Construktor");
+    		System.out.println("Fehler in PathCalculator Constructor");
     		e.printStackTrace();
     	}
     }

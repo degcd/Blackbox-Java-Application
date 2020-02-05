@@ -785,7 +785,7 @@ public class ScenarioCreator {
 		return nodeList;
 	}
 
-	public List<Answer> getAnswerList() {
+	public static List<Answer> getAnswerList() {
 		return answerList;
 	}
 

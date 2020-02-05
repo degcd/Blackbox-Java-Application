@@ -84,6 +84,7 @@ public class GameplayManagementBean implements IGameplayManagement {
 		try {
 			StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
 			long lastNode = currentPath.getLastNodeID();
+			currentPath.setLastAnswerID(answerID);
 			Node currentNode = pathCalculator.getFollowingNode(answerID);
 			System.out.println(currentNode);
 			currentPath.add(currentNode);
@@ -165,24 +166,33 @@ public class GameplayManagementBean implements IGameplayManagement {
 		}
 		try {
 			StatisticScenarioPath currentPath = statisticCalculator.getCurrentGame(userID);
-
+			
 			List<Answer> currentAnswerList = new LinkedList<Answer>();
-			List<Long> pathList = currentPath.getPathList();
-			for (long nodeID : pathList) {
-				for (Answer answer : currentAnswerList) {
-					if (answer.getNodeID() == nodeID) {
-						List<Answer> answerlist = new LinkedList<Answer>();
-						sendAnswersToClient(answerlist);
-					}
+			long lastAnswer = currentPath.getLastAnswerID();
+			List<Answer> list = ScenarioCreator.getAnswerList();
+			
+			for(Answer a : list){
+				if(a.getAnswerID() == lastAnswer){
+					currentAnswerList.add(a);
 				}
-				Node node = pathCalculator.getNodeWithID(nodeID);
-				List<NodeMessage> msgList = node.getMessageToClientList();
-				for (NodeMessage msg : msgList) {
-					sendMsgToClient(msg);
-				}
-				currentAnswerList = node.getAnswerList();
-
 			}
+
+//			List<Answer> currentAnswerList = new LinkedList<Answer>();
+//			List<Long> pathList = currentPath.getPathList();
+//			for (long nodeID : pathList) {
+//				for (Answer answer : currentAnswerList) {
+//					if (answer.getNodeID() == nodeID) {
+//						List<Answer> answerlist = new LinkedList<Answer>();
+//						sendAnswersToClient(answerlist);
+//					}
+//				}
+//				Node node = pathCalculator.getNodeWithID(nodeID);
+//				List<NodeMessage> msgList = node.getMessageToClientList();
+//				for (NodeMessage msg : msgList) {
+//					sendMsgToClient(msg);
+//				}
+//				currentAnswerList = node.getAnswerList();
+//			}
 			sendAnswersToClient(currentAnswerList);
 			return true;
 		} catch (GameDoesNotExistException e) {

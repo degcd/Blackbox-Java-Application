@@ -18,6 +18,7 @@ public class StatisticScenarioPath {
 //    @Id
     long gameID;
     LinkedList<Long> path;
+    long lastAnswerID;
 //    @Column
     long userID;
 //    @Column
@@ -144,6 +145,19 @@ public class StatisticScenarioPath {
 	public void setScenarioID(long scenarioID) {
 		this.scenarioID = scenarioID;
 	}
+	
+	
+	
+	public long getLastAnswerID() {
+		return lastAnswerID;
+	}
+
+
+	public void setLastAnswerID(long lastAnswerID) {
+		this.lastAnswerID = lastAnswerID;
+	}
+
+
 	@Override
 	 public String toString() {
 		return "{\"gameID\":"+gameID+",\"userID\":"+userID+",\"Anzahl der Nodes\":"+path.size()+"}";
