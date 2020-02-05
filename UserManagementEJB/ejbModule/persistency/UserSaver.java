@@ -17,15 +17,15 @@ import entities.User;
 public class UserSaver {
 
 	public static void saveUser(entities.User user, String filepath) {
-		//create file at saving location
+		// create file at saving location
 		File f = new File(filepath);
-		//create new wrapper object that will be serialized
+		// create new wrapper object that will be serialized
 		UserWrapper wrap = null;
 		if (f.exists()) {
 
 			JAXBContext jaxbContext;
 			try {
-				//Serializing the wrapper class
+				// Serializing the wrapper class
 				jaxbContext = JAXBContext.newInstance(UserWrapper.class);
 				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
@@ -53,21 +53,22 @@ public class UserSaver {
 	}
 
 	public static List<User> loadUser(String filepath) {
-		//Creating list for loaded paths
+		// Creating list for loaded paths
 		List<User> ul = new ArrayList<>();
 		File f = new File(filepath);
-		JAXBContext jaxbContext;
-		try {
-			//deserialzing the wrapper class
-			jaxbContext = JAXBContext.newInstance(UserWrapper.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+		if (f.exists()) {
+			JAXBContext jaxbContext;
+			try {
+				// deserialzing the wrapper class
+				jaxbContext = JAXBContext.newInstance(UserWrapper.class);
+				Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-			UserWrapper uw = (UserWrapper) jaxbUnmarshaller.unmarshal(f);
-			ul = uw.getUser();
-		} catch (JAXBException e) {
-			e.printStackTrace();
+				UserWrapper uw = (UserWrapper) jaxbUnmarshaller.unmarshal(f);
+				ul = uw.getUser();
+			} catch (JAXBException e) {
+				e.printStackTrace();
+			}
 		}
-		
 		return ul;
 	}
 }
